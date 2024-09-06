@@ -8,6 +8,9 @@ export default {
       },
       backgroundImage: {
         'hero-bg': "url('@/assets/img/hero-background.png')"
+      },
+      colors: {
+        primary: '#EC2127'
       }
     }
   },
