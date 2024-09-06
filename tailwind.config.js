@@ -5,6 +5,9 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Poppins', 'sans-serif']
+      },
+      backgroundImage: {
+        'hero-bg': "url('@/assets/img/hero-background.png')"
       }
     }
   },

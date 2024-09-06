@@ -1,5 +1,7 @@
-<script setup></script>
+<script setup>
+import Hero from '@/components/Hero.vue'
+</script>
 
 <template>
-  <div class="text-4xl">D&D Character Dashboard</div>
+  <Hero />
 </template>
