@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer utilities {
     /* Hide scrollbar for Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
@@ -22,6 +21,7 @@
 }
 
 /* General Styles */
+
 .max-width {
     @apply max-w-[1440px] mx-auto;
 }
