@@ -14,7 +14,7 @@ const cleanCharacterClass = (className) => {
 </script>
 
 <template>
-  <div class="rounded-2xl bg-white transition-200 shadow-xl hover:scale-[1.05]">
+  <div class="rounded-2xl bg-blue-50 transition-200 shadow-xl hover:scale-[1.05]">
     <RouterLink :to="`/characters/${character.id}`">
       <div
         class="p-6 flex flex-grow gap-4 items-center hover:cursor-pointer relative overflow-hidden"
