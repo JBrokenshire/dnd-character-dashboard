@@ -1,4 +1,6 @@
 <script setup>
+import CharacterProfilePicture from '@/components/CharacterProfilePicture.vue'
+
 defineProps({
   character: {
     type: Object,
@@ -17,15 +19,7 @@ const cleanCharacterClass = (className) => {
       <div
         class="p-6 flex flex-grow gap-4 items-center hover:cursor-pointer relative overflow-hidden"
       >
-        <img
-          :src="
-            character.profile_picture_url !== ''
-              ? character.profile_picture_url
-              : `./src/assets/img/character_card/default-profile-picture.png`
-          "
-          alt="Character Profile Picture"
-          class="max-w-20 aspect-square object-contain z-10 rounded-lg"
-        />
+        <CharacterProfilePicture :profilePictureURL="character.profile_picture_url" />
 
         <div class="z-10">
           <h1 class="text-xl md:text-2xl text-white font-bold line-clamp-1">
@@ -44,7 +38,7 @@ const cleanCharacterClass = (className) => {
       </div>
     </RouterLink>
 
-    <div class="px-8 py-4 rounded-b-2xl text-lg flex-between">
+    <div class="px-8 py-4 rounded-b-2xl text-sm md:text-lg flex-between">
       <RouterLink :to="`/characters/${character.id}`" class="nav-link uppercase font-bold">
         View
       </RouterLink>
@@ -53,7 +47,7 @@ const cleanCharacterClass = (className) => {
       </RouterLink>
       <RouterLink
         :to="`/characters/${character.id}/delete`"
-        class="nav-link uppercase font-bold text-primary"
+        class="nav-link uppercase font-bold text-orange-600"
       >
         Delete
       </RouterLink>

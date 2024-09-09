@@ -34,7 +34,7 @@ onMounted(async () => {
   </div>
 
   <div v-else class="max-width padding-x py-8">
-    <div class="text-5xl font-bold">My Characters</div>
+    <div class="text-2xl md:text-5xl font-bold">My Characters</div>
     <div
       v-if="state.characters.length > 0"
       class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mt-8"

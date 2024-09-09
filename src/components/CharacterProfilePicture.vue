@@ -1,0 +1,17 @@
+<script setup>
+defineProps({
+  profilePictureURL: String
+})
+</script>
+
+<template>
+  <img
+    :src="
+      profilePictureURL
+        ? profilePictureURL
+        : `/src/assets/img/character_card/default-profile-picture.png`
+    "
+    alt="Character Profile Picture"
+    class="max-w-20 aspect-square object-contain z-10 rounded-lg"
+  />
+</template>
