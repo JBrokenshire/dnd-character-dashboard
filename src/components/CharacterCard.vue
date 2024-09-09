@@ -18,7 +18,11 @@ const cleanCharacterClass = (className) => {
         class="p-6 flex flex-grow gap-4 items-center hover:cursor-pointer relative overflow-hidden"
       >
         <img
-          src="@/assets/img/character_card/default-profile-picture.png"
+          :src="
+            character.profile_picture_url !== ''
+              ? character.profile_picture_url
+              : `./src/assets/img/character_card/default-profile-picture.png`
+          "
           alt="Character Profile Picture"
           class="max-w-20 aspect-square object-contain z-10 rounded-lg"
         />
