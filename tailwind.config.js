@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+import { primaryColour } from './src/constants'
+
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
@@ -10,7 +11,7 @@ export default {
         'hero-bg': "url('@/assets/img/hero-background.png')"
       },
       colors: {
-        primary: '#EC2127'
+        primary: primaryColour
       },
       brightness: {
         25: '.45'

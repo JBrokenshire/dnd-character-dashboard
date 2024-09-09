@@ -1,3 +1,5 @@
+const primaryColour = '#EC2127'
+
 const footerLinks = [
   {
     title: 'About',
@@ -17,4 +19,4 @@ const footerLinks = [
   }
 ]
 
-export { footerLinks }
+export { primaryColour, footerLinks }
