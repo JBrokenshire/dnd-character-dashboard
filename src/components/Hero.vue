@@ -10,7 +10,7 @@
       </p>
 
       <RouterLink to="/characters">
-        <div class="pill-btn mt-8">View All Character</div>
+        <div class="pill-btn mt-8">View All Characters</div>
       </RouterLink>
     </div>
 

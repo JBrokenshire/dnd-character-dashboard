@@ -11,6 +11,9 @@ export default {
       },
       colors: {
         primary: '#EC2127'
+      },
+      brightness: {
+        25: '.45'
       }
     }
   },

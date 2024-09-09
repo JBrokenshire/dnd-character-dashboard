@@ -6,7 +6,7 @@ import { RouterLink } from 'vue-router'
 <template>
   <footer>
     <div class="links-container padding-x">
-      <div class="flex flex-col justify-start items-start gap-6">
+      <div class="hidden sm:flex flex-col justify-start items-start gap-6">
         <RouterLink class="w-max min-w-[75px] max-w-[150px]" to="/">
           <img src="@/assets/img/website-logo.png" alt="Website Logo" class="aspect-square" />
         </RouterLink>
@@ -50,7 +50,7 @@ footer {
 }
 
 .links {
-  @apply flex-1 flex md:justify-end flex-wrap max-md:mt-10 gap-20;
+  @apply flex-1 flex md:justify-end flex-wrap gap-20;
 }
 
 .link-group {
