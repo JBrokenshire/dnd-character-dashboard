@@ -25,7 +25,7 @@
 
 <style scoped>
 .hero {
-  @apply flex xl:flex-row flex-col gap-5 relative z-0 pb-16 xl:pb-0;
+  @apply flex xl:flex-row flex-col gap-8 lg:gap-24 relative z-0 pb-16 xl:pb-0;
 }
 
 .hero__title {
@@ -45,6 +45,6 @@
 }
 
 .hero__image-overlay {
-  @apply absolute xl:top-0 bottom-0 xl:left-0 left-auto bg-hero-bg bg-repeat-round -z-10 xl:w-[125%] w-[80%] xl:h-[80%] h-full overflow-hidden;
+  @apply absolute xl:top-0 xl:-right-1/2 bottom-0 left-auto bg-hero-bg bg-repeat-round -z-10 xl:w-[150%] w-[80%] xl:h-[80%] h-full overflow-hidden;
 }
 </style>

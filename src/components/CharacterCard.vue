@@ -1,4 +1,6 @@
 <script setup>
+import axios from 'axios'
+import { useToast } from 'vue-toastification'
 import CharacterProfilePicture from '@/components/CharacterProfilePicture.vue'
 
 defineProps({
@@ -8,8 +10,26 @@ defineProps({
   }
 })
 
+const emit = defineEmits(['character-deleted'])
+
 const cleanCharacterClass = (className) => {
   return className.replace(/\s+/g, '-').toLowerCase()
+}
+
+const toast = useToast()
+
+const deleteCharacter = async (characterID) => {
+  try {
+    const confirm = window.confirm('Are you sure you want to delete this character?')
+    if (confirm) {
+      await axios.delete(`/api/characters/${characterID}`)
+      emit('character-deleted')
+      toast.success('Character deleted successfully.')
+    }
+  } catch (error) {
+    toast.error('Error deleting character')
+    console.error('Error deleting character', error)
+  }
 }
 </script>
 
@@ -45,12 +65,12 @@ const cleanCharacterClass = (className) => {
       <RouterLink :to="`/characters/${character.id}/edit`" class="nav-link uppercase font-bold">
         Edit
       </RouterLink>
-      <RouterLink
-        :to="`/characters/${character.id}/delete`"
+      <button
+        @click="deleteCharacter(character.id)"
         class="nav-link uppercase font-bold text-orange-600"
       >
         Delete
-      </RouterLink>
+      </button>
     </div>
   </div>
 </template>
