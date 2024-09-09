@@ -40,7 +40,7 @@ const cleanCharacterClass = (className) => {
       </div>
     </RouterLink>
 
-    <div class="px-8 py-4 rounded-b-2xl flex-between">
+    <div class="px-8 py-4 rounded-b-2xl text-lg flex-between">
       <RouterLink :to="`/characters/${character.id}`" class="nav-link uppercase font-bold">
         View
       </RouterLink>
