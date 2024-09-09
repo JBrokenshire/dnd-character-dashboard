@@ -1,10 +1,15 @@
 <script setup>
 import axios from 'axios'
 import router from '@/router'
+import { useRoute } from 'vue-router'
 import { onMounted, reactive } from 'vue'
 import { ScaleLoader } from 'vue-spinner/src'
 import { useToast } from 'vue-toastification'
-import { primaryColour } from '@/constants/index.js'
+import { primaryColour } from '@/constants'
+
+const route = useRoute()
+
+const characterID = route.params.id
 
 const form = reactive({
   name: '',
@@ -26,16 +31,17 @@ const handleSubmit = async () => {
   }
 
   try {
-    const response = await axios.post('/api/characters', newCharacter)
-    toast.success('New Character Created')
+    const response = await axios.put(`/api/characters/${state.character.id}`, newCharacter)
+    toast.success('Character Updated Successfully')
     await router.push(`/characters/${response.data.id}`)
   } catch (error) {
     console.error('Error creating character:', error)
-    toast.error('Character Not Added')
+    toast.error('Character Not Updated')
   }
 }
 
 const state = reactive({
+  character: Object,
   classes: [],
   races: [],
   isLoading: true
@@ -48,8 +54,19 @@ onMounted(async () => {
 
     const racesResponse = await axios.get('/api/races')
     state.races = racesResponse.data
+
+    const characterResponse = await axios.get(`/api/characters/${characterID}`)
+    state.character = characterResponse.data
+
+    form.name = state.character.name
+    form.level = state.character.level
+    form.classID = state.character.class_id
+    form.raceID = state.character.race_id
+    form.profilePictureURL = state.character.profile_picture_url
+      ? state.character.profile_picture_url
+      : null
   } catch (error) {
-    console.error('Error fetching classes & races:', error)
+    console.error('Error fetching character, classes or races:', error)
   } finally {
     state.isLoading = false
   }
@@ -64,7 +81,7 @@ onMounted(async () => {
     </div>
 
     <form v-else @submit.prevent="handleSubmit">
-      <h2 class="text-2xl lg:text-4xl text-center font-semibold mb-8">Create Character</h2>
+      <h2 class="text-2xl lg:text-4xl text-center font-semibold mb-8">Edit Character</h2>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="flex flex-col flex-grow">

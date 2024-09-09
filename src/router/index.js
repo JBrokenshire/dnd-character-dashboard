@@ -1,9 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
-import AllCharactersView from '@/views/AllCharactersView.vue'
 import CharacterView from '@/views/CharacterView.vue'
+import { createRouter, createWebHistory } from 'vue-router'
 import AddCharacterView from '@/views/AddCharacterView.vue'
+import AllCharactersView from '@/views/AllCharactersView.vue'
+import EditCharacterView from '@/views/EditCharacterView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/characters/:id',
       name: 'character',
       component: CharacterView
+    },
+    {
+      path: '/characters/:id/edit',
+      name: 'edit-character',
+      component: EditCharacterView
     },
     {
       name: 'not-found',
