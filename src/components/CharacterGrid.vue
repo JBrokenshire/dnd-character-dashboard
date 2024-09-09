@@ -1,8 +1,10 @@
 <script setup>
-import { onMounted, reactive } from 'vue'
 import axios from 'axios'
-import CharacterCard from '@/components/CharacterCard.vue'
+import { onMounted, reactive } from 'vue'
+import { primaryColour } from '@/constants'
+import { ScaleLoader } from 'vue-spinner/src'
 import NoCharacters from '@/components/NoCharacters.vue'
+import CharacterCard from '@/components/CharacterCard.vue'
 
 const state = reactive({
   characters: [],
@@ -22,7 +24,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="state.characters.length === 0">
+  <!-- Show loading spinner while isLoading = true -->
+  <div v-if="state.isLoading" class="text-center py-6">
+    <ScaleLoader :color="primaryColour" size="1rem" />
+  </div>
+
+  <div v-else-if="state.characters.length === 0">
     <NoCharacters />
   </div>
 
