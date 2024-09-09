@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 
 <template>
   <header class="max-width px-4 md:padding-x">
-    <nav class="flex-center lg:flex-between gap-2 sm:gap-8">
+    <nav class="flex items-center justify-center lg:justify-between gap-2 sm:gap-8">
       <RouterLink class="w-[15%] min-w-[75px] max-w-[150px]" to="/">
         <img src="@/assets/img/website-logo.png" alt="Website Logo" class="aspect-square" />
       </RouterLink>
