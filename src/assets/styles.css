@@ -11,6 +11,7 @@
     .no-scrollbar {
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
+
     }
 }
 
@@ -53,7 +54,7 @@
 /* Header Styles */
 
 .nav-link {
-    @apply relative px-2 sm:px-4 py-2 text-center transition-200 hover:text-primary
+    @apply relative py-2 text-center transition-200 hover:text-primary
 }
 
 .nav-link::before {

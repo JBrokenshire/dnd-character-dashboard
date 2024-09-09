@@ -25,15 +25,15 @@
 
 <style scoped>
 .hero {
-  @apply flex xl:flex-row flex-col gap-5 relative z-0 mb-16;
+  @apply flex xl:flex-row flex-col gap-5 relative z-0 pb-16 xl:pb-0;
 }
 
 .hero__title {
-  @apply 2xl:text-[64px] sm:text-[56px] text-[48px] font-bold;
+  @apply 2xl:text-[64px] sm:text-[48px] text-[36px] font-bold;
 }
 
 .hero__subtitle {
-  @apply text-[27px] text-slate-700 font-light mt-5;
+  @apply text-[20px] md:text-[28px] text-slate-700 font-light mt-5;
 }
 
 .hero__image-container {
@@ -41,7 +41,7 @@
 }
 
 .hero__image {
-  @apply flex justify-center items-start max-w-[800px] xl:w-full w-[50%] xl:h-full z-0;
+  @apply flex justify-center items-start max-w-[800px] xl:w-full w-[50%] xl:h-full z-0 aspect-auto;
 }
 
 .hero__image-overlay {
