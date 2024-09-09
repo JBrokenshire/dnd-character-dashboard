@@ -2,7 +2,7 @@
 
 <template>
   <div class="hero">
-    <div class="flex-1 pt-36 padding-x">
+    <div class="flex-1 pt-8 padding-x">
       <h1 class="hero__title">Create, View & Edit your next adventurer!</h1>
       <p class="hero__subtitle">
         A horde of goblins, a family of trolls or a mighty red dragon — Your party is ready for
