@@ -40,9 +40,9 @@ onMounted(async () => {
   </div>
 
   <div v-else class="max-width padding-x py-8">
-    <div class="flex-between">
+    <div class="flex-between border-b border-gray-300 pb-4 md:pb-8">
       <div class="text-2xl md:text-5xl font-bold">My Characters</div>
-      <RouterLink :to="`/characters/add`" class="flex items-center gap-2 text-lg nav-link">
+      <RouterLink :to="`/characters/add`" class="flex items-center sm:gap-2 text-lg nav-link">
         Create Character
         <i class="pi pi-chevron-right scale-[.75]" />
       </RouterLink>
