@@ -31,7 +31,7 @@ onMounted(async () => {
 <template>
   <!-- Show loading spinner while isLoading = true -->
   <div v-if="state.isLoading" class="text-center py-6">
-    <ScaleLoader :color="primaryColour" size="1rem" />
+    <ScaleLoader :color="primaryColour" height="72px" width="8px" margin="8px" />
   </div>
 
   <div v-else-if="state.characters.length === 0">
