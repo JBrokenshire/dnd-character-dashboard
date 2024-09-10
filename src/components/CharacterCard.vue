@@ -53,7 +53,7 @@ const deleteCharacter = async (characterID) => {
         </div>
 
         <img
-          :src="`src/assets/img/character_card/backgrounds/${cleanCharacterClass(character.class.name)}.jpg`"
+          :src="`src/assets/img/classes/card_backgrounds/${cleanCharacterClass(character.class.name)}.jpg`"
           class="absolute top-0 left-0 w-full h-full object-cover brightness-25 rounded-2xl"
           alt=""
         />

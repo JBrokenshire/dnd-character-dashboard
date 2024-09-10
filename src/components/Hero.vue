@@ -14,7 +14,7 @@
 
     <div class="hero__image-container">
       <div class="hero__image">
-        <img src="@/assets/img/wizard.png" alt="Wizard Hero" class="object-contain" />
+        <img :src="`./src/assets/img/hero/wizard.png`" alt="Hero Image" class="object-contain" />
       </div>
       <div class="hero__image-overlay" />
     </div>
@@ -39,10 +39,10 @@
 }
 
 .hero__image {
-  @apply flex justify-center items-start max-w-[800px] xl:w-full w-[50%] xl:h-full z-0 aspect-auto;
+  @apply flex justify-center items-center md:items-start max-w-[800px] xl:w-full w-[75%] xl:h-full z-0 aspect-auto;
 }
 
 .hero__image-overlay {
-  @apply absolute xl:top-0 xl:-right-1/2 bottom-0 left-auto bg-hero-bg bg-repeat-round -z-10 xl:w-[150%] w-[80%] xl:h-[80%] h-full overflow-hidden;
+  @apply absolute xl:top-0 xl:-right-1/2 bottom-0 left-auto bg-hero-bg bg-repeat-round -z-10 xl:w-[150%] w-[90%] xl:h-[80%] h-full overflow-hidden;
 }
 </style>

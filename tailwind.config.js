@@ -8,7 +8,7 @@ export default {
         sans: ['Poppins', 'sans-serif']
       },
       backgroundImage: {
-        'hero-bg': "url('@/assets/img/hero-background.png')"
+        'hero-bg': "url('@/assets/img/hero/background.png')"
       },
       colors: {
         primary: primaryColour
