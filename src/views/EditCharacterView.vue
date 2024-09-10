@@ -81,7 +81,19 @@ onMounted(async () => {
     </div>
 
     <form v-else @submit.prevent="handleSubmit">
-      <h2 class="text-2xl lg:text-4xl text-center font-semibold mb-8">Edit Character</h2>
+      <div class="flex-between w-full my-8">
+        <RouterLink
+          :to="`/characters/${state.character.id}`"
+          class="flex items-center gap-2 text-lg nav-link"
+        >
+          <i class="pi pi-chevron-left scale-[.75]" />
+          View Character
+        </RouterLink>
+        <h2 class="text-2xl lg:text-4xl text-center font-semibold">Edit Character</h2>
+        <RouterLink :to="`/characters/${state.character.id}`" class="invisible">
+          View Character
+        </RouterLink>
+      </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="flex flex-col flex-grow">
