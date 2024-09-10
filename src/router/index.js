@@ -7,6 +7,8 @@ import AddCharacterView from '@/views/AddCharacterView.vue'
 import AllCharactersView from '@/views/AllCharactersView.vue'
 import EditCharacterView from '@/views/EditCharacterView.vue'
 import AllRacesView from '@/views/AllRacesView.vue'
+import ClassView from '@/views/ClassView.vue'
+import RaceView from '@/views/RaceView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,9 +24,19 @@ const router = createRouter({
       component: AllClassesView
     },
     {
+      path: '/classes/:id',
+      name: 'class',
+      component: ClassView
+    },
+    {
       path: '/races',
       name: 'races',
       component: AllRacesView
+    },
+    {
+      path: '/races/:id',
+      name: 'race',
+      component: RaceView
     },
     {
       path: '/characters',

@@ -34,59 +34,41 @@ onMounted(async () => {
     <div v-if="state.races.length > 0" class="grid gap-8 mt-8 lg:grid-cols-2 xl:grid-cols-3">
       <div class="flex flex-col gap-8">
         <RouterLink
-          :to="`/classes/${race.id}`"
+          :to="`/races/${race.id}`"
           v-for="race in state.races.slice(0, Math.floor(state.races.length / 3))"
           :key="race.id"
           class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:shadow-lg"
         >
           <div class="text-3xl font-bold mb-2">{{ race.name }}</div>
-          <p
-            v-for="(section, index) in race.description.split('\n')"
-            :key="`${race.name}-description-section-${index}`"
-            class="mb-2 text-black"
-          >
-            {{ section }}
-          </p>
+          <p class="text-black">{{ race.short_description }}</p>
         </RouterLink>
       </div>
       <div class="flex flex-col gap-8">
         <RouterLink
-          :to="`/classes/${race.id}`"
+          :to="`/races/${race.id}`"
           v-for="race in state.races.slice(
             Math.floor(state.races.length / 3),
-            2 * Math.floor(state.races.length / 3) - 1
+            2 * Math.floor(state.races.length / 3)
           )"
           :key="race.id"
           class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:shadow-lg"
         >
           <div class="text-3xl font-bold mb-2">{{ race.name }}</div>
-          <p
-            v-for="(section, index) in race.description.split('\n')"
-            :key="`${race.name}-description-section-${index}`"
-            class="mb-2 text-black"
-          >
-            {{ section }}
-          </p>
+          <p class="text-black">{{ race.short_description }}</p>
         </RouterLink>
       </div>
       <div class="flex flex-col gap-8">
         <RouterLink
-          :to="`/classes/${race.id}`"
+          :to="`/races/${race.id}`"
           v-for="race in state.races.slice(
-            2 * Math.floor(state.races.length / 3) - 1,
+            2 * Math.floor(state.races.length / 3),
             state.races.length
           )"
           :key="race.id"
           class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:shadow-lg"
         >
           <div class="text-3xl font-bold mb-2">{{ race.name }}</div>
-          <p
-            v-for="(section, index) in race.description.split('\n')"
-            :key="`${race.name}-description-section-${index}`"
-            class="mb-2 text-black"
-          >
-            {{ section }}
-          </p>
+          <p class="text-black">{{ race.short_description }}</p>
         </RouterLink>
       </div>
     </div>

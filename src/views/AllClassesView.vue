@@ -15,7 +15,6 @@ onMounted(async () => {
   try {
     const response = await axios.get('/api/classes')
     state.classes = response.data
-    state.classes.sort((a, b) => a.name.localeCompare(b.name))
   } catch (error) {
     console.error('Error fetching classes:', error)
     await router.push(`/error/${error.response.status}`)
@@ -45,7 +44,7 @@ onMounted(async () => {
         >
           <div class="text-3xl font-bold mb-2">{{ classType.name }}</div>
           <p
-            v-for="(section, index) in classType.description.split('\n')"
+            v-for="(section, index) in classType.short_description.split('\n')"
             :key="`${classType.name}-description-section-${index}`"
             class="mb-2 text-black"
           >
@@ -65,7 +64,7 @@ onMounted(async () => {
         >
           <div class="text-3xl font-bold mb-2">{{ classType.name }}</div>
           <p
-            v-for="(section, index) in classType.description.split('\n')"
+            v-for="(section, index) in classType.short_description.split('\n')"
             :key="`${classType.name}-description-section-${index}`"
             class="mb-2 text-black"
           >
@@ -85,7 +84,7 @@ onMounted(async () => {
         >
           <div class="text-3xl font-bold mb-2">{{ classType.name }}</div>
           <p
-            v-for="(section, index) in classType.description.split('\n')"
+            v-for="(section, index) in classType.short_description.split('\n')"
             :key="`${classType.name}-description-section-${index}`"
             class="mb-2 text-black"
           >

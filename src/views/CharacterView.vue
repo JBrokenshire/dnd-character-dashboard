@@ -51,7 +51,7 @@ onMounted(async () => {
         <div class="border border-gray-300 rounded-md px-4">
           <p
             class="py-2"
-            v-for="(section, index) in state.character.class.description.split('\n')"
+            v-for="(section, index) in state.character.class.long_description.split('\n')"
             :key="`character-class-description-section-${index}`"
           >
             {{ section }}
@@ -71,7 +71,7 @@ onMounted(async () => {
         <div class="border border-gray-300 rounded-md px-4">
           <p
             class="py-2"
-            v-for="(section, index) in state.character.race.description.split('\n')"
+            v-for="(section, index) in state.character.race.long_description.split('\n')"
             :key="`character-race-description-section-${index}`"
           >
             {{ section }}

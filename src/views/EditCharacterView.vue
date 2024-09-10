@@ -3,8 +3,6 @@ import axios from 'axios'
 import router from '@/router'
 import { useRoute } from 'vue-router'
 import { onMounted, reactive } from 'vue'
-import { primaryColour } from '@/constants'
-import { ScaleLoader } from 'vue-spinner/src'
 import { useToast } from 'vue-toastification'
 import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
 
@@ -133,7 +131,9 @@ onMounted(async () => {
               class="mt-2 p-1 flex flex-col gap-2 h-[100px] overflow-y-scroll border border-gray-200 rounded-md"
             >
               <p
-                v-for="(section, index) in state.classes[form.classID - 1].description.split('\n')"
+                v-for="(section, index) in state.classes[form.classID - 1].short_description.split(
+                  '\n'
+                )"
                 :key="`${state.classes[form.classID - 1].name}-description-section-${index}`"
               >
                 {{ section }}
@@ -194,7 +194,9 @@ onMounted(async () => {
               class="mt-2 p-1 flex flex-col gap-2 h-[100px] overflow-y-scroll border border-gray-200 rounded-md"
             >
               <p
-                v-for="(section, index) in state.races[form.raceID - 1].description.split('\n')"
+                v-for="(section, index) in state.races[form.raceID - 1].short_description.split(
+                  '\n'
+                )"
                 :key="`${state.races[form.raceID - 1].name}-description-section-${index}`"
               >
                 {{ section }}
