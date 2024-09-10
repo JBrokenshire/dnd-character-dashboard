@@ -40,7 +40,7 @@ onMounted(async () => {
           :to="`/classes/${classType.id}`"
           v-for="classType in state.classes.slice(0, Math.floor(state.classes.length / 3))"
           :key="classType.id"
-          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:shadow-lg"
+          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:scale-[1.02] hover:shadow-lg"
         >
           <div class="text-3xl font-bold mb-2">{{ classType.name }}</div>
           <p
@@ -60,7 +60,7 @@ onMounted(async () => {
             2 * Math.floor(state.classes.length / 3) + 1
           )"
           :key="classType.id"
-          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:shadow-lg"
+          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:scale-[1.02] hover:shadow-lg"
         >
           <div class="text-3xl font-bold mb-2">{{ classType.name }}</div>
           <p
@@ -80,7 +80,7 @@ onMounted(async () => {
             state.classes.length
           )"
           :key="classType.id"
-          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:shadow-lg"
+          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:scale-[1.02] hover:shadow-lg"
         >
           <div class="text-3xl font-bold mb-2">{{ classType.name }}</div>
           <p

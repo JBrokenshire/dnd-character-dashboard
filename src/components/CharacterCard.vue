@@ -34,9 +34,7 @@ const deleteCharacter = async (characterID) => {
 </script>
 
 <template>
-  <div
-    class="rounded-2xl bg-blue-50 transition-200 shadow-xl hover:scale-[1.02] hover:shadow-gray-400"
-  >
+  <div class="rounded-2xl transition-200 shadow-lg hover:scale-[1.02] hover:shadow-gray-400">
     <RouterLink :to="`/characters/${character.id}`">
       <div
         class="p-6 flex flex-grow gap-4 items-center hover:cursor-pointer relative overflow-hidden"

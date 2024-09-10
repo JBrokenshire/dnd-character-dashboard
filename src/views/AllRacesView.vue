@@ -37,7 +37,7 @@ onMounted(async () => {
           :to="`/races/${race.id}`"
           v-for="race in state.races.slice(0, Math.floor(state.races.length / 3))"
           :key="race.id"
-          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:shadow-lg"
+          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:scale-[1.02] hover:shadow-lg"
         >
           <div class="text-3xl font-bold mb-2">{{ race.name }}</div>
           <p class="text-black">{{ race.short_description }}</p>
@@ -51,7 +51,7 @@ onMounted(async () => {
             2 * Math.floor(state.races.length / 3)
           )"
           :key="race.id"
-          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:shadow-lg"
+          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:scale-[1.02] hover:shadow-lg"
         >
           <div class="text-3xl font-bold mb-2">{{ race.name }}</div>
           <p class="text-black">{{ race.short_description }}</p>
@@ -65,7 +65,7 @@ onMounted(async () => {
             state.races.length
           )"
           :key="race.id"
-          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:shadow-lg"
+          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:scale-[1.02] hover:shadow-lg"
         >
           <div class="text-3xl font-bold mb-2">{{ race.name }}</div>
           <p class="text-black">{{ race.short_description }}</p>
