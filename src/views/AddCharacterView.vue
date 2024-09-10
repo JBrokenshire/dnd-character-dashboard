@@ -2,9 +2,7 @@
 import axios from 'axios'
 import router from '@/router'
 import { onMounted, reactive } from 'vue'
-import { ScaleLoader } from 'vue-spinner/src'
 import { useToast } from 'vue-toastification'
-import { primaryColour } from '@/constants/index.js'
 import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
 
 const form = reactive({
@@ -68,7 +66,7 @@ onMounted(async () => {
     <form v-else @submit.prevent="handleSubmit">
       <h2 class="text-2xl lg:text-4xl text-center font-semibold mb-8">Create Character</h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-8">
         <div class="flex flex-col flex-grow">
           <div class="mb-4">
             <label for="name" class="block text-gray-700 font-bold mb-2">Name</label>
@@ -104,7 +102,9 @@ onMounted(async () => {
               class="mt-2 p-1 flex flex-col gap-2 h-[100px] overflow-y-scroll border border-gray-200 rounded-md"
             >
               <p
-                v-for="(section, index) in state.classes[form.classID - 1].description.split('\n')"
+                v-for="(section, index) in state.classes[form.classID - 1].short_description.split(
+                  '\n'
+                )"
                 :key="`${state.classes[form.classID - 1].name}-description-section-${index}`"
               >
                 {{ section }}
@@ -165,7 +165,9 @@ onMounted(async () => {
               class="mt-2 p-1 flex flex-col gap-2 h-[100px] overflow-y-scroll border border-gray-200 rounded-md"
             >
               <p
-                v-for="(section, index) in state.races[form.raceID - 1].description.split('\n')"
+                v-for="(section, index) in state.races[form.raceID - 1].short_description.split(
+                  '\n'
+                )"
                 :key="`${state.races[form.raceID - 1].name}-description-section-${index}`"
               >
                 {{ section }}
