@@ -1,8 +1,6 @@
 <script setup>
 import axios from 'axios'
 import { onMounted, reactive } from 'vue'
-import { primaryColour } from '@/constants'
-import { ScaleLoader } from 'vue-spinner/src'
 import { useRoute, useRouter } from 'vue-router'
 import CharacterSheetHeader from '@/components/character_sheet/CharacterSheetHeader.vue'
 import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
@@ -37,7 +35,39 @@ onMounted(async () => {
     <CustomScaleLoader />
   </div>
 
-  <CharacterSheetHeader v-else :character="state.character" />
+  <div v-else class="max-width py-8 flex flex-col gap-8">
+    <CharacterSheetHeader :character="state.character" />
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div>
+        <h2 class="text-xl md:text-3xl font-bold text-center mb-4">
+          {{ state.character.class.name }}
+        </h2>
+        <div class="border border-gray-300 rounded-md px-4">
+          <p
+            class="py-2"
+            v-for="(section, index) in state.character.class.description.split('\n')"
+            :key="`character-class-description-section-${index}`"
+          >
+            {{ section }}
+          </p>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-xl md:text-3xl font-bold text-center mb-4">
+          {{ state.character.race.name }}
+        </h2>
+        <div class="border border-gray-300 rounded-md px-4">
+          <p
+            class="py-2"
+            v-for="(section, index) in state.character.race.description.split('\n')"
+            :key="`character-race-description-section-${index}`"
+          >
+            {{ section }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped></style>
