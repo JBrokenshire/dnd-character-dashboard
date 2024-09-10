@@ -1,5 +1,5 @@
 import HomeView from '@/views/HomeView.vue'
-import NotFoundView from '@/views/NotFoundView.vue'
+import ErrorView from '@/views/ErrorView.vue'
 import CharacterView from '@/views/CharacterView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import AddCharacterView from '@/views/AddCharacterView.vue'
@@ -35,9 +35,14 @@ const router = createRouter({
       component: EditCharacterView
     },
     {
+      path: '/error/:code',
+      name: 'error',
+      component: ErrorView
+    },
+    {
       name: 'not-found',
       path: '/:catchAll(.*)',
-      component: NotFoundView
+      component: ErrorView
     }
   ]
 })

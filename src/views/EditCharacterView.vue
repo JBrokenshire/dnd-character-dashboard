@@ -6,6 +6,7 @@ import { onMounted, reactive } from 'vue'
 import { primaryColour } from '@/constants'
 import { ScaleLoader } from 'vue-spinner/src'
 import { useToast } from 'vue-toastification'
+import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
 
 const route = useRoute()
 
@@ -67,6 +68,7 @@ onMounted(async () => {
       : null
   } catch (error) {
     console.error('Error fetching character, classes or races:', error)
+    await router.push(`/error/${error.response.status}`)
   } finally {
     state.isLoading = false
   }
@@ -77,7 +79,7 @@ onMounted(async () => {
   <div class="max-width padding-x">
     <!-- Show loading spinner while isLoading = true -->
     <div v-if="state.isLoading" class="text-center py-6">
-      <ScaleLoader :color="primaryColour" size="1rem" />
+      <CustomScaleLoader />
     </div>
 
     <form v-else @submit.prevent="handleSubmit">

@@ -5,6 +5,7 @@ import { onMounted, reactive } from 'vue'
 import { ScaleLoader } from 'vue-spinner/src'
 import { useToast } from 'vue-toastification'
 import { primaryColour } from '@/constants/index.js'
+import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
 
 const form = reactive({
   name: '',
@@ -49,7 +50,8 @@ onMounted(async () => {
     const racesResponse = await axios.get('/api/races')
     state.races = racesResponse.data
   } catch (error) {
-    console.error('Error fetching classes & races:', error)
+    console.error('Error fetching classes or races', error)
+    await router.push(`/error/${error.response.status}`)
   } finally {
     state.isLoading = false
   }
@@ -60,7 +62,7 @@ onMounted(async () => {
   <div class="max-width padding-x">
     <!-- Show loading spinner while isLoading = true -->
     <div v-if="state.isLoading" class="text-center py-6">
-      <ScaleLoader :color="primaryColour" size="1rem" />
+      <CustomScaleLoader />
     </div>
 
     <form v-else @submit.prevent="handleSubmit">

@@ -5,6 +5,7 @@ import { primaryColour } from '@/constants'
 import { ScaleLoader } from 'vue-spinner/src'
 import { useRoute, useRouter } from 'vue-router'
 import CharacterSheetHeader from '@/components/character_sheet/CharacterSheetHeader.vue'
+import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -23,7 +24,7 @@ onMounted(async () => {
     state.character = response.data
   } catch (error) {
     console.error(`Error fetching character with id ${characterID}`)
-    await router.push('/not-found')
+    await router.push(`/error/${error.response.status}`)
   } finally {
     state.isLoading = false
   }
@@ -33,7 +34,7 @@ onMounted(async () => {
 <template>
   <!-- Show loading spinner while isLoading = true -->
   <div v-if="state.isLoading" class="text-center py-6">
-    <ScaleLoader :color="primaryColour" height="72px" width="8px" margin="8px" />
+    <CustomScaleLoader />
   </div>
 
   <CharacterSheetHeader v-else :character="state.character" />

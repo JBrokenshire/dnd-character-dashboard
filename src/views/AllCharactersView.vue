@@ -1,10 +1,10 @@
 <script setup>
 import axios from 'axios'
+import router from '@/router'
 import { onMounted, reactive } from 'vue'
-import { primaryColour } from '@/constants'
-import { ScaleLoader } from 'vue-spinner/src'
 import NoCharacters from '@/components/NoCharacters.vue'
 import CharacterCard from '@/components/CharacterCard.vue'
+import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
 
 const state = reactive({
   characters: [],
@@ -17,7 +17,8 @@ const fetchCharacters = async () => {
     const response = await axios.get('/api/characters')
     state.characters = response.data
   } catch (error) {
-    console.log('Error fetching characters', error)
+    console.error('Error fetching characters', error)
+    await router.push(`/error/${error.response.status}`)
   } finally {
     state.isLoading = false
   }
@@ -31,7 +32,7 @@ onMounted(async () => {
 <template>
   <!-- Show loading spinner while isLoading = true -->
   <div v-if="state.isLoading" class="text-center py-6">
-    <ScaleLoader :color="primaryColour" height="72px" width="8px" margin="8px" />
+    <CustomScaleLoader />
   </div>
 
   <div v-else-if="state.characters.length === 0">
