@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <section class="text-center flex flex-col justify-center items-center h-96">
     <!--    <i class="pi pi-exclamation-triangle text-primary text-7xl mb-5"> </i>-->
@@ -8,5 +6,3 @@
     <RouterLink to="/characters/add" class="pill-btn"> Create a Character </RouterLink>
   </section>
 </template>
-
-<style scoped></style>

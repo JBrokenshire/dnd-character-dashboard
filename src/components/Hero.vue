@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <div class="hero max-width">
     <div class="flex-1 pt-8 padding-x">

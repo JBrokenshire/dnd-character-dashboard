@@ -3,9 +3,9 @@ import axios from 'axios'
 import router from '@/router'
 import { useRoute } from 'vue-router'
 import { onMounted, reactive } from 'vue'
+import { primaryColour } from '@/constants'
 import { ScaleLoader } from 'vue-spinner/src'
 import { useToast } from 'vue-toastification'
-import { primaryColour } from '@/constants'
 
 const route = useRoute()
 

@@ -3,8 +3,8 @@ import '@/assets/styles.css'
 import router from './router'
 import { createApp } from 'vue'
 import 'primeicons/primeicons.css'
-import Toast, { POSITION } from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
+import Toast, { POSITION } from 'vue-toastification'
 
 const app = createApp(App)
 

@@ -1,6 +1,6 @@
 <script setup>
-import { footerLinks } from '@/constants'
 import { RouterLink } from 'vue-router'
+import { footerLinks } from '@/constants'
 </script>
 
 <template>
