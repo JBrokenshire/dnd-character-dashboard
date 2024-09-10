@@ -7,17 +7,16 @@ import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
 const router = useRouter()
 
 const state = reactive({
-  classes: [],
+  races: [],
   isLoading: true
 })
 
 onMounted(async () => {
   try {
-    const response = await axios.get('/api/classes')
-    state.classes = response.data
-    state.classes.sort((a, b) => a.name.localeCompare(b.name))
+    const response = await axios.get('/api/races')
+    state.races = response.data
   } catch (error) {
-    console.error('Error fetching classes:', error)
+    console.error('Error fetching races:', error)
     await router.push(`/error/${error.response.status}`)
   } finally {
     state.isLoading = false
@@ -32,21 +31,18 @@ onMounted(async () => {
   </div>
 
   <div v-else class="max-width padding-x py-8 flex flex-col gap-8">
-    <div
-      v-if="state.classes.length > 0"
-      class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mt-8"
-    >
+    <div v-if="state.races.length > 0" class="grid gap-8 mt-8 lg:grid-cols-2 xl:grid-cols-3">
       <div class="flex flex-col gap-8">
         <RouterLink
-          :to="`/classes/${classType.id}`"
-          v-for="classType in state.classes.slice(0, Math.floor(state.classes.length / 3))"
-          :key="classType.id"
+          :to="`/classes/${race.id}`"
+          v-for="race in state.races.slice(0, Math.floor(state.races.length / 3))"
+          :key="race.id"
           class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:shadow-lg"
         >
-          <div class="text-3xl font-bold mb-2">{{ classType.name }}</div>
+          <div class="text-3xl font-bold mb-2">{{ race.name }}</div>
           <p
-            v-for="(section, index) in classType.description.split('\n')"
-            :key="`${classType.name}-description-section-${index}`"
+            v-for="(section, index) in race.description.split('\n')"
+            :key="`${race.name}-description-section-${index}`"
             class="mb-2 text-black"
           >
             {{ section }}
@@ -55,18 +51,18 @@ onMounted(async () => {
       </div>
       <div class="flex flex-col gap-8">
         <RouterLink
-          :to="`/classes/${classType.id}`"
-          v-for="classType in state.classes.slice(
-            Math.floor(state.classes.length / 3),
-            2 * Math.floor(state.classes.length / 3) + 1
+          :to="`/classes/${race.id}`"
+          v-for="race in state.races.slice(
+            Math.floor(state.races.length / 3),
+            2 * Math.floor(state.races.length / 3) - 1
           )"
-          :key="classType.id"
+          :key="race.id"
           class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:shadow-lg"
         >
-          <div class="text-3xl font-bold mb-2">{{ classType.name }}</div>
+          <div class="text-3xl font-bold mb-2">{{ race.name }}</div>
           <p
-            v-for="(section, index) in classType.description.split('\n')"
-            :key="`${classType.name}-description-section-${index}`"
+            v-for="(section, index) in race.description.split('\n')"
+            :key="`${race.name}-description-section-${index}`"
             class="mb-2 text-black"
           >
             {{ section }}
@@ -75,18 +71,18 @@ onMounted(async () => {
       </div>
       <div class="flex flex-col gap-8">
         <RouterLink
-          :to="`/classes/${classType.id}`"
-          v-for="classType in state.classes.slice(
-            2 * Math.floor(state.classes.length / 3) + 1,
-            state.classes.length
+          :to="`/classes/${race.id}`"
+          v-for="race in state.races.slice(
+            2 * Math.floor(state.races.length / 3) - 1,
+            state.races.length
           )"
-          :key="classType.id"
+          :key="race.id"
           class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:shadow-lg"
         >
-          <div class="text-3xl font-bold mb-2">{{ classType.name }}</div>
+          <div class="text-3xl font-bold mb-2">{{ race.name }}</div>
           <p
-            v-for="(section, index) in classType.description.split('\n')"
-            :key="`${classType.name}-description-section-${index}`"
+            v-for="(section, index) in race.description.split('\n')"
+            :key="`${race.name}-description-section-${index}`"
             class="mb-2 text-black"
           >
             {{ section }}

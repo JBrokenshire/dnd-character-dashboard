@@ -6,6 +6,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AddCharacterView from '@/views/AddCharacterView.vue'
 import AllCharactersView from '@/views/AllCharactersView.vue'
 import EditCharacterView from '@/views/EditCharacterView.vue'
+import AllRacesView from '@/views/AllRacesView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,11 @@ const router = createRouter({
       path: '/classes',
       name: 'classes',
       component: AllClassesView
+    },
+    {
+      path: '/races',
+      name: 'races',
+      component: AllRacesView
     },
     {
       path: '/characters',
