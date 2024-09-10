@@ -39,9 +39,15 @@ onMounted(async () => {
     <CharacterSheetHeader :character="state.character" />
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
       <div>
-        <h2 class="text-xl md:text-3xl font-bold text-center mb-4">
-          {{ state.character.class.name }}
-        </h2>
+        <RouterLink
+          :to="`/classes/${state.character.class_id}`"
+          class="w-fit mx-auto flex items-center gap-4 m-4 nav-link"
+        >
+          <h2 class="text-xl md:text-3xl font-bold text-center">
+            {{ state.character.class.name }}
+          </h2>
+          <i class="pi pi-chevron-right text-2xl" />
+        </RouterLink>
         <div class="border border-gray-300 rounded-md px-4">
           <p
             class="py-2"
@@ -53,9 +59,15 @@ onMounted(async () => {
         </div>
       </div>
       <div>
-        <h2 class="text-xl md:text-3xl font-bold text-center mb-4">
-          {{ state.character.race.name }}
-        </h2>
+        <RouterLink
+          :to="`/races/${state.character.race_id}`"
+          class="w-fit mx-auto flex items-center gap-4 m-4 nav-link"
+        >
+          <h2 class="text-xl md:text-3xl font-bold text-center">
+            {{ state.character.race.name }}
+          </h2>
+          <i class="pi pi-chevron-right text-2xl" />
+        </RouterLink>
         <div class="border border-gray-300 rounded-md px-4">
           <p
             class="py-2"
