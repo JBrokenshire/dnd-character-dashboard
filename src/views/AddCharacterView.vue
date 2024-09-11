@@ -58,6 +58,11 @@ onMounted(async () => {
 
 <template>
   <div class="max-width padding-x">
+    <RouterLink to="/characters" class="w-fit my-2 flex items-center gap-2 text-lg nav-link">
+      <i class="pi pi-chevron-left scale-[.75]" />
+      Back To Character List
+    </RouterLink>
+
     <!-- Show loading spinner while isLoading = true -->
     <div v-if="state.isLoading" class="text-center py-6">
       <CustomScaleLoader />
