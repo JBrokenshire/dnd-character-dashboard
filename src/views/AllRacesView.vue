@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useRouter } from 'vue-router'
 import { onMounted, reactive } from 'vue'
 import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
+import RaceCard from '@/components/RaceCard.vue'
 
 const router = useRouter()
 
@@ -30,47 +31,15 @@ onMounted(async () => {
     <CustomScaleLoader />
   </div>
 
-  <div v-else class="max-width padding-x py-8 flex flex-col gap-8">
-    <div v-if="state.races.length > 0" class="grid gap-8 mt-8 lg:grid-cols-2 xl:grid-cols-3">
-      <div class="flex flex-col gap-8">
-        <RouterLink
-          :to="`/races/${race.id}`"
-          v-for="race in state.races.slice(0, Math.floor(state.races.length / 3))"
-          :key="race.id"
-          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:scale-[1.02] hover:shadow-lg"
-        >
-          <div class="text-3xl font-bold mb-2">{{ race.name }}</div>
-          <p class="text-black">{{ race.short_description }}</p>
-        </RouterLink>
-      </div>
-      <div class="flex flex-col gap-8">
-        <RouterLink
-          :to="`/races/${race.id}`"
-          v-for="race in state.races.slice(
-            Math.floor(state.races.length / 3),
-            2 * Math.floor(state.races.length / 3)
-          )"
-          :key="race.id"
-          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:scale-[1.02] hover:shadow-lg"
-        >
-          <div class="text-3xl font-bold mb-2">{{ race.name }}</div>
-          <p class="text-black">{{ race.short_description }}</p>
-        </RouterLink>
-      </div>
-      <div class="flex flex-col gap-8">
-        <RouterLink
-          :to="`/races/${race.id}`"
-          v-for="race in state.races.slice(
-            2 * Math.floor(state.races.length / 3),
-            state.races.length
-          )"
-          :key="race.id"
-          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:scale-[1.02] hover:shadow-lg"
-        >
-          <div class="text-3xl font-bold mb-2">{{ race.name }}</div>
-          <p class="text-black">{{ race.short_description }}</p>
-        </RouterLink>
-      </div>
+  <div v-else class="max-width padding-x py-8 flex flex-col gap-2 sm:gap-8">
+    <h2 class="border-b border-gray-300 pb-2 sm:pb-4 font-bold text-5xl text-center sm:text-start">
+      Races
+    </h2>
+    <div
+      v-if="state.races.length > 0"
+      class="grid gap-2 sm:gap-8 mt-8 lg:grid-cols-2 xl:grid-cols-3"
+    >
+      <RaceCard v-for="race in state.races" :key="`race-card-${race.id}`" :race="race" />
     </div>
   </div>
 </template>

@@ -12,10 +12,6 @@ defineProps({
 
 const emit = defineEmits(['character-deleted'])
 
-const cleanCharacterClass = (className) => {
-  return className.replace(/\s+/g, '-').toLowerCase()
-}
-
 const toast = useToast()
 
 const deleteCharacter = async (characterID) => {
@@ -34,7 +30,9 @@ const deleteCharacter = async (characterID) => {
 </script>
 
 <template>
-  <div class="rounded-2xl transition-200 shadow-lg hover:scale-[1.02] hover:shadow-gray-400">
+  <div
+    class="bg-gray-100 rounded-2xl transition-200 shadow-lg hover:scale-[1.02] hover:shadow-gray-400"
+  >
     <RouterLink :to="`/characters/${character.id}`">
       <div
         class="p-6 flex flex-grow gap-4 items-center hover:cursor-pointer relative overflow-hidden"
@@ -51,7 +49,7 @@ const deleteCharacter = async (characterID) => {
         </div>
 
         <img
-          :src="`src/assets/img/classes/card_backgrounds/${cleanCharacterClass(character.class.name)}.jpg`"
+          :src="`src/assets/img/classes/icons/${character.class.name.replace(/\s+/g, '-').toLowerCase()}.jpg`"
           class="absolute top-0 left-0 w-full h-full object-cover brightness-25 rounded-2xl"
           alt=""
         />

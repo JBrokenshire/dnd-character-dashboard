@@ -39,7 +39,7 @@ onMounted(async () => {
 
     <div class="flex justify-center md:justify-start items-center gap-4">
       <img
-        :src="`../src/assets/img/classes/card_backgrounds/${state.class.name.replace(/\s/g, '-').toLowerCase()}.jpg`"
+        :src="`../src/assets/img/classes/icons/${state.class.name.replace(/\s/g, '-').toLowerCase()}.jpg`"
         alt=""
         class="object-fill aspect-square max-w-24 rounded-lg"
       />

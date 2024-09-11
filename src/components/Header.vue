@@ -8,54 +8,6 @@ const state = reactive({
 
 <template>
   <header class="max-width padding-x">
-    <!--    <nav class="flex items-center justify-between gap-2 sm:gap-8">-->
-    <!--      <div class="max-w-screen-xl w-full flex-between flex-wrap px-4">-->
-
-    <!--        <button-->
-    <!--          data-collapse-toggle="navbar-default"-->
-    <!--          class="inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg md:hidden bg-transparent hover:bg-gray-100 hover:text-primary transition-200 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:text-primary"-->
-    <!--          aria-controls="navbar-default"-->
-    <!--          aria-expanded="false"-->
-    <!--        >-->
-    <!--          <span class="sr-only">Open Main Menu</span>-->
-    <!--          <svg-->
-    <!--            class="w-5 h-5"-->
-    <!--            aria-hidden="true"-->
-    <!--            xmlns="http://www.w3.org/2000/svg"-->
-    <!--            fill="none"-->
-    <!--            viewBox="0 0 17 14"-->
-    <!--          >-->
-    <!--            <path-->
-    <!--              stroke="currentColor"-->
-    <!--              stroke-linecap="round"-->
-    <!--              stroke-linejoin="round"-->
-    <!--              stroke-width="2"-->
-    <!--              d="M1 1h15M1 7h15M1 13h15"-->
-    <!--            />-->
-    <!--          </svg>-->
-    <!--        </button>-->
-
-    <!--        <div class="hidden w-full md:block md:w-auto" id="navbar-default">-->
-    <!--          <ul-->
-    <!--            class="font-bold text-xl flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:gap-4 md:mt-0 md:border-0 md:bg-transparent"-->
-    <!--          >-->
-    <!--            <li>-->
-    <!--              <RouterLink class="nav-link px-2 md:px-4" to="/">Home</RouterLink>-->
-    <!--            </li>-->
-    <!--            <li>-->
-
-    <!--            </li>-->
-    <!--            <li>-->
-    <!--              <RouterLink class="nav-link px-2 md:px-4" to="/classes">Classes</RouterLink>-->
-    <!--            </li>-->
-    <!--            <li>-->
-    <!--              <RouterLink class="nav-link px-2 md:px-4" to="/races">Races</RouterLink>-->
-    <!--            </li>-->
-    <!--          </ul>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </nav>-->
-
     <div class="flex-between py-2">
       <RouterLink
         class="w-[15%] min-w-[75px] max-w-[150px]"
@@ -115,14 +67,14 @@ const state = reactive({
             </div>
             <ul
               v-if="state.isNavOpen"
-              class="flex flex-col items-center justify-between gap-8 text-2xl"
+              class="flex flex-col items-center sm:items-end justify-between gap-8 text-2xl px-8"
             >
-              <li class="my-2 uppercase">
+              <li class="my-2">
                 <RouterLink class="nav-link px-2 md:px-4" to="/" @click="state.isNavOpen = false">
                   Home
                 </RouterLink>
               </li>
-              <li class="my-2 uppercase">
+              <li class="my-2">
                 <RouterLink
                   class="nav-link px-2 md:px-4"
                   to="/characters"
@@ -131,7 +83,7 @@ const state = reactive({
                   Characters
                 </RouterLink>
               </li>
-              <li class="my-2 uppercase">
+              <li class="my-2">
                 <RouterLink
                   class="nav-link px-2 md:px-4"
                   to="/classes"
@@ -140,7 +92,7 @@ const state = reactive({
                   Classes
                 </RouterLink>
               </li>
-              <li class="my-2 uppercase">
+              <li class="my-2">
                 <RouterLink
                   class="nav-link px-2 md:px-4"
                   to="/races"

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useRouter } from 'vue-router'
 import { onMounted, reactive } from 'vue'
 import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
+import ClassCard from '@/components/ClassCard.vue'
 
 const router = useRouter()
 
@@ -31,67 +32,18 @@ onMounted(async () => {
   </div>
 
   <div v-else class="max-width padding-x py-8 flex flex-col gap-8">
+    <h2 class="border-b border-gray-300 pb-4 font-bold text-5xl text-center sm:text-start">
+      Classes
+    </h2>
     <div
       v-if="state.classes.length > 0"
-      class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mt-8"
+      class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mt-4"
     >
-      <div class="flex flex-col gap-8">
-        <RouterLink
-          :to="`/classes/${classType.id}`"
-          v-for="classType in state.classes.slice(0, Math.floor(state.classes.length / 3))"
-          :key="classType.id"
-          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:scale-[1.02] hover:shadow-lg"
-        >
-          <div class="text-3xl font-bold mb-2">{{ classType.name }}</div>
-          <p
-            v-for="(section, index) in classType.short_description.split('\n')"
-            :key="`${classType.name}-description-section-${index}`"
-            class="mb-2 text-black"
-          >
-            {{ section }}
-          </p>
-        </RouterLink>
-      </div>
-      <div class="flex flex-col gap-8">
-        <RouterLink
-          :to="`/classes/${classType.id}`"
-          v-for="classType in state.classes.slice(
-            Math.floor(state.classes.length / 3),
-            2 * Math.floor(state.classes.length / 3) + 1
-          )"
-          :key="classType.id"
-          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:scale-[1.02] hover:shadow-lg"
-        >
-          <div class="text-3xl font-bold mb-2">{{ classType.name }}</div>
-          <p
-            v-for="(section, index) in classType.short_description.split('\n')"
-            :key="`${classType.name}-description-section-${index}`"
-            class="mb-2 text-black"
-          >
-            {{ section }}
-          </p>
-        </RouterLink>
-      </div>
-      <div class="flex flex-col gap-8">
-        <RouterLink
-          :to="`/classes/${classType.id}`"
-          v-for="classType in state.classes.slice(
-            2 * Math.floor(state.classes.length / 3) + 1,
-            state.classes.length
-          )"
-          :key="classType.id"
-          class="border border-gray-300 rounded-md px-4 py-2 transition-200 hover:text-primary hover:scale-[1.02] hover:shadow-lg"
-        >
-          <div class="text-3xl font-bold mb-2">{{ classType.name }}</div>
-          <p
-            v-for="(section, index) in classType.short_description.split('\n')"
-            :key="`${classType.name}-description-section-${index}`"
-            class="mb-2 text-black"
-          >
-            {{ section }}
-          </p>
-        </RouterLink>
-      </div>
+      <ClassCard
+        v-for="classType in state.classes"
+        :key="`class-card-${classType.id}`"
+        :classType="classType"
+      />
     </div>
   </div>
 </template>
