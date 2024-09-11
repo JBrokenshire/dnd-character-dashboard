@@ -65,6 +65,7 @@ const state = reactive({
         <img src="@/assets/img/website-logo.png" alt="Website Logo" class="aspect-square" />
       </RouterLink>
       <nav>
+        <!-- Small Screen Navbar -->
         <section class="flex md:hidden">
           <button
             class="space-y-2 transition hover:text-primary"
@@ -88,22 +89,34 @@ const state = reactive({
             </svg>
           </button>
 
-          <div :class="state.isNavOpen ? 'showMenuNav' : 'hideMenuNav'">
-            <button class="absolute top-2 right-2" @click="state.isNavOpen = false">
-              <svg
-                class="h-12 w-12 text-gray-600 transition-200 hover:text-primary"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+          <div :class="`transition-200 sidebar ${state.isNavOpen ? 'showMenuNav' : 'hideMenuNav'}`">
+            <div class="w-full flex-between px-4 py-2 mb-4">
+              <RouterLink
+                class="w-[15%] min-w-[75px] max-w-[150px] block sm:hidden"
+                to="/"
+                @click="state.isNavOpen = false"
               >
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
-            <ul class="flex flex-col items-center justify-between gap-8 text-2xl">
+                <img src="@/assets/img/website-logo.png" alt="Website Logo" class="aspect-square" />
+              </RouterLink>
+              <button class="w-full flex items-center justify-end" @click="state.isNavOpen = false">
+                <svg
+                  class="h-12 w-12 text-gray-600 transition-200 hover:text-primary"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+            <ul
+              v-if="state.isNavOpen"
+              class="flex flex-col items-center justify-between gap-8 text-2xl"
+            >
               <li class="my-2 uppercase">
                 <RouterLink class="nav-link px-2 md:px-4" to="/" @click="state.isNavOpen = false">
                   Home
@@ -140,6 +153,7 @@ const state = reactive({
           </div>
         </section>
 
+        <!-- Large Screen Navbar -->
         <ul class="hidden space-x-4 md:flex text-xl">
           <li>
             <RouterLink class="nav-link px-2" to="/" @click="state.isNavOpen = false"
@@ -168,20 +182,14 @@ const state = reactive({
 </template>
 
 <style scoped>
+.sidebar {
+  @apply fixed top-0 right-0 h-[100vh] z-[999] bg-white shadow-md;
+}
+
 .hideMenuNav {
-  display: none;
+  @apply w-0;
 }
 .showMenuNav {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background: white;
-  z-index: 50;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  @apply w-full sm:w-[250px];
 }
 </style>
