@@ -32,10 +32,10 @@ onMounted(async () => {
   </div>
 
   <div v-else class="max-width padding-x py-2 md:py-8">
-    <RouterLink to="/races" class="w-fit my-2 flex items-center gap-2 text-lg nav-link">
+    <button @click="router.back()" class="w-fit my-2 flex items-center gap-2 text-lg nav-link">
       <i class="pi pi-chevron-left scale-[.75]" />
-      Back To Race List
-    </RouterLink>
+      Back
+    </button>
 
     <div class="text-4xl font-bold text-center md:text-start">{{ state.race.name }}</div>
 

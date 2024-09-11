@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="w-full flex-between">
+  <div class="w-full flex items-center gap-2 sm:gap-8">
     <div class="flex justify-center sm:justify-start items-center gap-4">
       <CharacterProfilePicture
         :profilePictureURL="character.profile_picture_url ? character.profile_picture_url : null"
@@ -29,7 +29,7 @@ defineProps({
       :to="`/characters/${character.id}/edit`"
       class="flex items-center gap-2 text-lg nav-link"
     >
-      Edit Character
+      Edit
       <i class="pi pi-chevron-right scale-[.75]" />
     </RouterLink>
   </div>

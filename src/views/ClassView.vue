@@ -32,10 +32,10 @@ onMounted(async () => {
   </div>
 
   <div v-else class="max-width padding-x py-8">
-    <RouterLink to="/classes" class="w-fit my-2 flex items-center gap-2 text-lg nav-link">
+    <button @click="router.back()" class="w-fit my-2 flex items-center gap-2 text-lg nav-link">
       <i class="pi pi-chevron-left scale-[.75]" />
-      Back To Class List
-    </RouterLink>
+      Back
+    </button>
 
     <div class="flex justify-center md:justify-start items-center gap-4">
       <img

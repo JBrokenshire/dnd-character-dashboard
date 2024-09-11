@@ -35,7 +35,7 @@ onMounted(async () => {
     <CustomScaleLoader />
   </div>
 
-  <div v-else class="max-width py-8 flex flex-col gap-8">
+  <div v-else class="max-width padding-x py-8 flex flex-col gap-8">
     <RouterLink to="/characters" class="w-fit my-2 flex items-center gap-2 text-lg nav-link">
       <i class="pi pi-chevron-left scale-[.75]" />
       Back To Character List
