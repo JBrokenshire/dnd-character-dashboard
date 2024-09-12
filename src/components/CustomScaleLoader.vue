@@ -1,6 +1,6 @@
 <script setup>
 import { primaryColour } from '@/constants/index.js'
-import { ScaleLoader } from 'vue-spinner/src'
+import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 </script>
 
 <template>
