@@ -1,37 +1,27 @@
-<script setup>
-import axios from 'axios'
-import { onMounted, reactive } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import CharacterSheetHeader from '@/components/character_sheet/CharacterSheetHeader.vue'
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { Character } from '@/models/Character'
+import { getCharacterByID } from '@/services/CharacterService'
 import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
+import CharacterSheetHeader from '@/components/character_sheet/CharacterSheetHeader.vue'
 
 const route = useRoute()
-const router = useRouter()
 
 const characterID = route.params.id
 
-const state = reactive({
-  character: Object,
-  isLoading: true
-})
+const isLoading = ref(true)
+const character = ref<Character>(null)
 
 onMounted(async () => {
-  try {
-    const response = await axios.get(`/api/characters/${characterID}`)
-
-    state.character = response.data
-  } catch (error) {
-    console.error(`Error fetching character with id ${characterID}`)
-    await router.push(`/error/${error.response.status}`)
-  } finally {
-    state.isLoading = false
-  }
+  character.value = await getCharacterByID(characterID)
+  isLoading.value = false
 })
 </script>
 
 <template>
   <!-- Show loading spinner while isLoading = true -->
-  <div v-if="state.isLoading" class="text-center py-6">
+  <div v-if="isLoading" class="text-center py-6">
     <CustomScaleLoader />
   </div>
 
@@ -40,22 +30,22 @@ onMounted(async () => {
       <i class="pi pi-chevron-left scale-[.75]" />
       Back To Character List
     </RouterLink>
-    <CharacterSheetHeader :character="state.character" />
+    <CharacterSheetHeader :character="character" />
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
       <div>
         <RouterLink
-          :to="`/classes/${state.character.class_id}`"
+          :to="`/classes/${character.class_id}`"
           class="w-fit mx-auto flex items-center gap-4 m-4 nav-link"
         >
           <h2 class="text-xl md:text-3xl font-bold text-center">
-            {{ state.character.class.name }}
+            {{ character.class.name }}
           </h2>
           <i class="pi pi-chevron-right text-2xl" />
         </RouterLink>
         <div class="border border-gray-300 rounded-md px-4">
           <p
             class="py-2"
-            v-for="(section, index) in state.character.class.long_description.split('\n')"
+            v-for="(section, index) in character.class.long_description.split('\n')"
             :key="`character-class-description-section-${index}`"
           >
             {{ section }}
@@ -64,18 +54,18 @@ onMounted(async () => {
       </div>
       <div>
         <RouterLink
-          :to="`/races/${state.character.race_id}`"
+          :to="`/races/${character.race_id}`"
           class="w-fit mx-auto flex items-center gap-4 m-4 nav-link"
         >
           <h2 class="text-xl md:text-3xl font-bold text-center">
-            {{ state.character.race.name }}
+            {{ character.race.name }}
           </h2>
           <i class="pi pi-chevron-right text-2xl" />
         </RouterLink>
         <div class="border border-gray-300 rounded-md px-4">
           <p
             class="py-2"
-            v-for="(section, index) in state.character.race.long_description.split('\n')"
+            v-for="(section, index) in character.race.long_description.split('\n')"
             :key="`character-race-description-section-${index}`"
           >
             {{ section }}

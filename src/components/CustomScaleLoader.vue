@@ -1,5 +1,5 @@
-<script setup>
-import { primaryColour } from '@/constants/index.js'
+<script lang="ts" setup>
+import { primaryColour } from '@/constants'
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 </script>
 

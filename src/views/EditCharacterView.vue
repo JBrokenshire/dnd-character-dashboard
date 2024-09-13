@@ -1,10 +1,16 @@
-<script setup>
+<script lang="ts" setup>
 import axios from 'axios'
 import router from '@/router'
 import { useRoute } from 'vue-router'
-import { onMounted, reactive } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import { useToast } from 'vue-toastification'
+import { Character } from '@/models/Character'
 import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
+import { getCharacterByID, updateCharacter } from '@/services/CharacterService'
+import { Race } from '@/models/Race'
+import { ClassType } from '@/models/ClassType'
+import { getAllClasses } from '@/services/ClassService'
+import { getAllRaces } from '@/services/RaceService'
 
 const route = useRoute()
 
@@ -21,7 +27,7 @@ const form = reactive({
 const toast = useToast()
 
 const handleSubmit = async () => {
-  const newCharacter = {
+  const newCharacter: Character = {
     name: form.name,
     level: form.level,
     profile_picture_url: form.profilePictureURL !== '' ? form.profilePictureURL : null,
@@ -29,68 +35,52 @@ const handleSubmit = async () => {
     race_id: form.raceID
   }
 
-  try {
-    const response = await axios.put(`/api/characters/${state.character.id}`, newCharacter)
-    toast.success('Character Updated Successfully')
-    await router.push(`/characters/${response.data.id}`)
-  } catch (error) {
-    console.error('Error creating character:', error)
-    toast.error('Character Not Updated')
-  }
+  const responseCharacter = await updateCharacter(characterID, newCharacter)
+  await router.push(`/characters/${responseCharacter.id}`)
 }
 
-const state = reactive({
-  character: Object,
-  classes: [],
-  races: [],
-  isLoading: true
-})
+const character = ref<Character>()
+const classes = ref<ClassType[]>([])
+const races = ref<Race[]>([])
+const isLoading = ref(true)
 
 onMounted(async () => {
-  try {
-    const classesResponse = await axios.get('/api/classes')
-    state.classes = classesResponse.data
+  isLoading.value = true
 
-    const racesResponse = await axios.get('/api/races')
-    state.races = racesResponse.data
+  classes.value = await getAllClasses()
+  races.value = await getAllRaces()
+  character.value = await getCharacterByID(characterID)
 
-    const characterResponse = await axios.get(`/api/characters/${characterID}`)
-    state.character = characterResponse.data
+  form.name = character.value.name
+  form.level = character.value.level
+  form.classID = character.value.class_id
+  form.raceID = character.value.race_id
+  form.profilePictureURL = character.value.profile_picture_url
+    ? character.value.profile_picture_url
+    : null
 
-    form.name = state.character.name
-    form.level = state.character.level
-    form.classID = state.character.class_id
-    form.raceID = state.character.race_id
-    form.profilePictureURL = state.character.profile_picture_url
-      ? state.character.profile_picture_url
-      : null
-  } catch (error) {
-    console.error('Error fetching character, classes or races:', error)
-    await router.push(`/error/${error.response.status}`)
-  } finally {
-    state.isLoading = false
-  }
+  isLoading.value = false
 })
 </script>
 
 <template>
   <div class="max-width padding-x">
     <!-- Show loading spinner while isLoading = true -->
-    <div v-if="state.isLoading" class="text-center py-6">
+    <div v-if="isLoading" class="text-center py-6">
       <CustomScaleLoader />
     </div>
 
     <form v-else @submit.prevent="handleSubmit">
       <div class="flex-between w-full my-8">
         <RouterLink
-          :to="`/characters/${state.character.id}`"
+          :to="`/characters/${character.id}`"
           class="flex items-center gap-2 text-lg nav-link"
         >
           <i class="pi pi-chevron-left scale-[.75]" />
           View Character
         </RouterLink>
         <h2 class="text-2xl lg:text-4xl text-center font-semibold">Edit Character</h2>
-        <RouterLink :to="`/characters/${state.character.id}`" class="invisible">
+        <RouterLink :to="`/characters/${character.id}`" class="invisible">
           View Character
         </RouterLink>
       </div>
@@ -120,7 +110,7 @@ onMounted(async () => {
               required
             >
               <option
-                v-for="(classType, index) in state.classes"
+                v-for="(classType, index) in classes"
                 :key="`add-character__${classType.name}`"
                 :value="index + 1"
               >
@@ -131,10 +121,8 @@ onMounted(async () => {
               class="mt-2 p-1 flex flex-col gap-2 h-[100px] overflow-y-scroll border border-gray-200 rounded-md"
             >
               <p
-                v-for="(section, index) in state.classes[form.classID - 1].short_description.split(
-                  '\n'
-                )"
-                :key="`${state.classes[form.classID - 1].name}-description-section-${index}`"
+                v-for="(section, index) in classes[form.classID - 1].short_description.split('\n')"
+                :key="`${classes[form.classID - 1].name}-description-section-${index}`"
               >
                 {{ section }}
               </p>
@@ -182,7 +170,7 @@ onMounted(async () => {
               required
             >
               <option
-                v-for="(race, index) in state.races"
+                v-for="(race, index) in races"
                 :key="`add-character__${race.name}`"
                 :value="index + 1"
               >
@@ -194,10 +182,8 @@ onMounted(async () => {
               class="mt-2 p-1 flex flex-col gap-2 h-[100px] overflow-y-scroll border border-gray-200 rounded-md"
             >
               <p
-                v-for="(section, index) in state.races[form.raceID - 1].short_description.split(
-                  '\n'
-                )"
-                :key="`${state.races[form.raceID - 1].name}-description-section-${index}`"
+                v-for="(section, index) in races[form.raceID - 1].short_description.split('\n')"
+                :key="`${races[form.raceID - 1].name}-description-section-${index}`"
               >
                 {{ section }}
               </p>

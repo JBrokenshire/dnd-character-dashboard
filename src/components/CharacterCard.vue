@@ -1,32 +1,16 @@
-<script setup>
-import axios from 'axios'
-import { useToast } from 'vue-toastification'
+<script lang="ts" setup>
+import { Character } from '@/models/Character'
+import { deleteCharacter } from '@/services/CharacterService'
 import CharacterProfilePicture from '@/components/CharacterProfilePicture.vue'
 
 defineProps({
   character: {
-    type: Object,
+    type: Object as Character,
     required: true
   }
 })
 
 const emit = defineEmits(['character-deleted'])
-
-const toast = useToast()
-
-const deleteCharacter = async (characterID) => {
-  try {
-    const confirm = window.confirm('Are you sure you want to delete this character?')
-    if (confirm) {
-      await axios.delete(`/api/characters/${characterID}`)
-      emit('character-deleted')
-      toast.success('Character deleted successfully.')
-    }
-  } catch (error) {
-    toast.error('Error deleting character')
-    console.error('Error deleting character', error)
-  }
-}
 </script>
 
 <template>
@@ -64,7 +48,12 @@ const deleteCharacter = async (characterID) => {
         Edit
       </RouterLink>
       <button
-        @click="deleteCharacter(character.id)"
+        @click="
+          async () => {
+            await deleteCharacter(character.id)
+            emit('character-deleted')
+          }
+        "
         class="nav-link uppercase font-bold text-orange-600"
       >
         Delete

@@ -1,8 +1,12 @@
-<script setup>
-import axios from 'axios'
+<script lang="ts" setup>
 import router from '@/router'
-import { onMounted, reactive } from 'vue'
-import { useToast } from 'vue-toastification'
+import { Race } from '@/models/Race'
+import { Character } from '@/models/Character'
+import { ClassType } from '@/models/ClassType'
+import { onMounted, reactive, ref } from 'vue'
+import { getAllRaces } from '@/services/RaceService'
+import { getAllClasses } from '@/services/ClassService'
+import { createNewCharacter } from '@/services/CharacterService'
 import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
 
 const form = reactive({
@@ -13,10 +17,8 @@ const form = reactive({
   raceID: 1
 })
 
-const toast = useToast()
-
 const handleSubmit = async () => {
-  const newCharacter = {
+  const newCharacter: Character = {
     name: form.name,
     level: form.level,
     profile_picture_url: form.profilePictureURL !== '' ? form.profilePictureURL : null,
@@ -24,35 +26,19 @@ const handleSubmit = async () => {
     race_id: form.raceID
   }
 
-  try {
-    const response = await axios.post('/api/characters', newCharacter)
-    toast.success('New Character Created')
-    await router.push(`/characters/${response.data.id}`)
-  } catch (error) {
-    console.error('Error creating character:', error)
-    toast.error('Character Not Added')
-  }
+  const responseCharacter = await createNewCharacter(newCharacter)
+  await router.push(`/characters/${responseCharacter.id}`)
 }
 
-const state = reactive({
-  classes: [],
-  races: [],
-  isLoading: true
-})
+const classes = ref<ClassType[]>([])
+const races = ref<Race[]>([])
+const isLoading = ref(true)
 
 onMounted(async () => {
-  try {
-    const classesResponse = await axios.get('/api/classes')
-    state.classes = classesResponse.data
-
-    const racesResponse = await axios.get('/api/races')
-    state.races = racesResponse.data
-  } catch (error) {
-    console.error('Error fetching classes or races', error)
-    await router.push(`/error/${error.response.status}`)
-  } finally {
-    state.isLoading = false
-  }
+  isLoading.value = true
+  classes.value = await getAllClasses()
+  races.value = await getAllRaces()
+  isLoading.value = false
 })
 </script>
 
@@ -64,7 +50,7 @@ onMounted(async () => {
     </RouterLink>
 
     <!-- Show loading spinner while isLoading = true -->
-    <div v-if="state.isLoading" class="text-center py-6">
+    <div v-if="isLoading" class="text-center py-6">
       <CustomScaleLoader />
     </div>
 
@@ -96,7 +82,7 @@ onMounted(async () => {
               required
             >
               <option
-                v-for="(classType, index) in state.classes"
+                v-for="(classType, index) in classes"
                 :key="`add-character__${classType.name}`"
                 :value="index + 1"
               >
@@ -107,10 +93,8 @@ onMounted(async () => {
               class="mt-2 p-1 flex flex-col gap-2 h-[100px] overflow-y-scroll border border-gray-200 rounded-md"
             >
               <p
-                v-for="(section, index) in state.classes[form.classID - 1].short_description.split(
-                  '\n'
-                )"
-                :key="`${state.classes[form.classID - 1].name}-description-section-${index}`"
+                v-for="(section, index) in classes[form.classID - 1].short_description.split('\n')"
+                :key="`${classes[form.classID - 1].name}-description-section-${index}`"
               >
                 {{ section }}
               </p>
@@ -158,7 +142,7 @@ onMounted(async () => {
               required
             >
               <option
-                v-for="(race, index) in state.races"
+                v-for="(race, index) in races"
                 :key="`add-character__${race.name}`"
                 :value="index + 1"
               >
@@ -170,10 +154,8 @@ onMounted(async () => {
               class="mt-2 p-1 flex flex-col gap-2 h-[100px] overflow-y-scroll border border-gray-200 rounded-md"
             >
               <p
-                v-for="(section, index) in state.races[form.raceID - 1].short_description.split(
-                  '\n'
-                )"
-                :key="`${state.races[form.raceID - 1].name}-description-section-${index}`"
+                v-for="(section, index) in races[form.raceID - 1].short_description.split('\n')"
+                :key="`${races[form.raceID - 1].name}-description-section-${index}`"
               >
                 {{ section }}
               </p>

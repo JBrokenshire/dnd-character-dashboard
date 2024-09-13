@@ -1,33 +1,26 @@
-<script setup>
-import axios from 'axios'
+<script lang="ts" setup>
+import router from '@/router'
+import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import router from '@/router/index.js'
-import { onMounted, reactive } from 'vue'
+import { ClassType } from '@/models/ClassType'
+import { getClassByID } from '@/services/ClassService'
 import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
 
 const classID = useRoute().params.id
 
-const state = reactive({
-  class: Object,
-  isLoading: true
-})
+const classType = ref<ClassType>()
+const isLoading = ref(true)
 
 onMounted(async () => {
-  try {
-    const response = await axios.get(`/api/classes/${classID}`)
-    state.class = response.data
-  } catch (error) {
-    console.error(`Error fetching class with id ${classID}`, error)
-    await router.push(`/error/${error.response.status}`)
-  } finally {
-    state.isLoading = false
-  }
+  isLoading.value = true
+  classType.value = await getClassByID(classID)
+  isLoading.value = false
 })
 </script>
 
 <template>
   <!-- Show loading spinner while isLoading = true -->
-  <div v-if="state.isLoading" class="text-center py-6">
+  <div v-if="isLoading" class="text-center py-6">
     <CustomScaleLoader />
   </div>
 
@@ -39,13 +32,13 @@ onMounted(async () => {
 
     <div class="flex justify-center md:justify-start items-center gap-4">
       <img
-        :src="`../src/assets/img/classes/icons/${state.class.name.replace(/\s/g, '-').toLowerCase()}.jpg`"
+        :src="`../src/assets/img/classes/icons/${classType.name.replace(/\s/g, '-').toLowerCase()}.jpg`"
         alt=""
         class="object-fill aspect-square max-w-24 rounded-lg"
       />
 
       <div class="flex flex-col gap-2">
-        <div class="text-4xl font-bold">{{ state.class.name }}</div>
+        <div class="text-4xl font-bold">{{ classType.name }}</div>
       </div>
     </div>
 
@@ -54,14 +47,14 @@ onMounted(async () => {
         class="flex flex-col gap-2 border border-gray-300 px-2 py-4 my-8 h-fit md:max-w-[50%] rounded-lg"
       >
         <p
-          v-for="(section, index) in state.class.long_description.split('\n')"
+          v-for="(section, index) in classType.long_description.split('\n')"
           :key="`class-description-section-${index}`"
         >
           {{ section }}
         </p>
       </div>
       <img
-        :src="`../src/assets/img/classes/hero_images/${state.class.name.replace(/\s/g, '-').toLowerCase()}.png`"
+        :src="`../src/assets/img/classes/hero_images/${classType.name.replace(/\s/g, '-').toLowerCase()}.png`"
         alt="Class Hero Image"
         class="md:max-w-[50%] object-contain md:max-h-[720px] h-[320px] md:h-fit"
       />

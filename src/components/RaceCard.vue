@@ -1,7 +1,9 @@
-<script setup>
+<script lang="ts" setup>
+import { Race } from '@/models/Race'
+
 defineProps({
   race: {
-    type: Object,
+    type: Object as Race,
     required: true
   }
 })

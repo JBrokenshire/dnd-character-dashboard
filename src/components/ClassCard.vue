@@ -1,7 +1,9 @@
-<script setup>
+<script lang="ts" setup>
+import { ClassType } from '@/models/ClassType'
+
 defineProps({
   classType: {
-    type: Object,
+    type: Object as ClassType,
     required: true
   }
 })

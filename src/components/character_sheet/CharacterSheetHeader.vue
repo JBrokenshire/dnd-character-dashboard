@@ -1,9 +1,10 @@
-<script setup>
+<script lang="ts" setup>
+import { Character } from '@/models/Character'
 import CharacterProfilePicture from '@/components/CharacterProfilePicture.vue'
 
 defineProps({
   character: {
-    type: Object,
+    type: Object as Character,
     required: true
   }
 })

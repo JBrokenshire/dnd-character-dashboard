@@ -1,33 +1,26 @@
-<script setup>
-import axios from 'axios'
+<script lang="ts" setup>
+import router from '@/router'
+import { onMounted, ref } from 'vue'
+import { Race } from '@/models/Race'
 import { useRoute } from 'vue-router'
-import router from '@/router/index.js'
-import { onMounted, reactive } from 'vue'
+import { getRaceByID } from '@/services/RaceService'
 import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
 
 const raceID = useRoute().params.id
 
-const state = reactive({
-  race: Object,
-  isLoading: true
-})
+const race = ref<Race>({})
+const isLoading = ref(true)
 
 onMounted(async () => {
-  try {
-    const response = await axios.get(`/api/races/${raceID}`)
-    state.race = response.data
-  } catch (error) {
-    console.error(`Error fetching race with id ${raceID}`, error)
-    await router.push(`/error/${error.response.status}`)
-  } finally {
-    state.isLoading = false
-  }
+  isLoading.value = true
+  race.value = await getRaceByID(raceID)
+  isLoading.value = false
 })
 </script>
 
 <template>
   <!-- Show loading spinner while isLoading = true -->
-  <div v-if="state.isLoading" class="text-center py-6">
+  <div v-if="isLoading" class="text-center py-6">
     <CustomScaleLoader />
   </div>
 
@@ -37,21 +30,21 @@ onMounted(async () => {
       Back
     </button>
 
-    <div class="text-4xl font-bold text-center md:text-start">{{ state.race.name }}</div>
+    <div class="text-4xl font-bold text-center md:text-start">{{ race.name }}</div>
 
     <div class="flex flex-col md:flex-row justify-between w-full">
       <div
         class="flex flex-col gap-2 border border-gray-300 px-2 py-4 my-8 h-fit md:max-w-[50%] rounded-lg"
       >
         <p
-          v-for="(section, index) in state.race.long_description.split('\n')"
+          v-for="(section, index) in race.long_description.split('\n')"
           :key="`race-description-section-${index}`"
         >
           {{ section }}
         </p>
       </div>
       <img
-        :src="`../src/assets/img/races/hero_images/${state.race.name.replace(/\s/g, '-').toLowerCase()}.png`"
+        :src="`../src/assets/img/races/hero_images/${race.name.replace(/\s/g, '-').toLowerCase()}.png`"
         alt="Race Hero Image"
         class="md:max-w-[50%] object-contain md:max-h-[720px] h-[320px] md:h-fit"
       />

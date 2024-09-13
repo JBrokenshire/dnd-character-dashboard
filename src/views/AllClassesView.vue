@@ -1,33 +1,26 @@
-<script setup>
-import axios from 'axios'
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { onMounted, reactive } from 'vue'
-import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
+import { ClassType } from '@/models/ClassType'
 import ClassCard from '@/components/ClassCard.vue'
+import { getAllClasses } from '@/services/ClassService'
+import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
 
 const router = useRouter()
 
-const state = reactive({
-  classes: [],
-  isLoading: true
-})
+const classes = ref<ClassType[]>([])
+const isLoading = ref(true)
 
 onMounted(async () => {
-  try {
-    const response = await axios.get('/api/classes')
-    state.classes = response.data
-  } catch (error) {
-    console.error('Error fetching classes:', error)
-    await router.push(`/error/${error.response.status}`)
-  } finally {
-    state.isLoading = false
-  }
+  isLoading.value = true
+  classes.value = await getAllClasses()
+  isLoading.value = false
 })
 </script>
 
 <template>
   <!-- Show loading spinner while isLoading = true -->
-  <div v-if="state.isLoading" class="text-center py-6">
+  <div v-if="isLoading" class="text-center py-6">
     <CustomScaleLoader />
   </div>
 
@@ -36,11 +29,11 @@ onMounted(async () => {
       Classes
     </h2>
     <div
-      v-if="state.classes.length > 0"
+      v-if="classes.length > 0"
       class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mt-4"
     >
       <ClassCard
-        v-for="classType in state.classes"
+        v-for="classType in classes"
         :key="`class-card-${classType.id}`"
         :classType="classType"
       />
