@@ -29,7 +29,7 @@ import { footerLinks } from '@/constants'
       </div>
     </div>
 
-    <div class="copyrights-container">
+    <div class="copyrights-container px-4">
       <p>@2024 D&D Character Hub. All rights reserved</p>
 
       <div class="copyrights-links flex-center">
