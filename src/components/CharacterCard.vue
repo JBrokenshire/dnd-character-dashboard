@@ -61,5 +61,3 @@ const emit = defineEmits(['character-deleted'])
     </div>
   </div>
 </template>
-
-<style scoped></style>

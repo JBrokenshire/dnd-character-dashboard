@@ -1,12 +1,9 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { Race } from '@/models/Race'
-import { useRouter } from 'vue-router'
 import RaceCard from '@/components/RaceCard.vue'
 import { getAllRaces } from '@/services/RaceService'
 import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
-
-const router = useRouter()
 
 const races = ref<Race[]>([])
 const isLoading = ref(true)

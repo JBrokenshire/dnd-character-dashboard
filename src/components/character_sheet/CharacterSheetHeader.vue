@@ -35,5 +35,3 @@ defineProps({
     </RouterLink>
   </div>
 </template>
-
-<style scoped></style>

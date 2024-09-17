@@ -1,12 +1,9 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { ClassType } from '@/models/ClassType'
 import ClassCard from '@/components/ClassCard.vue'
 import { getAllClasses } from '@/services/ClassService'
 import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
-
-const router = useRouter()
 
 const classes = ref<ClassType[]>([])
 const isLoading = ref(true)

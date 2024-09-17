@@ -1,5 +1,6 @@
-import { Race } from '@/models/Race'
-import { ClassType } from '@/models/ClassType'
+import type { Race } from '@/models/Race'
+import type { ClassType } from '@/models/ClassType'
+
 
 interface Character {
   id: number

@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { Race } from '@/models/Race'
 import router from '@/router'
+import type { Race } from '@/models/Race'
 
 export const getAllRaces = async () => {
   try {

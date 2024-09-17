@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useRoute } from 'vue-router'
-import Error from '@/components/Error.vue'
 import { errorCodes } from '@/constants'
+import Error from '@/components/Error.vue'
 
 const route = useRoute()
 

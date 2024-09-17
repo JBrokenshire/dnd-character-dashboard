@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { ClassType } from '@/models/ClassType'
 import router from '@/router'
+import type { ClassType } from '@/models/ClassType'
 
 export const getAllClasses = async (): Promise<ClassType[]> => {
   try {

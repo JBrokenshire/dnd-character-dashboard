@@ -1,16 +1,14 @@
 <script lang="ts" setup>
-import axios from 'axios'
 import router from '@/router'
+import { Race } from '@/models/Race'
 import { useRoute } from 'vue-router'
-import { onMounted, reactive, ref } from 'vue'
-import { useToast } from 'vue-toastification'
 import { Character } from '@/models/Character'
+import { ClassType } from '@/models/ClassType'
+import { onMounted, reactive, ref } from 'vue'
+import { getAllRaces } from '@/services/RaceService'
+import { getAllClasses } from '@/services/ClassService'
 import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
 import { getCharacterByID, updateCharacter } from '@/services/CharacterService'
-import { Race } from '@/models/Race'
-import { ClassType } from '@/models/ClassType'
-import { getAllClasses } from '@/services/ClassService'
-import { getAllRaces } from '@/services/RaceService'
 
 const route = useRoute()
 
@@ -23,8 +21,6 @@ const form = reactive({
   classID: 1,
   raceID: 1
 })
-
-const toast = useToast()
 
 const handleSubmit = async () => {
   const newCharacter: Character = {
