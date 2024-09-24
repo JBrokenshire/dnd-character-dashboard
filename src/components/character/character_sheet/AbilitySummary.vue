@@ -9,7 +9,7 @@ const props = defineProps<{
 const modifier = ref<number>(0)
 
 onMounted(() => {
-  modifier.value = Math.abs(Math.floor((props.stat - 10) / 2))
+  modifier.value = Math.floor((props.stat - 10) / 2)
 })
 </script>
 
@@ -52,7 +52,7 @@ onMounted(() => {
       >
         <span class="relative inline-flex items-center gap-0.5 align-top">
           <span class="text-[#a0a9af]">{{ modifier >= 0 ? '+' : '-' }}</span>
-          <span>{{ modifier }}</span>
+          <span>{{ Math.abs(modifier) }}</span>
         </span>
       </button>
     </div>
