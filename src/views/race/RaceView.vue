@@ -4,7 +4,7 @@ import { onMounted, ref } from 'vue'
 import { Race } from '@/models/Race'
 import { useRoute } from 'vue-router'
 import { getRaceByID } from '@/services/RaceService'
-import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
+import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
 
 const raceID = useRoute().params.id
 

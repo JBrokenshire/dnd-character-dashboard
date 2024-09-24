@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Character } from '@/models/Character'
-import CharacterProfilePicture from '@/components/CharacterProfilePicture.vue'
+import CharacterProfilePicture from '@/components/character/CharacterProfilePicture.vue'
 
 defineProps({
   character: {

@@ -4,7 +4,7 @@ import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { ClassType } from '@/models/ClassType'
 import { getClassByID } from '@/services/ClassService'
-import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
+import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
 
 const classID = useRoute().params.id
 

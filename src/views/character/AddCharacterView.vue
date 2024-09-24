@@ -7,7 +7,7 @@ import { onMounted, reactive, ref } from 'vue'
 import { getAllRaces } from '@/services/RaceService'
 import { getAllClasses } from '@/services/ClassService'
 import { createNewCharacter } from '@/services/CharacterService'
-import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
+import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
 
 const form = reactive({
   name: '',

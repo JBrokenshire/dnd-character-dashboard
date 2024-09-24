@@ -7,7 +7,7 @@ import { ClassType } from '@/models/ClassType'
 import { onMounted, reactive, ref } from 'vue'
 import { getAllRaces } from '@/services/RaceService'
 import { getAllClasses } from '@/services/ClassService'
-import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
+import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
 import { getCharacterByID, updateCharacter } from '@/services/CharacterService'
 
 const route = useRoute()

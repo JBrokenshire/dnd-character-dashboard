@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { Race } from '@/models/Race'
-import RaceCard from '@/components/RaceCard.vue'
+import RaceCard from '@/components/race/RaceCard.vue'
 import { getAllRaces } from '@/services/RaceService'
-import CustomScaleLoader from '@/components/CustomScaleLoader.vue'
+import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
 
 const races = ref<Race[]>([])
 const isLoading = ref(true)
@@ -21,11 +21,11 @@ onMounted(async () => {
     <CustomScaleLoader />
   </div>
 
-  <div v-else class="max-width padding-x py-8 flex flex-col gap-2 sm:gap-8">
-    <h2 class="border-b border-gray-300 pb-2 sm:pb-4 font-bold text-5xl text-center sm:text-start">
+  <div v-else class="max-width padding-x">
+    <h2 class="border-b border-gray-300 pb-4 font-bold text-5xl text-center sm:text-start">
       Races
     </h2>
-    <div v-if="races.length > 0" class="grid gap-2 sm:gap-8 mt-8 lg:grid-cols-2 xl:grid-cols-3">
+    <div v-if="races.length > 0" class="grid-three">
       <RaceCard v-for="race in races" :key="`race-card-${race.id}`" :race="race" />
     </div>
   </div>

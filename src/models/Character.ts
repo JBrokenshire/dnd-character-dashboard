@@ -9,6 +9,12 @@ interface Character {
   class_id: number
   race_id: number
   profile_picture_url: string
+  strength: number
+  dexterity: number
+  constitution: number
+  intelligence: number
+  wisdom: number
+  charisma: number
 
   class: ClassType
   race: Race

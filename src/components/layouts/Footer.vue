@@ -8,7 +8,7 @@ import { footerLinks } from '@/constants'
     <div class="links-container padding-x">
       <div class="hidden sm:flex flex-col justify-start items-start gap-6">
         <RouterLink class="w-max min-w-[75px] max-w-[150px]" to="/">
-          <img src="@/assets/img/website-logo.png" alt="Website Logo" class="aspect-square" />
+          <img src="../../assets/img/website-logo.png" alt="Website Logo" class="aspect-square" />
         </RouterLink>
       </div>
 

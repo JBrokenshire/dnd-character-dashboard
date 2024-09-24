@@ -8,7 +8,7 @@ const isNavOpen = ref(false)
   <header class="max-width padding-x">
     <div class="flex-between py-2">
       <RouterLink class="w-[15%] min-w-[75px] max-w-[150px]" to="/" @click="isNavOpen = false">
-        <img src="@/assets/img/website-logo.png" alt="Website Logo" class="aspect-square" />
+        <img src="../../assets/img/website-logo.png" alt="Website Logo" class="aspect-square" />
       </RouterLink>
       <nav>
         <!-- Small Screen Navbar -->
@@ -39,7 +39,7 @@ const isNavOpen = ref(false)
                 to="/"
                 @click="isNavOpen = false"
               >
-                <img src="@/assets/img/website-logo.png" alt="Website Logo" class="aspect-square" />
+                <img src="../../assets/img/website-logo.png" alt="Website Logo" class="aspect-square" />
               </RouterLink>
               <button class="w-full flex items-center justify-end" @click="isNavOpen = false">
                 <svg
