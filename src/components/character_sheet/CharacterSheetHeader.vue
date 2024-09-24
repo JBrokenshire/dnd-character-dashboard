@@ -19,19 +19,20 @@ defineProps({
       />
 
       <div class="flex flex-col items-start gap-4">
-        <div class="lg:text-3xl text-xl font-bold">{{ character.name }}</div>
+        <div class="flex items-center gap-2 sm:gap-4">
+          <div class="lg:text-3xl text-xl font-bold">{{ character.name }}</div>
+          <RouterLink
+            :to="`/characters/${character.id}/edit`"
+            class="text-xs uppercase text-center font-bold border border-primary rounded-md px-2 py-1 transition-200 hover:bg-primary hover:text-white"
+          >
+            Edit
+          </RouterLink>
+        </div>
         <div class="text-gray-600 text-sm lg:text-md">
           Level {{ character.level }} | {{ character.race.name }} | {{ character.class.name }}
         </div>
       </div>
     </div>
 
-    <RouterLink
-      :to="`/characters/${character.id}/edit`"
-      class="flex items-center gap-2 text-lg nav-link"
-    >
-      Edit
-      <i class="pi pi-chevron-right scale-[.75]" />
-    </RouterLink>
   </div>
 </template>
