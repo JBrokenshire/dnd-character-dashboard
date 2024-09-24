@@ -6,6 +6,7 @@ import { getCharacterByID } from '@/services/CharacterService'
 import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
 import AbilitySummary from '@/components/character/character_sheet/AbilitySummary.vue'
 import CharacterSheetHeader from '@/components/character/character_sheet/CharacterSheetHeader.vue'
+import ProficiencyBonus from '@/components/character/character_sheet/ProficiencyBonus.vue'
 
 const route = useRoute()
 
@@ -34,10 +35,7 @@ onMounted(async () => {
 
     <CharacterSheetHeader :character="character" />
     <div id="cs-quick-info" class="flex justify-between w-full border border-lime-400">
-      <section
-        id="cs-quick-info__abilities"
-        class="w-[463px] xl:w-[564px] flex justify-between border border-pink-400"
-      >
+      <section id="cs-quick-info__abilities" class="w-[463px] xl:w-[564px] flex justify-between">
         <div class="sr-only">Abilities</div>
         <AbilitySummary :stat="character.strength" title="STRENGTH" />
         <AbilitySummary :stat="character.dexterity" title="DEXTERITY" />
@@ -45,6 +43,11 @@ onMounted(async () => {
         <AbilitySummary :stat="character.intelligence" title="INTELLIGENCE" />
         <AbilitySummary :stat="character.wisdom" title="WISDOM" />
         <AbilitySummary :stat="character.charisma" title="CHARISMA" />
+      </section>
+
+      <section id="cs-quick-info__proficiency-bonus">
+        <div class="sr-only">Proficiency Bonus</div>
+        <ProficiencyBonus :level="character.level" />
       </section>
     </div>
   </div>

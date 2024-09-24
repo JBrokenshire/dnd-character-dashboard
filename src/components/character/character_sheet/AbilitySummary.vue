@@ -35,10 +35,10 @@ onMounted(() => {
 
     <!-- Title -->
     <div class="pt-[8px] relative text-center xl:tracking-tightest">
-      <span class="text-[10px] text-center font-extrabold uppercase text-[#a0a9af] hidden xl:block">
+      <span class="text-[10px] text-center font-extrabold uppercase text-cs-gray hidden xl:block">
         {{ title }}
       </span>
-      <span class="text-[10px] text-center font-extrabold uppercase text-[#a0a9af] block xl:hidden">
+      <span class="text-[10px] text-center font-extrabold uppercase text-cs-gray block xl:hidden">
         {{ title.slice(0, 3) }}
       </span>
     </div>
@@ -51,7 +51,7 @@ onMounted(() => {
         class="relative h-[26px] xl:h-[34px] w-[48px] xl:w-[60px] mx-auto flex-center rounded-[4px] border border-[#972e2e] transition-200 hover:bg-[#972e2e] hover:bg-opacity-25"
       >
         <span class="relative inline-flex items-center gap-0.5 align-top">
-          <span class="text-[#a0a9af]">{{ modifier >= 0 ? '+' : '-' }}</span>
+          <span class="text-cs-gray">{{ modifier >= 0 ? '+' : '-' }}</span>
           <span>{{ Math.abs(modifier) }}</span>
         </span>
       </button>
@@ -59,7 +59,7 @@ onMounted(() => {
 
     <!-- Level -->
     <div
-      class="absolute bottom-[4px] right-0 left-0 text-[12px] xl:text-[16px] font-bold text-center text-[#a0a9af]"
+      class="absolute bottom-[4px] right-0 left-0 text-[12px] xl:text-[16px] font-bold text-center text-cs-gray"
     >
       {{ stat }}
     </div>

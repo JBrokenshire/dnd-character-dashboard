@@ -14,7 +14,10 @@ module.exports = {
         'hero-bg': "url('@/assets/img/hero/background.png')"
       },
       colors: {
-        primary: primaryColour
+        primary: primaryColour,
+        'cs-gray': {
+          DEFAULT: '#a0a9af'
+        }
       },
       brightness: {
         25: '.45'
