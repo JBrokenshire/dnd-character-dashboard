@@ -1,7 +1,7 @@
-import CharacterView from '@/views/CharacterView.vue'
-import AddCharacterView from '@/views/AddCharacterView.vue'
-import AllCharactersView from '@/views/AllCharactersView.vue'
-import EditCharacterView from '@/views/EditCharacterView.vue'
+import CharacterView from '@/views/character/CharacterView.vue'
+import AddCharacterView from '@/views/character/AddCharacterView.vue'
+import AllCharactersView from '@/views/character/AllCharactersView.vue'
+import EditCharacterView from '@/views/character/EditCharacterView.vue'
 
 export const characterRoutes = [
   {

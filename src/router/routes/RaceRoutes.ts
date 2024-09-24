@@ -1,5 +1,5 @@
-import RaceView from '@/views/RaceView.vue'
-import AllRacesView from '@/views/AllRacesView.vue'
+import RaceView from '@/views/race/RaceView.vue'
+import AllRacesView from '@/views/race/AllRacesView.vue'
 
 export const raceRoutes = [
   {

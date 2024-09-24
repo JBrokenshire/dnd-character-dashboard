@@ -1,5 +1,5 @@
-import HomeView from '@/views/HomeView.vue'
-import ErrorView from '@/views/ErrorView.vue'
+import HomeView from '@/views/home/HomeView.vue'
+import ErrorView from '@/views/error/ErrorView.vue'
 import { raceRoutes } from '@/router/routes/RaceRoutes'
 import { classRoutes } from '@/router/routes/ClassRoutes'
 import { createRouter, createWebHistory } from 'vue-router'

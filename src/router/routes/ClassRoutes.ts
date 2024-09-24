@@ -1,5 +1,5 @@
-import ClassView from '@/views/ClassView.vue'
-import AllClassesView from '@/views/AllClassesView.vue'
+import ClassView from '@/views/class/ClassView.vue'
+import AllClassesView from '@/views/class/AllClassesView.vue'
 
 export const classRoutes = [
   {
