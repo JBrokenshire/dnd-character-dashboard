@@ -22,7 +22,7 @@ defineProps<{
 
     <!-- Top Title -->
     <div
-      class="relative text-[12px] pt-[5px] xl:pt-[10px] text-cs-gray font-bold xl:tracking-tightest uppercase"
+      class="relative text-[.675rem] xl:text-[.75rem] pt-[5px] xl:pt-[10px] text-cs-gray font-bold tracking-tightest uppercase"
     >
       <slot name="top-title"></slot>
     </div>
@@ -36,7 +36,7 @@ defineProps<{
 
     <!-- Bottom Title -->
     <div
-      class="relative text-[12px] mb-[10px] text-cs-gray font-bold xl:tracking-tightest uppercase"
+      class="relative text-[.675rem] xl:text-[.75rem] mb-[10px] text-cs-gray font-bold tracking-tightest uppercase"
     >
       <slot name="bottom-title" />
     </div>

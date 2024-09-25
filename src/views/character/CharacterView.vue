@@ -31,7 +31,7 @@ onMounted(async () => {
     <img
       :src="`/img/character/sheet/backgrounds/${character.class.name.replace(' ', '-').toLowerCase()}.png`"
       alt=""
-      class="absolute left-0 h-screen -z-20 object-contain"
+      class="absolute top-0 left-0 h-screen -z-20 object-cover"
     />
 
     <CharacterSheetHeader :character="character" />
