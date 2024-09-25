@@ -12,8 +12,7 @@ defineProps<{
     <div class="sr-only">Proficiency Bonus</div>
     <BonusContainer :className="className">
       <template #top-title>
-        <span class="block md:hidden">Prof.</span>
-        <span class="hidden md:block">Proficiency</span>
+        <span>Proficiency</span>
       </template>
       <template #bonus-value>
         <div class="font-bold">
