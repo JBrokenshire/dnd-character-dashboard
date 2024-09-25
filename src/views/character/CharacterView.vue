@@ -4,9 +4,10 @@ import { useRoute } from 'vue-router'
 import { Character } from '@/models/Character'
 import { getCharacterByID } from '@/services/CharacterService'
 import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
-import AbilitySummary from '@/components/character/character_sheet/AbilitySummary.vue'
-import ProficiencyBonus from '@/components/character/character_sheet/ProficiencyBonus.vue'
-import CharacterSheetHeader from '@/components/character/character_sheet/CharacterSheetHeader.vue'
+import AbilitySummary from '@/components/character/sheet/AbilitySummary.vue'
+import ProficiencyBonus from '@/components/character/sheet/BonusContainer.vue'
+import CharacterSheetHeader from '@/components/character/sheet/CharacterSheetHeader.vue'
+import BonusContainer from '@/components/character/sheet/BonusContainer.vue'
 
 const route = useRoute()
 
@@ -53,7 +54,34 @@ onMounted(async () => {
 
       <section id="cs-quick-info__proficiency-bonus">
         <div class="sr-only">Proficiency Bonus</div>
-        <ProficiencyBonus :level="character.level" />
+        <BonusContainer>
+          <template #top-title>
+            <span class="block md:hidden">Prof.</span>
+            <span class="hidden md:block">Proficiency</span>
+          </template>
+          <template #bonus-value>
+            <div class="font-bold">
+              <span class="text-cs-gray">+</span>
+              <span>{{ 2 + Math.floor((character.level - 1) / 4) }}</span>
+            </div>
+          </template>
+          <template #bottom-title>Bonus</template>
+        </BonusContainer>
+      </section>
+      <section id="cs-quick-info__walking-speed">
+        <div class="sr-only">Walking Speed</div>
+        <BonusContainer>
+          <template #top-title>Walking</template>
+          <template #bonus-value>
+            <div class="font-bold">
+              <span>
+                {{ character.race.base_walking_speed + character.walking_speed_modifier }}
+              </span>
+              <span class="text-cs-gray text-sm ms-1">ft.</span>
+            </div>
+          </template>
+          <template #bottom-title>Speed</template>
+        </BonusContainer>
       </section>
     </div>
   </div>

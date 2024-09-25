@@ -1,8 +1,4 @@
-<script setup lang="ts">
-defineProps<{
-  level: number
-}>()
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="relative h-[73px] xl:h-[89px] w-[77px] xl:w-[94px] text-center cursor-pointer">
@@ -24,15 +20,13 @@ defineProps<{
     <div
       class="relative text-[12px] pt-[5px] xl:pt-[10px] text-cs-gray font-bold xl:tracking-tightest uppercase"
     >
-      <span class="block xl:hidden">Prof.</span>
-      <span class="hidden xl:block">Proficiency</span>
+      <slot name="top-title"></slot>
     </div>
 
     <!-- Proficiency Bonus -->
     <div class="text-[22px] xl:text-[26px] text-white">
       <span class="inline-flex gap-[.063rem] items-center align-top relative">
-        <span class="text-cs-gray">+</span>
-        <span>{{ 2 + Math.floor((level - 1) / 4) }}</span>
+        <slot name="bonus-value" />
       </span>
     </div>
 
@@ -40,7 +34,7 @@ defineProps<{
     <div
       class="relative text-[12px] mb-[10px] text-cs-gray font-bold xl:tracking-tightest uppercase"
     >
-      <span>Bonus</span>
+      <slot name="bottom-title" />
     </div>
   </div>
 </template>
