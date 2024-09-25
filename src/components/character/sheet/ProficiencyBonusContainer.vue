@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import BonusContainer from '@/components/character/sheet/BonusContainer.vue'
 
-defineProps<{ bonus: number }>()
+defineProps<{
+  bonus: number
+  className: string
+}>()
 </script>
 
 <template>
   <section id="cs-quick-info__proficiency-bonus">
     <div class="sr-only">Proficiency Bonus</div>
-    <BonusContainer>
+    <BonusContainer :className="className">
       <template #top-title>
         <span class="block md:hidden">Prof.</span>
         <span class="hidden md:block">Proficiency</span>

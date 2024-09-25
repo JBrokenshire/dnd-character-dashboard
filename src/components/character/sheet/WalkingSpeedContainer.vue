@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import BonusContainer from '@/components/character/sheet/BonusContainer.vue'
 
-defineProps<{ speed: number }>()
+defineProps<{
+  speed: number
+  className: string
+}>()
 </script>
 
 <template>
   <section id="cs-quick-info__walking-speed">
     <div class="sr-only">Walking Speed</div>
-    <BonusContainer>
+    <BonusContainer :className="className">
       <template #top-title>Walking</template>
       <template #bonus-value>
         <div class="font-bold">

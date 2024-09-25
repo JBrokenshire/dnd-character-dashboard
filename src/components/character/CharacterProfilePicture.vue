@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-defineProps({
-  profilePictureURL: String
-})
+defineProps<{
+  className: string
+  profilePictureURL: string
+}>()
 </script>
 
 <template>
@@ -12,6 +13,6 @@ defineProps({
         : `/src/assets/img/character/card/default-profile-picture.png`
     "
     alt="Character Profile Picture"
-    class="max-w-20 aspect-square object-cover z-10 rounded-lg"
+    :class="`max-w-20 aspect-square object-cover z-10 rounded-md border-${className}`"
   />
 </template>

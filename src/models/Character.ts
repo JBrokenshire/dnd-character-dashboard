@@ -1,7 +1,6 @@
 import type { Race } from '@/models/Race'
 import type { ClassType } from '@/models/ClassType'
 
-
 interface Character {
   id: number
   name: string
@@ -15,6 +14,8 @@ interface Character {
   intelligence: number
   wisdom: number
   charisma: number
+  walking_speed_modifier: number
+  inspiration: boolean
 
   class: ClassType
   race: Race

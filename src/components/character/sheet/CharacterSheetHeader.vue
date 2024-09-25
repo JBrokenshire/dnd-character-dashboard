@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { Character } from '@/models/Character'
 import CharacterProfilePicture from '@/components/character/CharacterProfilePicture.vue'
+import { cleanClassName } from '@/utils/utils'
 
 defineProps({
   character: {
@@ -16,8 +17,9 @@ defineProps({
     <div class="w-[1200px] max-w-[1200px] mx-auto flex sm:justify-between items-center gap-4">
       <div class="flex gap-4">
         <CharacterProfilePicture
+          :className="cleanClassName(character.class.name)"
           :profilePictureURL="character.profile_picture_url ? character.profile_picture_url : null"
-          class="border border-black"
+          :style="`border: 2px solid ${character.class.colour}`"
         />
 
         <div class="flex flex-col justify-center items-start gap-2">
@@ -25,7 +27,8 @@ defineProps({
             <div class="lg:text-3xl text-xl font-bold text-white">{{ character.name }}</div>
             <RouterLink
               :to="`/characters/${character.id}/edit`"
-              class="text-xs text-center font-bold border border-primary rounded-md px-2 py-1 text-white transition-200 hover:bg-primary hover:bg-opacity-25"
+              :class="`text-xs text-center font-bold rounded-md px-2 py-1 text-white transition-200 button-${cleanClassName(character.class.name)}`"
+              :style="`border: 1px solid ${character.class.colour}`"
             >
               Edit
             </RouterLink>

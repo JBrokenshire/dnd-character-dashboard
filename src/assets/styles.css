@@ -86,3 +86,47 @@ input, select {
 select {
   @apply cursor-pointer transition-200 focus:ring-2 focus:ring-primary hover:bg-gray-100 focus:bg-gray-100;
 }
+
+/* Colour Styles */
+
+.border-barbarian { @apply border-2 border-class-barbarian }
+.border-bard { @apply border-2 border-class-bard }
+.border-blood-hunter { @apply border-2 border-class-blood-hunter }
+.border-cleric { @apply border-2 border-class-cleric }
+.border-druid { @apply border-2 border-class-druid }
+.border-fighter { @apply border-2 border-class-fighter }
+.border-monk { @apply border-2 border-class-monk }
+.border-paladin { @apply border-2 border-class-paladin }
+.border-ranger { @apply border-2 border-class-ranger }
+.border-rogue { @apply border-2 border-class-rogue }
+.border-sorcerer { @apply border-2 border-class-sorcerer }
+.border-warlock { @apply border-2 border-class-warlock }
+.border-wizard { @apply border-2 border-class-wizard }
+
+.button-barbarian { @apply border border-class-barbarian transition-200 hover:bg-class-barbarian hover:bg-opacity-25 }
+.button-bard { @apply border border-class-bard transition-200 hover:bg-class-bard hover:bg-opacity-25 }
+.button-blood-hunter { @apply border border-class-blood-hunter transition-200 hover:bg-class-blood-hunter hover:bg-opacity-25 }
+.button-cleric { @apply border border-class-cleric transition-200 hover:bg-class-cleric hover:bg-opacity-25 }
+.button-druid { @apply border border-class-druid transition-200 hover:bg-class-druid hover:bg-opacity-25 }
+.button-fighter { @apply border border-class-fighter transition-200 hover:bg-class-fighter hover:bg-opacity-25 }
+.button-monk { @apply border border-class-monk transition-200 hover:bg-class-monk hover:bg-opacity-25 }
+.button-paladin { @apply border border-class-paladin transition-200 hover:bg-class-paladin hover:bg-opacity-25 }
+.button-ranger { @apply border border-class-ranger transition-200 hover:bg-class-ranger hover:bg-opacity-25 }
+.button-rogue { @apply border border-class-rogue transition-200 hover:bg-class-rogue hover:bg-opacity-25 }
+.button-sorcerer { @apply border border-class-sorcerer transition-200 hover:bg-class-sorcerer hover:bg-opacity-25 }
+.button-warlock { @apply border border-class-warlock transition-200 hover:bg-class-warlock hover:bg-opacity-25 }
+.button-wizard { @apply border border-class-wizard transition-200 hover:bg-class-wizard hover:bg-opacity-25 }
+
+path.barbarian { @apply fill-class-barbarian; }
+path.bard { @apply fill-class-bard; }
+path.blood-hunter { @apply fill-class-blood-hunter; }
+path.cleric { @apply fill-class-cleric; }
+path.druid { @apply fill-class-druid; }
+path.fighter { @apply fill-class-fighter; }
+path.monk { @apply fill-class-monk; }
+path.paladin { @apply fill-class-paladin; }
+path.ranger { @apply fill-class-ranger; }
+path.rogue { @apply fill-class-rogue; }
+path.sorcerer { @apply fill-class-sorcerer; }
+path.warlock { @apply fill-class-warlock; }
+path.wizard { @apply fill-class-wizard; }
