@@ -63,10 +63,11 @@ const isNavOpen = ref(false)
               </div>
               <ul
                 v-if="isNavOpen"
-                class="flex flex-col items-center sm:items-end justify-between gap-8 text-2xl px-8"
+                class="flex flex-col items-center sm:items-start justify-between gap-8 text-2xl px-8"
               >
                 <li class="my-2">
                   <RouterLink class="nav-link px-2 md:px-4" to="/" @click="isNavOpen = false">
+                    <i class="pi pi-home"></i>
                     Home
                   </RouterLink>
                 </li>
@@ -76,6 +77,7 @@ const isNavOpen = ref(false)
                     to="/characters"
                     @click="isNavOpen = false"
                   >
+                    <i class="pi pi-users"></i>
                     Characters
                   </RouterLink>
                 </li>
@@ -85,11 +87,13 @@ const isNavOpen = ref(false)
                     to="/classes"
                     @click="isNavOpen = false"
                   >
+                    <i class="pi pi-shield"></i>
                     Classes
                   </RouterLink>
                 </li>
                 <li class="my-2">
                   <RouterLink class="nav-link px-2 md:px-4" to="/races" @click="isNavOpen = false">
+                    <i class="pi pi-user"></i>
                     Races
                   </RouterLink>
                 </li>
@@ -100,22 +104,40 @@ const isNavOpen = ref(false)
           <!-- Large Screen Navbar -->
           <ul class="hidden space-x-4 md:flex text-xl">
             <li>
-              <RouterLink class="nav-link px-2" to="/" @click="isNavOpen = false">Home</RouterLink>
+              <RouterLink class="nav-link px-2 flex-center gap-2" to="/" @click="isNavOpen = false">
+                <i class="pi pi-home"></i>
+                Home
+              </RouterLink>
             </li>
             <li>
-              <RouterLink class="nav-link px-2" to="/characters" @click="isNavOpen = false"
-                >Characters</RouterLink
+              <RouterLink
+                class="nav-link px-2 flex-center gap-2"
+                to="/characters"
+                @click="isNavOpen = false"
               >
+                <i class="pi pi-users"></i>
+                Characters
+              </RouterLink>
             </li>
             <li>
-              <RouterLink class="nav-link px-2" to="/classes" @click="isNavOpen = false"
-                >Classes</RouterLink
+              <RouterLink
+                class="nav-link px-2 flex-center gap-2"
+                to="/classes"
+                @click="isNavOpen = false"
               >
+                <i class="pi pi-shield"></i>
+                Classes
+              </RouterLink>
             </li>
             <li>
-              <RouterLink class="nav-link px-2" to="/races" @click="isNavOpen = false"
-                >Races</RouterLink
+              <RouterLink
+                class="nav-link px-2 flex-center gap-2"
+                to="/races"
+                @click="isNavOpen = false"
               >
+                <i class="pi pi-user"></i>
+                Races
+              </RouterLink>
             </li>
           </ul>
         </nav>
