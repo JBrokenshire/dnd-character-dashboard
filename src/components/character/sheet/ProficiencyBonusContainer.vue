@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BonusContainer from '@/components/character/sheet/BonusContainer.vue'
 
-defineProps<{ level: number }>()
+defineProps<{ bonus: number }>()
 </script>
 
 <template>
@@ -15,7 +15,7 @@ defineProps<{ level: number }>()
       <template #bonus-value>
         <div class="font-bold">
           <span class="text-cs-gray me-1">+</span>
-          <span>{{ 2 + Math.floor((level - 1) / 4) }}</span>
+          <span>{{ bonus }}</span>
         </div>
       </template>
       <template #bottom-title>Bonus</template>

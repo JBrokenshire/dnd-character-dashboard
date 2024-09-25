@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Character } from '@/models/Character'
-import BonusContainer from '@/components/character/sheet/BonusContainer.vue'
 import AbilitySummary from '@/components/character/sheet/AbilitySummary.vue'
 import ProficiencyBonusContainer from '@/components/character/sheet/ProficiencyBonusContainer.vue'
 import WalkingSpeedContainer from '@/components/character/sheet/WalkingSpeedContainer.vue'
@@ -22,7 +21,7 @@ defineProps<{
       <AbilitySummary :stat="character.charisma" title="CHARISMA" />
     </section>
 
-    <ProficiencyBonusContainer :level="character.level" />
+    <ProficiencyBonusContainer :bonus="2 + Math.floor((character.level - 1) / 4)" />
     <WalkingSpeedContainer
       :speed="character.race.base_walking_speed + character.walking_speed_modifier"
     />
