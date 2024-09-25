@@ -19,7 +19,13 @@ const form = reactive({
   level: 1,
   profilePictureURL: '',
   classID: 1,
-  raceID: 1
+  raceID: 1,
+  strength: 10,
+  dexterity: 10,
+  constitution: 10,
+  intelligence: 10,
+  wisdom: 10,
+  charisma: 10
 })
 
 const handleSubmit = async () => {
@@ -28,7 +34,13 @@ const handleSubmit = async () => {
     level: form.level,
     profile_picture_url: form.profilePictureURL !== '' ? form.profilePictureURL : null,
     class_id: form.classID,
-    race_id: form.raceID
+    race_id: form.raceID,
+    strength: form.strength,
+    dexterity: form.dexterity,
+    constitution: form.constitution,
+    intelligence: form.intelligence,
+    wisdom: form.wisdom,
+    charisma: form.charisma
   }
 
   const responseCharacter = await updateCharacter(characterID, newCharacter)
@@ -54,6 +66,12 @@ onMounted(async () => {
   form.profilePictureURL = character.value.profile_picture_url
     ? character.value.profile_picture_url
     : null
+  form.strength = character.value.strength
+  form.dexterity = character.value.dexterity
+  form.constitution = character.value.constitution
+  form.intelligence = character.value.intelligence
+  form.wisdom = character.value.wisdom
+  form.charisma = character.value.charisma
 
   isLoading.value = false
 })
@@ -185,6 +203,87 @@ onMounted(async () => {
               </p>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="w-full grid grid-cols-3 lg:grid-cols-6 gap-4">
+        <div class="mb-4">
+          <label for="strength" class="block text-gray-700 font-bold mb-2">Strength</label>
+          <input
+            v-model="form.strength"
+            id="strength"
+            name="strength"
+            type="number"
+            class="border rounded w-full py-2 px-3 mb-2"
+            min="1"
+            max="20"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="dexterity" class="block text-gray-700 font-bold mb-2">Dexterity</label>
+          <input
+            v-model="form.dexterity"
+            id="dexterity"
+            name="dexterity"
+            type="number"
+            class="border rounded w-full py-2 px-3 mb-2"
+            min="1"
+            max="20"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="constitution" class="block text-gray-700 font-bold mb-2">Constitution</label>
+          <input
+            v-model="form.constitution"
+            id="constitution"
+            name="constitution"
+            type="number"
+            class="border rounded w-full py-2 px-3 mb-2"
+            min="1"
+            max="20"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="intelligence" class="block text-gray-700 font-bold mb-2">Intelligence</label>
+          <input
+            v-model="form.intelligence"
+            id="intelligence"
+            name="intelligence"
+            type="number"
+            class="border rounded w-full py-2 px-3 mb-2"
+            min="1"
+            max="20"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="wisdom" class="block text-gray-700 font-bold mb-2">Wisdom</label>
+          <input
+            v-model="form.wisdom"
+            id="wisdom"
+            name="wisdom"
+            type="number"
+            class="border rounded w-full py-2 px-3 mb-2"
+            min="1"
+            max="20"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="charisma" class="block text-gray-700 font-bold mb-2">Charisma</label>
+          <input
+            v-model="form.charisma"
+            id="charisma"
+            name="charisma"
+            type="number"
+            class="border rounded w-full py-2 px-3 mb-2"
+            min="1"
+            max="20"
+            required
+          />
         </div>
       </div>
 

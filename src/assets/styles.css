@@ -74,3 +74,15 @@ body {
 .nav-link:hover::before {
   @apply w-[100%] left-0;
 }
+
+/* Form Styles */
+
+label { @apply cursor-pointer }
+
+input, select {
+  @apply text-lg min-h-[45px] border border-gray-300 bg-white rounded-md;
+}
+
+select {
+  @apply cursor-pointer transition-200 focus:ring-2 focus:ring-primary hover:bg-gray-100 focus:bg-gray-100;
+}
