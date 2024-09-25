@@ -16,7 +16,8 @@ module.exports = {
       colors: {
         primary: primaryColour,
         'cs-gray': {
-          DEFAULT: '#a0a9af'
+          DEFAULT: '#a0a9af',
+          dark: '#2b2b2a'
         }
       },
       brightness: {

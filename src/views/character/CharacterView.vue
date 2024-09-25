@@ -5,8 +5,8 @@ import { Character } from '@/models/Character'
 import { getCharacterByID } from '@/services/CharacterService'
 import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
 import AbilitySummary from '@/components/character/character_sheet/AbilitySummary.vue'
-import CharacterSheetHeader from '@/components/character/character_sheet/CharacterSheetHeader.vue'
 import ProficiencyBonus from '@/components/character/character_sheet/ProficiencyBonus.vue'
+import CharacterSheetHeader from '@/components/character/character_sheet/CharacterSheetHeader.vue'
 
 const route = useRoute()
 
@@ -27,14 +27,20 @@ onMounted(async () => {
     <CustomScaleLoader />
   </div>
 
-  <div v-else class="max-w-[1200px] mx-auto padding-x py-8 flex flex-col gap-4">
-    <RouterLink to="/characters" class="w-fit flex items-center gap-2 text-lg nav-link">
-      <i class="pi pi-chevron-left scale-[.75]" />
-      Back To Character List
-    </RouterLink>
-
+  <div v-else class="relative flex flex-col gap-4 min-h-screen">
     <CharacterSheetHeader :character="character" />
-    <div id="cs-quick-info" class="flex justify-between w-full border border-lime-400">
+
+    <!-- Background Image -->
+    <img
+      :src="`/img/character/sheet/backgrounds/${character.class.name.replace(' ', '-').toLowerCase()}.png`"
+      alt=""
+      class="absolute left-0 h-screen -z-20 object-contain"
+    />
+
+    <div
+      id="cs-quick-info"
+      class="max-w-[1200px] mx-auto flex justify-between w-full border border-lime-400"
+    >
       <section id="cs-quick-info__abilities" class="w-[463px] xl:w-[564px] flex justify-between">
         <div class="sr-only">Abilities</div>
         <AbilitySummary :stat="character.strength" title="STRENGTH" />

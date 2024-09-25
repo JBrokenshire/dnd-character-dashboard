@@ -30,7 +30,7 @@ onMounted(async () => {
     <NoCharacters />
   </div>
 
-  <div v-else class="max-width padding-x">
+  <div v-else class="max-width padding-x mt-8">
     <div class="flex-between border-b border-gray-300 pb-4">
       <div class="text-2xl md:text-5xl font-bold">My Characters</div>
       <RouterLink :to="`/characters/add`" class="flex items-center sm:gap-2 text-lg nav-link">
@@ -38,10 +38,7 @@ onMounted(async () => {
         <i class="pi pi-chevron-right scale-[.75]" />
       </RouterLink>
     </div>
-    <div
-      v-if="characters.length > 0"
-      class="grid-three"
-    >
+    <div v-if="characters.length > 0" class="grid-three">
       <CharacterCard
         v-for="character in characters"
         :key="character.id"

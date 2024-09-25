@@ -5,7 +5,7 @@ const isNavOpen = ref(false)
 </script>
 
 <template>
-  <header class="w-full border-b border-gray-300 xl:mb-8">
+  <header class="w-full border-b border-gray-300">
     <div class="max-width padding-x">
       <div class="flex-between py-2">
         <RouterLink class="w-[15%] min-w-[50px] max-w-[75px]" to="/" @click="isNavOpen = false">
