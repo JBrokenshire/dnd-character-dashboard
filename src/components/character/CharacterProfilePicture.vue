@@ -13,6 +13,6 @@ defineProps<{
         : `/src/assets/img/character/card/default-profile-picture.png`
     "
     alt="Character Profile Picture"
-    :class="`max-w-20 aspect-square object-cover z-10 rounded-md border-${className}`"
+    :class="`max-w-16 xl:max-w-20 aspect-square object-cover z-10 rounded-md border-${className}`"
   />
 </template>

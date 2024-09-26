@@ -44,6 +44,15 @@ export const updateCharacter = async (id: number, newCharacter: Character) => {
   }
 }
 
+export const toggleInspiration = async (id: number) => {
+  try {
+    const { data } = await axios.get(`/api/characters/${id}/inspiration`)
+    return data as Character
+  } catch (error) {
+    console.error(`Error updating inspiration for character with ID: ${id}.`, error)
+  }
+}
+
 export const deleteCharacter = async (characterID) => {
   try {
     const confirm = window.confirm('Are you sure you want to delete this character?')

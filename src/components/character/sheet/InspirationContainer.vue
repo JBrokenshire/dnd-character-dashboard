@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const props = defineProps<{ className: string; inspiration: boolean }>()
-
-const inspiration = ref<boolean>(props.inspiration)
+defineProps<{ className: string; inspiration: boolean }>()
+defineEmits(['toggle-inspiration'])
 </script>
 
 <template>
   <section
     id="cs-quick-info__inspiration"
     class="cursor-pointer"
-    @click="inspiration = !inspiration"
+    @click="$emit('toggle-inspiration')"
   >
     <div class="sr-only">Inspiration</div>
     <div class="w-[4.375rem] xl:w-[4.5rem] h-[2.75rem] xl:h-[3.3125rem] flex-center relative">

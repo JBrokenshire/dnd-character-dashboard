@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { Character } from '@/models/Character'
-import { getCharacterByID } from '@/services/CharacterService'
+import { getCharacterByID, toggleInspiration } from '@/services/CharacterService'
 import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
 import CharacterSheetHeader from '@/components/character/sheet/CharacterSheetHeader.vue'
 import QuickInfoContainer from '@/components/character/sheet/QuickInfoContainer.vue'
@@ -31,10 +31,17 @@ onMounted(async () => {
     <img
       :src="`/img/character/sheet/backgrounds/${character.class.name.replace(' ', '-').toLowerCase()}.png`"
       alt=""
-      class="absolute top-0 left-0 h-screen -z-20 object-cover"
+      class="absolute top-0 left-0 w-full h-full -z-20 object-cover"
     />
 
     <CharacterSheetHeader :character="character" />
-    <QuickInfoContainer :character="character" />
+    <QuickInfoContainer
+      :character="character"
+      @toggle-inspiration="
+        async () => {
+          character = await toggleInspiration(character.id)
+        }
+      "
+    />
   </div>
 </template>

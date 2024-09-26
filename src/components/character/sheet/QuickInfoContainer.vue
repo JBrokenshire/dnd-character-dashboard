@@ -3,14 +3,16 @@ import { ref } from 'vue'
 import { cleanClassName } from '@/utils/utils'
 import type { Character } from '@/models/Character'
 import AbilitySummary from '@/components/character/sheet/AbilitySummary.vue'
+import HealthContainer from '@/components/character/sheet/HealthContainer.vue'
 import InspirationContainer from '@/components/character/sheet/InspirationContainer.vue'
 import WalkingSpeedContainer from '@/components/character/sheet/WalkingSpeedContainer.vue'
 import ProficiencyBonusContainer from '@/components/character/sheet/ProficiencyBonusContainer.vue'
-import HealthContainer from '@/components/character/sheet/HealthContainer.vue'
 
 const props = defineProps<{
   character: Character
 }>()
+
+defineEmits(['toggle-inspiration'])
 
 const cleanedClassName = ref<string>(cleanClassName(props.character.class.name))
 </script>
@@ -58,7 +60,11 @@ const cleanedClassName = ref<string>(cleanClassName(props.character.class.name))
       :speed="character.race.base_walking_speed + character.walking_speed_modifier"
       :className="`${cleanedClassName}`"
     />
-    <InspirationContainer :className="`${cleanedClassName}`" :inspiration="character.inspiration" />
+    <InspirationContainer
+      :className="`${cleanedClassName}`"
+      :inspiration="character.inspiration"
+      @toggle-inspiration="$emit('toggle-inspiration')"
+    />
 
     <HealthContainer
       :currentHitPoints="character.current_hit_points"

@@ -13,8 +13,10 @@ defineProps({
 
 <template>
   <div class="relative w-full flex items-center gap-2 sm:gap-8 p-4">
-    <div class="absolute left-0 top-0 h-[140px] w-full bg-cs-gray-dark -z-10" />
-    <div class="w-[1200px] max-w-[1200px] mx-auto flex sm:justify-between items-center gap-4">
+    <div class="absolute left-0 top-0 h-[120px] xl:h-[140px] w-full bg-cs-gray-dark -z-10" />
+    <div
+      class="w-full max-w-[990px] xl:max-w-[1200px] mx-auto flex sm:justify-between items-center gap-4"
+    >
       <div class="flex gap-4">
         <CharacterProfilePicture
           :className="cleanClassName(character.class.name)"
