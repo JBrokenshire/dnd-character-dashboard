@@ -40,7 +40,10 @@ defineEmits(['toggle-inspiration'])
       </div>
 
       <!-- Inspiration Icon -->
-      <div v-if="inspiration" class="relative h-[1.25rem] w-[2.1875rem]">
+      <div
+        class="relative h-[1.25rem] w-[2.1875rem] transition-200"
+        :class="`${inspiration ? 'scale-1' : 'scale-0'}`"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 50 30"
