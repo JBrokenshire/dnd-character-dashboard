@@ -35,7 +35,12 @@ const handleSubmit = async () => {
     constitution: form.constitution,
     intelligence: form.intelligence,
     wisdom: form.wisdom,
-    charisma: form.charisma
+    charisma: form.charisma,
+    walking_speed_modifier: 0,
+    inspiration: false,
+    current_hit_points: 10,
+    max_hit_points: 10,
+    temp_hit_points: 0
   }
 
   const responseCharacter = await createNewCharacter(newCharacter)

@@ -30,31 +30,22 @@ const cleanedClassName = ref<string>(cleanClassName(props.character.class.name))
       <AbilitySummary
         :stat="character.dexterity"
         title="DEXTERITY"
-        :colour="colour"
         :className="`${cleanedClassName}`"
       />
       <AbilitySummary
         :stat="character.constitution"
         title="CONSTITUTION"
-        :colour="colour"
         :className="`${cleanedClassName}`"
       />
       <AbilitySummary
         :stat="character.intelligence"
         title="INTELLIGENCE"
-        :colour="colour"
         :className="`${cleanedClassName}`"
       />
-      <AbilitySummary
-        :stat="character.wisdom"
-        title="WISDOM"
-        :colour="colour"
-        :className="`${cleanedClassName}`"
-      />
+      <AbilitySummary :stat="character.wisdom" title="WISDOM" :className="`${cleanedClassName}`" />
       <AbilitySummary
         :stat="character.charisma"
         title="CHARISMA"
-        :colour="colour"
         :className="`${cleanedClassName}`"
       />
     </section>

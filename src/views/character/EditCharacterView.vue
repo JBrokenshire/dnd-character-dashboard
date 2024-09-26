@@ -40,7 +40,12 @@ const handleSubmit = async () => {
     constitution: form.constitution,
     intelligence: form.intelligence,
     wisdom: form.wisdom,
-    charisma: form.charisma
+    charisma: form.charisma,
+    walking_speed_modifier: character.value.walking_speed_modifier,
+    inspiration: character.value.inspiration,
+    current_hit_points: character.value.current_hit_points,
+    max_hit_points: character.value.max_hit_points,
+    temp_hit_points: character.value.temp_hit_points
   }
 
   const responseCharacter = await updateCharacter(characterID, newCharacter)
