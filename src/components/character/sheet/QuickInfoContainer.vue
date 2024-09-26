@@ -70,9 +70,9 @@ const cleanedClassName = ref<string>(cleanClassName(props.character.class.name))
     <InspirationContainer :className="`${cleanedClassName}`" :inspiration="character.inspiration" />
 
     <HealthContainer
-      :currentHitPoints="28"
-      :maxHitPoints="28"
-      :tempHitPoints="0"
+      :currentHitPoints="character.current_hit_points"
+      :maxHitPoints="character.max_hit_points"
+      :tempHitPoints="character.temp_hit_points"
       :className="cleanedClassName"
     />
   </div>

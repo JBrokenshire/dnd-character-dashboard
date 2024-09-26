@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { customRef } from '@vue/reactivity'
-
 defineProps<{
   currentHitPoints: number
   maxHitPoints: number

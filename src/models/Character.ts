@@ -16,6 +16,9 @@ interface Character {
   charisma: number
   walking_speed_modifier: number
   inspiration: boolean
+  current_hit_points: number
+  max_hit_points: number
+  temp_hit_points: number
 
   class: ClassType
   race: Race
