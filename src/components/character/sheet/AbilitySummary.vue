@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { modifierFromLevel } from '@/utils/utils'
 
 const props = defineProps<{
   stat: number
@@ -7,11 +8,7 @@ const props = defineProps<{
   className: string
 }>()
 
-const modifier = ref<number>(0)
-
-onMounted(() => {
-  modifier.value = Math.floor((props.stat - 10) / 2)
-})
+const modifier = ref<number>(modifierFromLevel(props.stat))
 </script>
 
 <template>

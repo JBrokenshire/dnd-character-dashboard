@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { Character } from '@/models/Character'
+import { cleanClassName } from '@/utils/utils'
 import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
 import QuickInfoContainer from '@/components/character/sheet/QuickInfoContainer.vue'
 import CharacterSheetHeader from '@/components/character/sheet/CharacterSheetHeader.vue'
@@ -11,6 +12,7 @@ import {
   healCharacter,
   toggleInspiration
 } from '@/services/CharacterService'
+import SavingThrowsContainer from '@/components/character/sheet/SavingThrowsContainer.vue'
 
 const route = useRoute()
 
@@ -40,6 +42,7 @@ onMounted(async () => {
     />
 
     <CharacterSheetHeader :character="character" />
+
     <QuickInfoContainer
       :character="character"
       @toggle-inspiration="
@@ -58,5 +61,13 @@ onMounted(async () => {
         }
       "
     />
+
+    <!-- Subsections Container -->
+    <div class="relative w-full max-w-[990px] xl:max-w-[1200px] mx-auto h-[770px]">
+      <SavingThrowsContainer
+        :className="cleanClassName(character.class.name)"
+        :character="character"
+      />
+    </div>
   </div>
 </template>

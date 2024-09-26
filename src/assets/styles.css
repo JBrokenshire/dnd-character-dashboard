@@ -117,16 +117,16 @@ select {
 .button-warlock { @apply border border-class-warlock transition-200 hover:bg-class-warlock hover:bg-opacity-25 }
 .button-wizard { @apply border border-class-wizard transition-200 hover:bg-class-wizard hover:bg-opacity-25 }
 
-path.barbarian { @apply fill-class-barbarian; }
-path.bard { @apply fill-class-bard; }
-path.blood-hunter { @apply fill-class-blood-hunter; }
-path.cleric { @apply fill-class-cleric; }
-path.druid { @apply fill-class-druid; }
-path.fighter { @apply fill-class-fighter; }
-path.monk { @apply fill-class-monk; }
-path.paladin { @apply fill-class-paladin; }
-path.ranger { @apply fill-class-ranger; }
-path.rogue { @apply fill-class-rogue; }
-path.sorcerer { @apply fill-class-sorcerer; }
-path.warlock { @apply fill-class-warlock; }
-path.wizard { @apply fill-class-wizard; }
+path.barbarian, circle.barbarian { @apply fill-class-barbarian }
+path.bard, circle.bard { @apply fill-class-bard; }
+path.blood-hunter, circle.blood-hunter { @apply fill-class-blood-hunter; }
+path.cleric, circle.cleric { @apply fill-class-cleric; }
+path.druid, circle.druid { @apply fill-class-druid; }
+path.fighter, circle.fighter { @apply fill-class-fighter; }
+path.monk, circle.monk { @apply fill-class-monk; }
+path.paladin, circle.paladin { @apply fill-class-paladin; }
+path.ranger, circle.ranger { @apply fill-class-ranger; }
+path.rogue, circle.rogue { @apply fill-class-rogue; }
+path.sorcerer, circle.sorcerer { @apply fill-class-sorcerer; }
+path.warlock, circle.warlock { @apply fill-class-warlock; }
+path.wizard, circle.wizard { @apply fill-class-wizard; }
