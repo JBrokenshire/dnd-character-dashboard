@@ -12,7 +12,7 @@ const props = defineProps<{
   character: Character
 }>()
 
-defineEmits(['toggle-inspiration'])
+defineEmits(['toggle-inspiration', 'heal-character', 'damage-character'])
 
 const cleanedClassName = ref<string>(cleanClassName(props.character.class.name))
 </script>
@@ -71,6 +71,8 @@ const cleanedClassName = ref<string>(cleanClassName(props.character.class.name))
       :maxHitPoints="character.max_hit_points"
       :tempHitPoints="character.temp_hit_points"
       :className="cleanedClassName"
+      @heal-character="(healValue) => $emit('heal-character', healValue)"
+      @damage-character="(damageValue) => $emit('damage-character', damageValue)"
     />
   </div>
 </template>

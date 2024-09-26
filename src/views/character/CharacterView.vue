@@ -2,10 +2,15 @@
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { Character } from '@/models/Character'
-import { getCharacterByID, toggleInspiration } from '@/services/CharacterService'
 import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
-import CharacterSheetHeader from '@/components/character/sheet/CharacterSheetHeader.vue'
 import QuickInfoContainer from '@/components/character/sheet/QuickInfoContainer.vue'
+import CharacterSheetHeader from '@/components/character/sheet/CharacterSheetHeader.vue'
+import {
+  damageCharacter,
+  getCharacterByID,
+  healCharacter,
+  toggleInspiration
+} from '@/services/CharacterService'
 
 const route = useRoute()
 
@@ -40,6 +45,16 @@ onMounted(async () => {
       @toggle-inspiration="
         async () => {
           character = await toggleInspiration(character.id)
+        }
+      "
+      @heal-character="
+        async (healValue) => {
+          character = await healCharacter(character.id, healValue)
+        }
+      "
+      @damage-character="
+        async (damageValue) => {
+          character = await damageCharacter(character.id, damageValue)
         }
       "
     />

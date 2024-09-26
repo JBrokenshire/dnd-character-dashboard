@@ -1,10 +1,36 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 defineProps<{
   currentHitPoints: number
   maxHitPoints: number
   tempHitPoints: number
   className: string
 }>()
+
+const emit = defineEmits(['heal-character', 'damage-character'])
+
+const emitHeal = () => {
+  if (healthAdjusterValue.value == 0 || healthAdjusterValue.value == undefined) {
+    healthAdjusterValue.value = undefined
+    return
+  }
+
+  emit('heal-character', healthAdjusterValue.value)
+  healthAdjusterValue.value = undefined
+}
+
+const emitDamage = () => {
+  if (healthAdjusterValue.value == 0 || healthAdjusterValue.value == undefined) {
+    healthAdjusterValue.value = undefined
+    return
+  }
+
+  emit('damage-character', healthAdjusterValue.value)
+  healthAdjusterValue.value = undefined
+}
+
+const healthAdjusterValue = ref<number>()
 </script>
 
 <template>
@@ -32,20 +58,24 @@ defineProps<{
           <div class="w-full">
             <button
               :class="`block xl:p-[4px] text-[7px] w-full button-${className} uppercase text-white font-bold bg-black rounded-[3px]`"
+              @click="emitHeal"
             >
               Heal
             </button>
             <div class="my-[2px] text-center">
               <input
+                v-model="healthAdjusterValue"
                 :class="`w-full bg-black text-white text-center border-${className} text-xs radius-[3px] p-[4px] appearance-none focus:outline-none min-h-[10px]`"
                 style="-webkit-appearance: textfield; -moz-appearance: textfield"
                 type="number"
                 min="0"
                 max="1000"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
               />
             </div>
             <button
               :class="`block xl:p-[4px] text-[7px] w-full button-${className} uppercase text-white font-bold bg-black rounded-[3px]`"
+              @click="emitDamage"
             >
               Damage
             </button>
