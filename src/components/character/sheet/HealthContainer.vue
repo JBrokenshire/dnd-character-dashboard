@@ -62,10 +62,10 @@ const healthAdjusterValue = ref<number>()
             >
               Heal
             </button>
-            <div class="my-[2px] text-center">
+            <div class="text-center">
               <input
                 v-model="healthAdjusterValue"
-                :class="`w-full bg-black text-white text-center border-${className} text-xs radius-[3px] p-[4px] appearance-none focus:outline-none min-h-[10px]`"
+                :class="`mb-[4px] xl:my-[2px] w-full bg-black text-white text-center border-${className} text-[8px] my-auto xl:text-xs radius-[3px] p-[4px] appearance-none focus:outline-none min-h-[10px]`"
                 style="-webkit-appearance: textfield; -moz-appearance: textfield"
                 type="number"
                 min="0"
