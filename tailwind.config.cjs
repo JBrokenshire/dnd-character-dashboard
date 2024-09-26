@@ -8,7 +8,7 @@ module.exports = {
         sans: ['Poppins', 'sans-serif']
       },
       letterSpacing: {
-        tightest: '-.075em'
+        tightest: '-.05em'
       },
       backgroundImage: {
         'hero-bg': "url('@/assets/img/hero/background.png')"

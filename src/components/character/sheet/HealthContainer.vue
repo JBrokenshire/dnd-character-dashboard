@@ -88,27 +88,31 @@ const healthAdjusterValue = ref<number>()
         >
           <div class="flex flex-col">
             <div
-              class="font-bold h-[1em] xl:mb-[6px] uppercase text-xs text-cs-gray tracking-tightest"
+              class="font-bold h-[1em] mb-[4px] xl:mb-[8px] uppercase text-[10px] xl:text-xs text-cs-gray tracking-tightest"
             >
               Current
             </div>
-            <div class="text-[26px] font-bold relative text-white">{{ currentHitPoints }}</div>
+            <div class="text-[24px] xl:text-[26px] font-bold relative text-white">
+              {{ currentHitPoints }}
+            </div>
           </div>
           <div class="flex flex-col">
             <div
-              class="font-bold h-[1em] xl:mb-[6px] uppercase text-xs text-cs-gray tracking-tightest"
+              class="font-bold h-[1em] mb-[4px] xl:mb-[8px] uppercase text-[10px] xl:text-xs text-cs-gray tracking-tightest"
             ></div>
-            <div class="text-[26px] text-cs-gray font-bold relative">
+            <div class="text-[24px] xl:text-[26px] text-cs-gray font-bold relative">
               <span class="px-[10px]">/</span>
             </div>
           </div>
           <div class="flex flex-col">
             <div
-              class="font-bold h-[1em] xl:mb-[6px] uppercase text-xs text-cs-gray tracking-tightest"
+              class="font-bold h-[1em] mb-[4px] xl:mb-[8px] uppercase text-[10px] xl:text-xs text-cs-gray tracking-tightest"
             >
               MAX
             </div>
-            <div class="text-[26px] font-bold relative text-white">{{ maxHitPoints }}</div>
+            <div class="text-[24px] xl:text-[26px] font-bold relative text-white">
+              {{ maxHitPoints }}
+            </div>
           </div>
         </div>
 
@@ -116,11 +120,14 @@ const healthAdjusterValue = ref<number>()
         <div class="flex justify-center flex-grow flex-shrink basis-0">
           <div class="flex flex-col">
             <div
-              class="font-bold h-[1em] xl:mb-[6px] uppercase text-xs text-cs-gray tracking-tightest"
+              class="font-bold h-[1em] mb-[4px] xl:mb-[8px] uppercase text-[10px] xl:text-xs text-cs-gray tracking-tightest"
             >
               Temp
             </div>
-            <div v-if="tempHitPoints == 0" class="text-[26px] font-bold relative text-cs-gray">
+            <div
+              v-if="tempHitPoints == 0"
+              class="text-[24px] xl:text-[26px] font-bold relative text-cs-gray"
+            >
               --
             </div>
             <div v-else class="text-[26px] font-bold relative text-white">{{ tempHitPoints }}</div>
