@@ -32,4 +32,8 @@ interface Character {
   race: Race
 }
 
+export const characterProficiencyBonus = (level: number) => {
+  return 2 + Math.floor((level - 1) / 4)
+}
+
 export { Character }

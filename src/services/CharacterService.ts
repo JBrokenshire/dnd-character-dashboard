@@ -1,7 +1,7 @@
 import axios from 'axios'
 import router from '@/router'
-import type { Character } from '@/models/Character'
 import { useToast } from 'vue-toastification'
+import type { Character } from '@/models/Character'
 
 const toast = useToast()
 

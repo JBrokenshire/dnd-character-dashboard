@@ -60,6 +60,10 @@ body {
   @apply w-fit rounded-full transition-200 px-2 py-1 sm:px-6 sm:py-3 bg-primary border-2 border-white text-white font-bold sm:text-xl hover:bg-white hover:border-primary hover:text-primary;
 }
 
+.svg-background {
+  @apply absolute top-0 bottom-0 right-0 left-0 overflow-hidden;
+}
+
 /* Header Styles */
 
 .nav-link {

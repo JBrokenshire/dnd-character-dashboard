@@ -13,6 +13,7 @@ import {
   toggleInspiration
 } from '@/services/CharacterService'
 import SavingThrowsContainer from '@/components/character/sheet/SavingThrowsContainer.vue'
+import SensesContainer from '@/components/character/sheet/SensesContainer.vue'
 
 const route = useRoute()
 
@@ -20,9 +21,11 @@ const characterID = route.params.id
 
 const isLoading = ref(true)
 const character = ref<Character>(null)
+const cleanedClassName = ref<string>('')
 
 onMounted(async () => {
   character.value = await getCharacterByID(characterID)
+  cleanedClassName.value = cleanClassName(character.value.class.name)
   isLoading.value = false
 })
 </script>
@@ -36,7 +39,7 @@ onMounted(async () => {
   <div v-else class="relative flex flex-col gap-4 min-h-screen">
     <!-- Background Image -->
     <img
-      :src="`/img/character/sheet/backgrounds/${character.class.name.replace(' ', '-').toLowerCase()}.png`"
+      :src="`/img/character/sheet/backgrounds/${cleanedClassName}.png`"
       alt=""
       class="absolute top-0 left-0 w-full h-full -z-20 object-cover"
     />
@@ -64,10 +67,9 @@ onMounted(async () => {
 
     <!-- Subsections Container -->
     <div class="relative w-full max-w-[990px] xl:max-w-[1200px] mx-auto h-[770px]">
-      <SavingThrowsContainer
-        :className="cleanClassName(character.class.name)"
-        :character="character"
-      />
+      <SavingThrowsContainer :className="cleanedClassName" :character="character" />
+
+      <SensesContainer :className="cleanedClassName" :character="character" />
     </div>
   </div>
 </template>
