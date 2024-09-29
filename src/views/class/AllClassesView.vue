@@ -21,7 +21,7 @@ onMounted(async () => {
     <CustomScaleLoader />
   </div>
 
-  <div v-else class="max-width padding-x">
+  <div v-else class="max-width padding-x mt-8">
     <h2 class="border-b border-gray-300 pb-4 font-bold text-5xl text-center sm:text-start">
       Classes
     </h2>
