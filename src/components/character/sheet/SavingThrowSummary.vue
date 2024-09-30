@@ -31,7 +31,7 @@ defineProps<{
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 10 10"
-          class="w-[12px] h-[12px] absolute inline-flex left-[-5px] top-[-50%] translate-y-[-50%] rounded-full border border-dotted border-cs-gray"
+          class="w-[12px] h-[12px] absolute inline-flex left-[-5px] top-[50%] translate-y-[-75%] xl:translate-y-[-50%] rounded-full border border-dotted border-cs-gray"
         >
           <g data-name="Layer 2">
             <g data-name="v1">
@@ -42,7 +42,7 @@ defineProps<{
       </span>
       <span v-else aria-label="Not Proficient">
         <span
-          class="absolute inline-flex bg-cs-gray-dark rounded-full left-[-5px] top-[-50%] translate-y-[-50%] h-[12px] w-[12px] border border-dotted border-cs-gray"
+          class="absolute inline-flex bg-cs-gray-dark rounded-full left-[-5px] top-[-50%] translate-y-[-75%] xl:translate-y-[-50%] h-[12px] w-[12px] border border-dotted border-cs-gray"
         />
       </span>
     </div>
