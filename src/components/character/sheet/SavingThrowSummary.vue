@@ -3,7 +3,7 @@ defineProps<{
   className: string
   title: string
   proficient: boolean
-  modifier: string
+  modifier: number
 }>()
 </script>
 

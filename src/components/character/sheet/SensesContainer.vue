@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { modifierFromLevel } from '@/utils/utils'
+import type { CharacterSense } from '@/models/CharacterSense'
 import { characterProficiencyBonus } from '@/models/Character'
 import SenseCallout from '@/components/character/sheet/SenseCallout.vue'
 import { getCharacterProficientSkills } from '@/services/CharacterSkillService'
 import type { CharacterProficientSkills } from '@/models/CharacterProficientSkills'
+import { getCharacterSenses } from '@/services/CharacterSenseService'
 
 const props = defineProps<{
   className: string
@@ -12,6 +14,7 @@ const props = defineProps<{
 }>()
 
 const proficientSkills = ref<CharacterProficientSkills[]>([])
+const senses = ref<CharacterSense[]>([])
 
 const perceptionModifier = ref<number>(0)
 const investigationModifier = ref<number>(0)
@@ -42,12 +45,18 @@ const getSenseModifiers = (proficientSkills: CharacterProficientSkills[]) => {
 onMounted(async () => {
   proficientSkills.value = await getCharacterProficientSkills(props.character.id)
   getSenseModifiers(proficientSkills.value)
+  senses.value = await getCharacterSenses(props.character.id)
+  console.log(senses.value)
   loading.value = false
 })
 </script>
 
 <template>
-  <div v-if="!loading" id="ct-subsections__senses" class="absolute top-[214px] left-0">
+  <div
+    v-if="!loading"
+    id="ct-subsections__senses"
+    class="absolute top-[214px] left-0 cursor-pointer"
+  >
     <section class="relative h-[200px] w-[230px] xl:w-[281px] py-[13px] px-[20px]">
       <div class="svg-background">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 281 200">
@@ -72,7 +81,24 @@ onMounted(async () => {
           />
           <SenseCallout :className="className" skillName="Insight" :level="insightModifier" />
         </div>
+
+        <div
+          id="ct-subsections__senses-summary"
+          class="h-[3.6em] leading-[1.2] text-[12px] mt-[6px] overflow-hidden flex-center flex-wrap text-cs-gray gap-x-2"
+        >
+          <p v-if="senses.length === 0">Additional Sense Types</p>
+          <p v-else v-for="sense in senses" :key="sense.id">
+            {{ sense.sense_name }} {{ sense.distance }} ft.
+          </p>
+        </div>
       </div>
     </section>
+
+    <div
+      id="cs-subsections__senses-footer"
+      class="absolute bottom-[5px] left-0 right-0 flex justify-center font-bold uppercase text-white text-sm tracking-tightest"
+    >
+      <span class="inline-flex relative"> Senses </span>
+    </div>
   </div>
 </template>

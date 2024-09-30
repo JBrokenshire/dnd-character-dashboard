@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 defineProps<{
   className: string
-  profilePictureURL: string
+  profilePictureURL: string | null
 }>()
 </script>
 
