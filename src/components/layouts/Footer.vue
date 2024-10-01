@@ -19,7 +19,7 @@ import { footerLinks } from '@/constants'
           class="link-group"
         >
           <h3 class="text-xl font-bold">{{ linkGroup.title }}</h3>
-          <div class="flex flex-col items-start gap-2 md:gap-5">
+          <div class="flex flex-col items-start gap-2">
             <div v-for="link in linkGroup.links" :key="`link-${link.name}`" class="nav-link px-0">
               <a v-if="link.url.includes('https')" :href="link.url">{{ link.name }}</a>
               <RouterLink v-else :to="link.url">{{ link.name }}</RouterLink>
@@ -46,15 +46,15 @@ footer {
 }
 
 .links-container {
-  @apply flex max-md:flex-col flex-wrap justify-between gap-5 py-10;
+  @apply flex max-md:flex-col flex-wrap justify-between gap-5 pt-4;
 }
 
 .links {
-  @apply flex-1 flex md:justify-end flex-wrap gap-20;
+  @apply flex-1 flex md:justify-end flex-wrap gap-12;
 }
 
 .link-group {
-  @apply flex flex-col gap-6 text-base w-fit;
+  @apply flex flex-col gap-4 text-base w-fit;
 }
 
 .copyrights-container {
