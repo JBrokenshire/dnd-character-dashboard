@@ -91,21 +91,27 @@ select {
   @apply cursor-pointer transition-200 focus:ring-2 focus:ring-primary hover:bg-gray-100 focus:bg-gray-100;
 }
 
+/* Character Sheet Styles */
+
+.subsection-footer {
+  @apply absolute bottom-[5px] left-0 right-0 flex justify-center font-bold uppercase text-white text-sm tracking-tightest
+}
+
 /* Colour Styles */
 
-.border-barbarian { @apply border border-class-barbarian }
-.border-bard { @apply border border-class-bard }
-.border-blood-hunter { @apply border border-class-blood-hunter }
-.border-cleric { @apply border border-class-cleric }
-.border-druid { @apply border border-class-druid }
-.border-fighter { @apply border border-class-fighter }
-.border-monk { @apply border border-class-monk }
-.border-paladin { @apply border border-class-paladin }
-.border-ranger { @apply border border-class-ranger }
-.border-rogue { @apply border border-class-rogue }
-.border-sorcerer { @apply border border-class-sorcerer }
-.border-warlock { @apply border border-class-warlock }
-.border-wizard { @apply border border-class-wizard }
+.border-barbarian { @apply border-class-barbarian }
+.border-bard { @apply border-class-bard }
+.border-blood-hunter { @apply border-class-blood-hunter }
+.border-cleric { @apply border-class-cleric }
+.border-druid { @apply border-class-druid }
+.border-fighter { @apply border-class-fighter }
+.border-monk { @apply border-class-monk }
+.border-paladin { @apply border-class-paladin }
+.border-ranger { @apply border-class-ranger }
+.border-rogue { @apply border-class-rogue }
+.border-sorcerer { @apply border-class-sorcerer }
+.border-warlock { @apply border-class-warlock }
+.border-wizard { @apply border-class-wizard }
 
 .button-barbarian { @apply border border-class-barbarian transition-200 hover:bg-class-barbarian hover:bg-opacity-25 }
 .button-bard { @apply border border-class-bard transition-200 hover:bg-class-bard hover:bg-opacity-25 }

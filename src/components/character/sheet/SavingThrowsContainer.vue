@@ -91,11 +91,7 @@ defineProps<{
       </div>
 
       <!-- Saving Throw Footer -->
-      <div
-        class="absolute flex-center bottom-[5px] left-0 right-0 font-bold uppercase text-white cursor-pointer"
-      >
-        <span class="inline-flex relative text-sm tracking-tightest"> Saving Throws </span>
-      </div>
+      <div id="cs-subsection__saving-throws-footer" class="subsection-footer">Saving Throws</div>
     </div>
   </div>
 </template>

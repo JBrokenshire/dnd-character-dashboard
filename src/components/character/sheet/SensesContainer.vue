@@ -46,7 +46,6 @@ onMounted(async () => {
   proficientSkills.value = await getCharacterProficientSkills(props.character.id)
   getSenseModifiers(proficientSkills.value)
   senses.value = await getCharacterSenses(props.character.id)
-  console.log(senses.value)
   loading.value = false
 })
 </script>
@@ -105,11 +104,6 @@ onMounted(async () => {
         </div>
       </div>
     </section>
-    <div
-      id="cs-subsections__senses-footer"
-      class="absolute bottom-[5px] left-0 right-0 flex justify-center font-bold uppercase text-white text-sm tracking-tightest"
-    >
-      <span class="inline-flex relative"> Senses </span>
-    </div>
+    <div id="cs-subsections__senses-footer" class="subsection-footer">Senses</div>
   </div>
 </template>

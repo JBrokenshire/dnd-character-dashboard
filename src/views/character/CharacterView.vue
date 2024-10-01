@@ -1,19 +1,20 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
-import { Character } from '@/models/Character'
-import { cleanClassName } from '@/utils/utils'
-import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
-import QuickInfoContainer from '@/components/character/sheet/QuickInfoContainer.vue'
-import CharacterSheetHeader from '@/components/character/sheet/CharacterSheetHeader.vue'
 import {
   damageCharacter,
   getCharacterByID,
   healCharacter,
   toggleInspiration
 } from '@/services/CharacterService'
-import SavingThrowsContainer from '@/components/character/sheet/SavingThrowsContainer.vue'
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { Character } from '@/models/Character'
+import { cleanClassName } from '@/utils/utils'
+import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
 import SensesContainer from '@/components/character/sheet/SensesContainer.vue'
+import QuickInfoContainer from '@/components/character/sheet/QuickInfoContainer.vue'
+import CharacterSheetHeader from '@/components/character/sheet/CharacterSheetHeader.vue'
+import SavingThrowsContainer from '@/components/character/sheet/SavingThrowsContainer.vue'
+import ProficiencyGroupsContainer from '@/components/character/sheet/ProficiencyGroupsContainer.vue'
 
 const route = useRoute()
 
@@ -36,7 +37,7 @@ onMounted(async () => {
     <CustomScaleLoader />
   </div>
 
-  <div v-else class="relative flex flex-col gap-4 min-h-screen">
+  <div v-else class="relative flex flex-col gap-4 min-h-screen pb-8">
     <!-- Background Image -->
     <img
       :src="`/img/character/sheet/backgrounds/${cleanedClassName}.png`"
@@ -70,6 +71,8 @@ onMounted(async () => {
       <SavingThrowsContainer :className="cleanedClassName" :character="character" />
 
       <SensesContainer :className="cleanedClassName" :character="character" />
+
+      <ProficiencyGroupsContainer :className="cleanedClassName" :character="character" />
     </div>
   </div>
 </template>

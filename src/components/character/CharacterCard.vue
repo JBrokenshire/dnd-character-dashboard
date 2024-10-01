@@ -2,6 +2,7 @@
 import { Character } from '@/models/Character'
 import { deleteCharacter } from '@/services/CharacterService'
 import CharacterProfilePicture from '@/components/character/CharacterProfilePicture.vue'
+import { cleanClassName } from '@/utils/utils'
 
 defineProps({
   character: {
@@ -21,7 +22,10 @@ const emit = defineEmits(['character-deleted'])
       <div
         class="p-6 flex flex-grow gap-4 items-center hover:cursor-pointer relative overflow-hidden"
       >
-        <CharacterProfilePicture :profilePictureURL="character.profile_picture_url" />
+        <CharacterProfilePicture
+          :className="cleanClassName(character.class.name)"
+          :profilePictureURL="character.profile_picture_url"
+        />
 
         <div class="z-10">
           <h1 class="text-xl md:text-2xl text-white font-bold line-clamp-1">
