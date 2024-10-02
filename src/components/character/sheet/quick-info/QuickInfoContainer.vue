@@ -2,11 +2,11 @@
 import { ref } from 'vue'
 import { cleanClassName } from '@/utils/utils'
 import type { Character } from '@/models/Character'
-import AbilitySummary from '@/components/character/sheet/AbilitySummary.vue'
-import HealthContainer from '@/components/character/sheet/HealthContainer.vue'
-import InspirationContainer from '@/components/character/sheet/InspirationContainer.vue'
-import WalkingSpeedContainer from '@/components/character/sheet/WalkingSpeedContainer.vue'
-import ProficiencyBonusContainer from '@/components/character/sheet/ProficiencyBonusContainer.vue'
+import AbilitySummary from '@/components/character/sheet/quick-info/AbilitySummary.vue'
+import HealthContainer from '@/components/character/sheet/quick-info/HealthContainer.vue'
+import InspirationContainer from '@/components/character/sheet/quick-info/InspirationContainer.vue'
+import WalkingSpeedContainer from '@/components/character/sheet/quick-info/WalkingSpeedContainer.vue'
+import ProficiencyBonusContainer from '@/components/character/sheet/quick-info/ProficiencyBonusContainer.vue'
 
 const props = defineProps<{
   character: Character

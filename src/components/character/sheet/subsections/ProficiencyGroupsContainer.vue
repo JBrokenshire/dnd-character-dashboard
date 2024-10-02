@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import type { Character } from '@/models/Character'
-import ProficiencyGroup from '@/components/character/sheet/ProficiencyGroup.vue'
+import ProficiencyGroup from '@/components/character/sheet/subsections/ProficiencyGroup.vue'
 import {
   fetchArmourProficiencies,
   fetchLanguageProficiencies,

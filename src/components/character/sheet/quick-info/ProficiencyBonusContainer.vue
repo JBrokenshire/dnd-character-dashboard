@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BonusContainer from '@/components/character/sheet/BonusContainer.vue'
+import BonusContainer from '@/components/character/sheet/quick-info/BonusContainer.vue'
 
 defineProps<{
   bonus: number

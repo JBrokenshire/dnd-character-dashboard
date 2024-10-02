@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { type Character, characterProficiencyBonus } from '@/models/Character'
-import { type Skill, skills } from '@/models/Skill'
-import SkillListItem from '@/components/character/sheet/SkillListItem.vue'
-import { getCharacterProficientSkills } from '@/services/CharacterSkillService'
 import { modifierFromLevel } from '@/utils/utils'
+import { type Skill, skills } from '@/models/Skill'
+import { type Character, characterProficiencyBonus } from '@/models/Character'
+import { getCharacterProficientSkills } from '@/services/CharacterSkillService'
+import SkillListItem from '@/components/character/sheet/subsections/SkillListItem.vue'
 
 const props = defineProps<{
   className: string

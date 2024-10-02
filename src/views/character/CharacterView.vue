@@ -1,21 +1,22 @@
 <script lang="ts" setup>
 import {
   damageCharacter,
-  getCharacterByID,
   healCharacter,
-  toggleInspiration
+  toggleInspiration,
+  getCharacterByID
 } from '@/services/CharacterService'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { Character } from '@/models/Character'
 import { cleanClassName } from '@/utils/utils'
 import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
-import SensesContainer from '@/components/character/sheet/SensesContainer.vue'
-import SkillsContainer from '@/components/character/sheet/SkillsContainer.vue'
-import QuickInfoContainer from '@/components/character/sheet/QuickInfoContainer.vue'
 import CharacterSheetHeader from '@/components/character/sheet/CharacterSheetHeader.vue'
-import SavingThrowsContainer from '@/components/character/sheet/SavingThrowsContainer.vue'
-import ProficiencyGroupsContainer from '@/components/character/sheet/ProficiencyGroupsContainer.vue'
+import CombatContainer from '@/components/character/sheet/subsections/CombatContainer.vue'
+import SensesContainer from '@/components/character/sheet/subsections/SensesContainer.vue'
+import SkillsContainer from '@/components/character/sheet/subsections/SkillsContainer.vue'
+import QuickInfoContainer from '@/components/character/sheet/quick-info/QuickInfoContainer.vue'
+import SavingThrowsContainer from '@/components/character/sheet/subsections/SavingThrowsContainer.vue'
+import ProficiencyGroupsContainer from '@/components/character/sheet/subsections/ProficiencyGroupsContainer.vue'
 
 const route = useRoute()
 
@@ -24,6 +25,18 @@ const characterID = route.params.id
 const isLoading = ref(true)
 const character = ref<Character>(null)
 const cleanedClassName = ref<string>('')
+
+const heal = async (healValue) => {
+  character.value = await healCharacter(character.value.id, healValue)
+}
+
+const damage = async (damageValue) => {
+  character.value = await damageCharacter(character.value.id, damageValue)
+}
+
+const inspiration = async () => {
+  character.value = await toggleInspiration(character.value.id)
+}
 
 onMounted(async () => {
   character.value = await getCharacterByID(characterID)
@@ -50,21 +63,9 @@ onMounted(async () => {
 
     <QuickInfoContainer
       :character="character"
-      @toggle-inspiration="
-        async () => {
-          character = await toggleInspiration(character.id)
-        }
-      "
-      @heal-character="
-        async (healValue) => {
-          character = await healCharacter(character.id, healValue)
-        }
-      "
-      @damage-character="
-        async (damageValue) => {
-          character = await damageCharacter(character.id, damageValue)
-        }
-      "
+      @toggle-inspiration="inspiration"
+      @heal-character="heal"
+      @damage-character="damage"
     />
 
     <!-- Subsections Container -->
@@ -76,6 +77,8 @@ onMounted(async () => {
       <ProficiencyGroupsContainer :className="cleanedClassName" :character="character" />
 
       <SkillsContainer :className="cleanedClassName" :character="character" />
+
+      <CombatContainer :className="cleanedClassName" :character="character" />
     </div>
   </div>
 </template>
