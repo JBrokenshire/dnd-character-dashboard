@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { Character } from '@/models/Character'
-import InitiativeContainer from '@/components/character/sheet/subsections/InitiativeContainer.vue'
 import { modifierFromLevel } from '@/utils/utils'
+import type { Character } from '@/models/Character'
+import StatusesGroup from '@/components/character/sheet/subsections/StatusesGroup.vue'
+import InitiativeContainer from '@/components/character/sheet/subsections/InitiativeContainer.vue'
 import ArmourClassContainer from '@/components/character/sheet/subsections/ArmourClassContainer.vue'
 
 defineProps<{
@@ -26,6 +27,8 @@ defineProps<{
             modifierFromLevel(character.dexterity) * character.armour_class_add_dexterity
           "
         />
+
+        <StatusesGroup :className="className" :character="character" />
       </div>
     </div>
   </div>
