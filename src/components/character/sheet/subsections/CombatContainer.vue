@@ -2,6 +2,7 @@
 import type { Character } from '@/models/Character'
 import InitiativeContainer from '@/components/character/sheet/subsections/InitiativeContainer.vue'
 import { modifierFromLevel } from '@/utils/utils'
+import ArmourClassContainer from '@/components/character/sheet/subsections/ArmourClassContainer.vue'
 
 defineProps<{
   className: string
@@ -16,6 +17,14 @@ defineProps<{
         <InitiativeContainer
           :className="className"
           :initiative="modifierFromLevel(character.dexterity) + character.initiative_modifier"
+        />
+
+        <ArmourClassContainer
+          :className="className"
+          :armourClass="
+            character.base_armour_class +
+            modifierFromLevel(character.dexterity) * character.armour_class_add_dexterity
+          "
         />
       </div>
     </div>

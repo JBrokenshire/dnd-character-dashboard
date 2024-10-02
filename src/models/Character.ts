@@ -27,7 +27,10 @@ interface Character {
   current_hit_points: number
   max_hit_points: number
   temp_hit_points: number
+
   initiative_modifier: number
+  base_armour_class: number
+  armour_class_add_dexterity: boolean
 
   class: ClassType
   race: Race
