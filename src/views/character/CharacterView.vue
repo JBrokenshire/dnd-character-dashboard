@@ -11,6 +11,7 @@ import { Character } from '@/models/Character'
 import { cleanClassName } from '@/utils/utils'
 import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
 import SensesContainer from '@/components/character/sheet/SensesContainer.vue'
+import SkillsContainer from '@/components/character/sheet/SkillsContainer.vue'
 import QuickInfoContainer from '@/components/character/sheet/QuickInfoContainer.vue'
 import CharacterSheetHeader from '@/components/character/sheet/CharacterSheetHeader.vue'
 import SavingThrowsContainer from '@/components/character/sheet/SavingThrowsContainer.vue'
@@ -73,6 +74,8 @@ onMounted(async () => {
       <SensesContainer :className="cleanedClassName" :character="character" />
 
       <ProficiencyGroupsContainer :className="cleanedClassName" :character="character" />
+
+      <SkillsContainer :className="cleanedClassName" :character="character" />
     </div>
   </div>
 </template>

@@ -8,7 +8,10 @@ defineProps<{
 </script>
 
 <template>
-  <div :class="`pb-1 xl:pb-3 mb-1 xl:mb-3 border-${!noBorder && className + ' border-b'}`">
+  <div
+    class="pb-1 xl:pb-3 mb-1 xl:mb-3"
+    :class="`${!noBorder && `border-b border-${className}-faded`}`"
+  >
     <div class="text-[14px] text-cs-gray font-bold uppercase tracking-tightest">
       {{ title }}
     </div>

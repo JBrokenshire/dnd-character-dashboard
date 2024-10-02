@@ -27,7 +27,6 @@ defineProps<{
       <slot name="top-title"></slot>
     </div>
 
-    <!-- Proficiency Bonus -->
     <div class="text-[22px] xl:text-[26px] text-white">
       <span class="inline-flex gap-[.063rem] items-center align-top relative">
         <slot name="bonus-value" />

@@ -44,21 +44,21 @@ defineProps<{
           <SavingThrowSummary
             title="Strength"
             :className="className"
-            :proficient="character.proficient_strength"
+            :proficiency="character.proficient_strength ? 'Proficiency' : ''"
             :modifier="modifierFromLevel(character.strength) + 2 * character.proficient_strength"
             class="order-1"
           />
           <SavingThrowSummary
             title="Dexterity"
             :className="className"
-            :proficient="character.proficient_dexterity"
+            :proficiency="character.proficient_dexterity ? 'Proficiency' : ''"
             :modifier="modifierFromLevel(character.dexterity) + 2 * character.proficient_dexterity"
             class="order-3"
           />
           <SavingThrowSummary
             title="Constitution"
             :className="className"
-            :proficient="character.proficient_constitution"
+            :proficiency="character.proficient_constitution ? 'Proficiency' : ''"
             :modifier="
               modifierFromLevel(character.constitution) + 2 * character.proficient_constitution
             "
@@ -67,7 +67,7 @@ defineProps<{
           <SavingThrowSummary
             title="Intelligence"
             :className="className"
-            :proficient="character.proficient_intelligence"
+            :proficiency="character.proficient_intelligence ? 'Proficiency' : ''"
             :modifier="
               modifierFromLevel(character.intelligence) + 2 * character.proficient_intelligence
             "
@@ -76,14 +76,14 @@ defineProps<{
           <SavingThrowSummary
             title="Wisdom"
             :className="className"
-            :proficient="character.proficient_wisdom"
+            :proficiency="character.proficient_wisdom ? 'Proficiency' : ''"
             :modifier="modifierFromLevel(character.wisdom) + 2 * character.proficient_wisdom"
             class="order-4"
           />
           <SavingThrowSummary
             title="Charisma"
             :className="className"
-            :proficient="character.proficient_charisma"
+            :proficiency="character.proficient_charisma ? 'Proficiency' : ''"
             :modifier="modifierFromLevel(character.charisma) + 2 * character.proficient_charisma"
             class="order-6"
           />

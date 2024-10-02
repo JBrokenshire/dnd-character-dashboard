@@ -20,19 +20,19 @@ module.exports = {
           dark: '#2b2b2a'
         },
         class: {
-          barbarian: '#EB5118',
-          bard: '#AA6DAB',
-          'blood-hunter': '#C53131',
-          cleric: '#92A2B3',
-          druid: '#79853C',
-          fighter: '#7E4F3D',
-          monk: '#53A5C5',
-          paladin: '#B59E54',
-          ranger: '#4F7E61',
-          rogue: '#555752',
-          sorcerer: '#972E2E',
-          warlock: '#8137AF',
-          wizard: '#0045B7'
+          barbarian: { DEFAULT: '#EB5118', faded: '#EB511880' },
+          bard: { DEFAULT: '#AA6DAB', faded: '#AA6DAB80' },
+          'blood-hunter': { DEFAULT: '#C53131', faded: '#C5313180' },
+          cleric: { DEFAULT: '#92A2B3', faded: '#92A2B380' },
+          druid: { DEFAULT: '#79853C', faded: '#79853C80' },
+          fighter: { DEFAULT: '#7E4F3D', faded: '#7E4F3D80' },
+          monk: { DEFAULT: '#53A5C5', faded: '#53A5C580' },
+          paladin: { DEFAULT: '#B59E54', faded: '#B59E5480' },
+          ranger: { DEFAULT: '#4F7E61', faded: '#4F7E6180' },
+          rogue: { DEFAULT: '#555752', faded: '#55575280' },
+          sorcerer: { DEFAULT: '#972E2E', faded: '#972E2E80' },
+          warlock: { DEFAULT: '#8137AF', faded: '#8137AF80' },
+          wizard: { DEFAULT: '#0045B7', faded: '#0045B780' }
         }
       },
       brightness: {

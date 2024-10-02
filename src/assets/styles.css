@@ -20,6 +20,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  border-color: inherit;
 }
 
 body {
@@ -99,19 +100,46 @@ select {
 
 /* Colour Styles */
 
+.bg-barbarian { @apply bg-class-barbarian }
+.bg-bard { @apply bg-class-bard }
+.bg-blood-hunter {@apply bg-class-blood-hunter }
+.bg-cleric { @apply bg-class-cleric }
+.bg-druid {@apply bg-class-druid }
+.bg-fighter { @apply bg-class-fighter }
+.bg-monk { @apply bg-class-monk }
+.bg-paladin { @apply bg-class-paladin }
+.bg-ranger { @apply bg-class-ranger }
+.bg-rogue { @apply bg-class-rogue }
+.bg-sorcerer { @apply bg-class-sorcerer }
+.bg-warlock { @apply bg-class-warlock }
+.bg-wizard { @apply bg-class-wizard }
+
 .border-barbarian { @apply border-class-barbarian }
+.border-barbarian-faded { @apply border-class-barbarian-faded }
 .border-bard { @apply border-class-bard }
+.border-bard-faded { @apply border-class-bard-faded }
 .border-blood-hunter { @apply border-class-blood-hunter }
+.border-blood-hunter-faded { @apply border-class-blood-hunter-faded }
 .border-cleric { @apply border-class-cleric }
+.border-cleric-faded { @apply border-class-cleric-faded }
 .border-druid { @apply border-class-druid }
+.border-druid-faded { @apply border-class-druid-faded }
 .border-fighter { @apply border-class-fighter }
+.border-fighter-faded { @apply border-class-fighter-faded }
 .border-monk { @apply border-class-monk }
+.border-monk-faded { @apply border-class-monk-faded }
 .border-paladin { @apply border-class-paladin }
+.border-paladin-faded { @apply border-class-paladin-faded }
 .border-ranger { @apply border-class-ranger }
+.border-ranger-faded { @apply border-class-ranger-faded }
 .border-rogue { @apply border-class-rogue }
+.border-rogue-faded { @apply border-class-rogue-faded }
 .border-sorcerer { @apply border-class-sorcerer }
+.border-sorcerer-faded { @apply border-class-sorcerer-faded }
 .border-warlock { @apply border-class-warlock }
+.border-warlock-faded { @apply border-class-warlock-faded }
 .border-wizard { @apply border-class-wizard }
+.border-wizard-faded { @apply border-class-wizard-faded }
 
 .button-barbarian { @apply border border-class-barbarian transition-200 hover:bg-class-barbarian hover:bg-opacity-25 }
 .button-bard { @apply border border-class-bard transition-200 hover:bg-class-bard hover:bg-opacity-25 }
@@ -128,15 +156,28 @@ select {
 .button-wizard { @apply border border-class-wizard transition-200 hover:bg-class-wizard hover:bg-opacity-25 }
 
 path.barbarian, circle.barbarian { @apply fill-class-barbarian }
+path.barbarian-faded { @apply fill-class-barbarian-faded }
 path.bard, circle.bard { @apply fill-class-bard; }
+path.bard-faded { @apply fill-class-bard-faded }
 path.blood-hunter, circle.blood-hunter { @apply fill-class-blood-hunter; }
+path.blood-hunter-faded { @apply fill-class-blood-hunter-faded }
 path.cleric, circle.cleric { @apply fill-class-cleric; }
+path.cleric-faded { @apply fill-class-cleric-faded }
 path.druid, circle.druid { @apply fill-class-druid; }
+path.druid-faded { @apply fill-class-druid-faded }
 path.fighter, circle.fighter { @apply fill-class-fighter; }
+path.fighter-faded { @apply fill-class-fighter-faded }
 path.monk, circle.monk { @apply fill-class-monk; }
+path.monk-faded { @apply fill-class-monk-faded }
 path.paladin, circle.paladin { @apply fill-class-paladin; }
+path.paladin-faded { @apply fill-class-paladin-faded }
 path.ranger, circle.ranger { @apply fill-class-ranger; }
+path.ranger-faded { @apply fill-class-ranger-faded }
 path.rogue, circle.rogue { @apply fill-class-rogue; }
+path.rogue-faded { @apply fill-class-rogue-faded }
 path.sorcerer, circle.sorcerer { @apply fill-class-sorcerer; }
+path.sorcerer-faded { @apply fill-class-sorcerer-faded }
 path.warlock, circle.warlock { @apply fill-class-warlock; }
+path.warlock-faded { @apply fill-class-warlock-faded }
 path.wizard, circle.wizard { @apply fill-class-wizard; }
+path.wizard-faded { @apply fill-class-wizard-faded }
