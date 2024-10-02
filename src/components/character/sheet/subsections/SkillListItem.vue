@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Skill } from '@/models/Skill'
 import type { Proficiency } from '@/models/Proficiency'
-import ProficiencyIndicator from '@/components/character/sheet/ProficiencyIndicator.vue'
+import ProficiencyIndicator from '@/components/character/sheet/subsections/ProficiencyIndicator.vue'
 
 defineProps<{
   className: string
