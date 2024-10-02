@@ -1,14 +1,17 @@
 <script lang="ts" setup>
 import { Character } from '@/models/Character'
-import CharacterProfilePicture from '@/components/character/CharacterProfilePicture.vue'
 import { cleanClassName } from '@/utils/utils'
+import CharacterProfilePicture from '@/components/character/CharacterProfilePicture.vue'
+import { ref } from 'vue'
 
-defineProps({
+const props = defineProps({
   character: {
     type: Object as Character,
     required: true
   }
 })
+
+const cleanedClassName = ref<string>(cleanClassName(props.character.class.name))
 </script>
 
 <template>
@@ -19,9 +22,8 @@ defineProps({
     >
       <div class="flex gap-4">
         <CharacterProfilePicture
-          :className="cleanClassName(character.class.name)"
+          :className="cleanedClassName"
           :profilePictureURL="character.profile_picture_url ? character.profile_picture_url : null"
-          :style="`border: 2px solid ${character.class.colour}`"
         />
 
         <div class="flex flex-col justify-center items-start gap-2">
@@ -29,8 +31,7 @@ defineProps({
             <div class="lg:text-3xl text-xl font-bold text-white">{{ character.name }}</div>
             <RouterLink
               :to="`/characters/${character.id}/edit`"
-              :class="`text-xs text-center font-bold rounded-md px-2 py-1 text-white transition-200 button-${cleanClassName(character.class.name)}`"
-              :style="`border: 1px solid ${character.class.colour}`"
+              :class="`text-[8px] uppercase text-center rounded-md px-2 py-1 text-white transition-200 button-${cleanedClassName}`"
             >
               Edit
             </RouterLink>
