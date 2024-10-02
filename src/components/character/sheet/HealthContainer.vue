@@ -137,7 +137,7 @@ const healthAdjusterValue = ref<number>()
 
       <div
         id="ct-quick-info__health-footer"
-        class="absolute bottom-[5px] left-0 right-0 flex justify-center font-bold uppercase text-white text-[12px]"
+        class="absolute w-fit mx-auto bottom-[5px] left-0 right-0 flex justify-center font-bold uppercase text-white text-[12px]"
       >
         Hit Points
       </div>
