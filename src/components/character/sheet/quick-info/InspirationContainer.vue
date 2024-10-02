@@ -86,13 +86,3 @@ defineEmits(['toggle-inspiration'])
     </div>
   </section>
 </template>
-
-<style scoped>
-.outlined-text {
-  text-shadow:
-    1px 1px 0 black,
-    -1px -1px 0 black,
-    1px -1px 0 black,
-    -1px 1px black;
-}
-</style>

@@ -27,6 +27,7 @@ interface Character {
   current_hit_points: number
   max_hit_points: number
   temp_hit_points: number
+  initiative_modifier: number
 
   class: ClassType
   race: Race
