@@ -1,42 +1,37 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import type { Character } from '@/models/Character'
 import type { CharacterDefense } from '@/models/CharacterDefense'
-import { getCharacterDefenses } from '@/services/CharacterDefenseService'
 import DefenseItem from '@/components/character/sheet/subsections/DefenseItem.vue'
 
 const props = defineProps<{
-  character: Character
+  defenses: CharacterDefense[]
 }>()
 
 const resistances = ref<CharacterDefense[]>([])
 const immunities = ref<CharacterDefense[]>([])
 const vulnerabilities = ref<CharacterDefense[]>([])
-const loading = ref(true)
 
 onMounted(async () => {
-  const defenses = await getCharacterDefenses(props.character.id)
-  for (const d of defenses) {
-    switch (d.DefenseType) {
+  for (const d of props.defenses) {
+    switch (d.defense_type) {
       case 'Resistance':
-        resistances.value.push(d)
+        resistances.value.push(d.damage_type)
         break
       case 'Immunity':
-        immunities.value.push(d)
+        immunities.value.push(d.damage_type)
         break
       case 'Vulnerability':
-        vulnerabilities.value.push(d)
+        vulnerabilities.value.push(d.damage_type)
         break
     }
   }
-  loading.value = false
 })
 </script>
 
 <template>
-  <div v-if="!loading" class="cursor-pointer flex-1 min-w-0 overflow-hidden px-[10px] relative">
+  <div class="cursor-pointer flex-1 min-w-0 overflow-hidden px-[10px] relative">
     <div class="text-[12px] tracking-tightest font-bold uppercase text-cs-gray">Defenses</div>
-    <div class="max-h-[57px] overflow-hidden">
+    <div class="max-h-[57px] overflow-y-scroll">
       <!-- Resistances -->
       <DefenseItem v-if="resistances.length > 0" :values="resistances">
         <template #icon>
@@ -90,7 +85,12 @@ onMounted(async () => {
       </DefenseItem>
 
       <!-- No Defenses Display -->
-      <div class="text-[12px] text-cs-gray">Resistances, Immunities or Vulnerabilities</div>
+      <div
+        v-if="resistances.length === 0 && immunities.length === 0 && vulnerabilities.length === 0"
+        class="text-[12px] text-cs-gray"
+      >
+        Resistances, Immunities or Vulnerabilities
+      </div>
     </div>
   </div>
 </template>

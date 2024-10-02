@@ -9,6 +9,6 @@ defineProps<{
     <span class="cursor-default">
       <slot name="icon" />
     </span>
-    <span class="text-white text-[12px] line-clamp-1">{{ values.join(', ') }}</span>
+    <span class="text-white text-[12px]">{{ values.join(', ') }}</span>
   </div>
 </template>

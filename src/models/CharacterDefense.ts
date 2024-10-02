@@ -1,8 +1,8 @@
 export type DefenseType = 'Resistance' | 'Immunity' | 'Vulnerability'
 
 export type CharacterDefense = {
-  ID: number
-  CharacterID: number
-  DamageType: string
-  DefenseType: DefenseType
+  id: number
+  character_id: number
+  damage_type: string
+  defense_type: DefenseType
 }

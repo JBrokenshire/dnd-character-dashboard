@@ -6,7 +6,7 @@ const toast = useToast()
 
 export const getCharacterDefenses = async (id: number) => {
   try {
-    const { data } = await axios.get(`/characters/${id}/defenses`)
+    const { data } = await axios.get(`/api/characters/${id}/defenses`)
     return data as CharacterDefense[]
   } catch (error) {
     console.error(error)

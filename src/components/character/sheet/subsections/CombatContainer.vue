@@ -28,7 +28,7 @@ defineProps<{
           "
         />
 
-        <StatusesGroup :className="className" :character="character" />
+        <StatusesGroup :className="className" :characterID="character.id" />
       </div>
     </div>
   </div>

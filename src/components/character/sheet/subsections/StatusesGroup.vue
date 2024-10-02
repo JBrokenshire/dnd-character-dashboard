@@ -1,15 +1,27 @@
 <script setup lang="ts">
-import type { Character } from '@/models/Character'
 import DefensesContainer from '@/components/character/sheet/subsections/DefensesContainer.vue'
+import ConditionsContainer from '@/components/character/sheet/subsections/ConditionsContainer.vue'
+import { onMounted, ref } from 'vue'
+import type { CharacterDefense } from '@/models/CharacterDefense'
+import { getCharacterDefenses } from '@/services/CharacterDefenseService'
 
-defineProps<{
+const props = defineProps<{
   className: string
-  character: Character
+  characterID: number
 }>()
+
+const defenses = ref<CharacterDefense[]>([])
+const conditions = ref<CharacterCondition[]>([])
+const loading = ref(true)
+
+onMounted(async () => {
+  defenses.value = await getCharacterDefenses(props.characterID)
+  loading.value = false
+})
 </script>
 
 <template>
-  <div class="flex-1 min-w-0 pl-[5px]">
+  <div v-if="!loading" class="flex-1 min-w-0 pl-[5px]">
     <div class="h-[95px] flex p-[10px] relative">
       <div class="svg-background">
         <!-- Large Screen SVG -->
@@ -40,7 +52,8 @@ defineProps<{
       </div>
 
       <h2 class="sr-only">Defenses & Conditions</h2>
-      <DefensesContainer :character="character" />
+      <DefensesContainer :defenses="defenses" />
+      <ConditionsContainer :conditions="conditions" />
     </div>
   </div>
 </template>
