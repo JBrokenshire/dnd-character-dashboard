@@ -32,6 +32,8 @@ interface Character {
   base_armour_class: number
   armour_class_add_dexterity: boolean
 
+  attacks_per_action: number
+
   class: ClassType
   race: Race
 }

@@ -17,6 +17,7 @@ import SkillsContainer from '@/components/character/sheet/subsections/skills/Ski
 import QuickInfoContainer from '@/components/character/sheet/quick-info/QuickInfoContainer.vue'
 import SavingThrowsContainer from '@/components/character/sheet/subsections/saving-throws/SavingThrowsContainer.vue'
 import ProficiencyGroupsContainer from '@/components/character/sheet/subsections/proficiencies/ProficiencyGroupsContainer.vue'
+import PrimaryContainer from '@/components/character/sheet/subsections/primary/PrimaryContainer.vue'
 
 const route = useRoute()
 
@@ -79,6 +80,8 @@ onMounted(async () => {
       <SkillsContainer :className="cleanedClassName" :character="character" />
 
       <CombatContainer :className="cleanedClassName" :character="character" />
+
+      <PrimaryContainer :className="cleanedClassName" :character="character" />
     </div>
   </div>
 </template>

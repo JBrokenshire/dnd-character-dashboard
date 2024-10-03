@@ -122,6 +122,20 @@ select {
 .bg-warlock { @apply bg-class-warlock }
 .bg-wizard { @apply bg-class-wizard }
 
+.text-barbarian { @apply text-class-barbarian }
+.text-bard { @apply text-class-bard }
+.text-blood-hunter {@apply text-class-blood-hunter }
+.text-cleric { @apply text-class-cleric }
+.text-druid {@apply text-class-druid }
+.text-fighter { @apply text-class-fighter }
+.text-monk { @apply text-class-monk }
+.text-paladin { @apply text-class-paladin }
+.text-ranger { @apply text-class-ranger }
+.text-rogue { @apply text-class-rogue }
+.text-sorcerer { @apply text-class-sorcerer }
+.text-warlock { @apply text-class-warlock }
+.text-wizard { @apply text-class-wizard }
+
 .border-barbarian { @apply border-class-barbarian }
 .border-barbarian-faded { @apply border-class-barbarian-faded }
 .border-bard { @apply border-class-bard }

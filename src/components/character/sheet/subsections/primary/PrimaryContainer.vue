@@ -1,0 +1,71 @@
+<script setup lang="ts">
+import type { Character } from '@/models/Character'
+import PrimaryNav from '@/components/character/sheet/subsections/primary/PrimaryNav.vue'
+import { ref } from 'vue'
+import ActionsContainer from '@/components/character/sheet/subsections/primary/ActionsContainer.vue'
+
+defineProps<{
+  className: string
+  character: Character
+}>()
+
+type NavItem =
+  | 'actions'
+  | 'spells'
+  | 'inventory'
+  | 'features-and-traits'
+  | 'background'
+  | 'notes'
+  | 'extras'
+
+const activeNav = ref<NavItem>('actions')
+
+const toggleActive = (name: string) => {
+  activeNav.value = name
+  console.log(activeNav.value)
+}
+</script>
+
+<template>
+  <div class="absolute right-0 top-[104px]">
+    <div class="w-[517px] xl:w-[623px] h-[660px] py-[13px] px-[20px] relative">
+      <div class="svg-background -z-10">
+        <!-- Large Screen SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 623 660" class="hidden xl:block">
+          <path
+            fill="#10161ADB"
+            d="M615.2,646.2c-1.7,5.7-12.9,11.7-14.5,11.7H22.5c-1.7,0-12.8-6-14.5-11.7L8.2,19.3V12S16.1,2.3,23.4,1.4H599.80005c7.3.8,15.1,10.6,15.1,10.6v7.3Z"
+          />
+          <path
+            :class="className"
+            d="M611.9,0H11L0,11.5v637L11,660H612l11-11.5V11.5ZM3,12.8l9.2-9.6h5.9A25.8384,25.8384,0,0,0,7,12.9H6.9v.2A36.38553,36.38553,0,0,0,3,21.7ZM3,26.9A42.92655,42.92655,0,0,1,6.9,15.7V644.3a13.90069,13.90069,0,0,1-1.1-2.1,51.50646,51.50646,0,0,1-2.9-9L3,26.9Zm9.2,629.9L3,647.2v-8.9a40.90524,40.90524,0,0,0,3.9,8.6v.2H7a24.86426,24.86426,0,0,0,11.1,9.8H12.2Zm10.1,0A22.56646,22.56646,0,0,1,8.6,647V13A23.74954,23.74954,0,0,1,22.4,3.1H600.6a22.56647,22.56647,0,0,1,13.7,9.8v634a23.74956,23.74956,0,0,1-13.8,9.9Zm597.6-9.6-9.2,9.6h-5.9a24.86437,24.86437,0,0,0,11.1-9.8h.1v-.2a36.38635,36.38635,0,0,0,3.9-8.6l.00006,9Zm0-14.1a41.717,41.717,0,0,1-3.9,11.2V15.7a13.89825,13.89825,0,0,1,1.1,2.1,51.50837,51.50837,0,0,1,2.9,9l-.1,606.3Zm0-611.4a40.9054,40.9054,0,0,0-3.9-8.6v-.2h-.1a24.86433,24.86433,0,0,0-11.1-9.8h5.9l9.2,9.6-.00007,9Z"
+          />
+        </svg>
+
+        <!-- Small Screen SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 517 660" class="block xl:hidden">
+          <path
+            fill="#10161ADB"
+            d="M509.2,646.2c-1.7,5.7-12.9,11.7-14.5,11.7H22.5c-1.7,0-12.8-6-14.5-11.7L8.2,19.3V12S16.1,2.3,23.4,1.4H493.80005c7.3.8,15.1,10.6,15.1,10.6v7.3Z"
+          />
+          <path
+            :class="className"
+            d="M505.9,0H11L0,11.5v637L11,660H506l11-11.5V11.5ZM3,12.8l9.2-9.6h5.9A25.8384,25.8384,0,0,0,7,12.9H6.9v.2A36.38553,36.38553,0,0,0,3,21.7ZM3,26.9A42.92655,42.92655,0,0,1,6.9,15.7V644.3a13.90069,13.90069,0,0,1-1.1-2.1,51.50646,51.50646,0,0,1-2.9-9L3,26.9Zm9.2,629.9L3,647.2v-8.9a40.90524,40.90524,0,0,0,3.9,8.6v.2H7a24.86426,24.86426,0,0,0,11.1,9.8H12.2Zm10.1,0A22.56646,22.56646,0,0,1,8.6,647V13A23.74954,23.74954,0,0,1,22.4,3.1H494.6a22.56647,22.56647,0,0,1,13.7,9.8v634a23.74956,23.74956,0,0,1-13.8,9.9Zm491.6-9.6-9.2,9.6h-5.9a24.86437,24.86437,0,0,0,11.1-9.8h.1v-.2a36.38635,36.38635,0,0,0,3.9-8.6l.00006,9Zm0-14.1a41.717,41.717,0,0,1-3.9,11.2V15.7a13.89825,13.89825,0,0,1,1.1,2.1,51.50837,51.50837,0,0,1,2.9,9l-.1,606.3Zm0-611.4a40.9054,40.9054,0,0,0-3.9-8.6v-.2h-.1a24.86433,24.86433,0,0,0-11.1-9.8h5.9l9.2,9.6-.00007,9Z"
+          />
+        </svg>
+      </div>
+
+      <PrimaryNav
+        :hasSpells="true"
+        :className="className"
+        @toggle="(name: string) => toggleActive(name)"
+      />
+
+      <ActionsContainer
+        v-if="activeNav === 'actions'"
+        :className="className"
+        :character="character"
+      />
+    </div>
+  </div>
+</template>
