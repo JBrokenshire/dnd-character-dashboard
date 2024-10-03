@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import DefensesContainer from '@/components/character/sheet/subsections/DefensesContainer.vue'
-import ConditionsContainer from '@/components/character/sheet/subsections/ConditionsContainer.vue'
 import { onMounted, ref } from 'vue'
 import type { CharacterDefense } from '@/models/CharacterDefense'
 import { getCharacterDefenses } from '@/services/CharacterDefenseService'
+import DefensesContainer from '@/components/character/sheet/subsections/combat/DefensesContainer.vue'
+import ConditionsContainer from '@/components/character/sheet/subsections/combat/ConditionsContainer.vue'
 
 const props = defineProps<{
   className: string

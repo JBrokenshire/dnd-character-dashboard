@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import type { CharacterDefense } from '@/models/CharacterDefense'
-import DefenseItem from '@/components/character/sheet/subsections/DefenseItem.vue'
+import DefenseItem from '@/components/character/sheet/subsections/combat/DefenseItem.vue'
 
 const props = defineProps<{
   defenses: CharacterDefense[]

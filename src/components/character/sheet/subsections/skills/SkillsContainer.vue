@@ -4,7 +4,7 @@ import { modifierFromLevel } from '@/utils/utils'
 import { type Skill, skills } from '@/models/Skill'
 import { type Character, characterProficiencyBonus } from '@/models/Character'
 import { getCharacterProficientSkills } from '@/services/CharacterSkillService'
-import SkillListItem from '@/components/character/sheet/subsections/SkillListItem.vue'
+import SkillListItem from '@/components/character/sheet/subsections/skills/SkillListItem.vue'
 
 const props = defineProps<{
   className: string

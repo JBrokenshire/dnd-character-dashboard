@@ -11,12 +11,12 @@ import { Character } from '@/models/Character'
 import { cleanClassName } from '@/utils/utils'
 import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
 import CharacterSheetHeader from '@/components/character/sheet/CharacterSheetHeader.vue'
-import CombatContainer from '@/components/character/sheet/subsections/CombatContainer.vue'
-import SensesContainer from '@/components/character/sheet/subsections/SensesContainer.vue'
-import SkillsContainer from '@/components/character/sheet/subsections/SkillsContainer.vue'
+import CombatContainer from '@/components/character/sheet/subsections/combat/CombatContainer.vue'
+import SensesContainer from '@/components/character/sheet/subsections/senses/SensesContainer.vue'
+import SkillsContainer from '@/components/character/sheet/subsections/skills/SkillsContainer.vue'
 import QuickInfoContainer from '@/components/character/sheet/quick-info/QuickInfoContainer.vue'
-import SavingThrowsContainer from '@/components/character/sheet/subsections/SavingThrowsContainer.vue'
-import ProficiencyGroupsContainer from '@/components/character/sheet/subsections/ProficiencyGroupsContainer.vue'
+import SavingThrowsContainer from '@/components/character/sheet/subsections/saving-throws/SavingThrowsContainer.vue'
+import ProficiencyGroupsContainer from '@/components/character/sheet/subsections/proficiencies/ProficiencyGroupsContainer.vue'
 
 const route = useRoute()
 

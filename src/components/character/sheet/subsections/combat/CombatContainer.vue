@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { modifierFromLevel } from '@/utils/utils'
 import type { Character } from '@/models/Character'
-import StatusesGroup from '@/components/character/sheet/subsections/StatusesGroup.vue'
-import InitiativeContainer from '@/components/character/sheet/subsections/InitiativeContainer.vue'
-import ArmourClassContainer from '@/components/character/sheet/subsections/ArmourClassContainer.vue'
+import StatusesGroup from '@/components/character/sheet/subsections/combat/StatusesGroup.vue'
+import InitiativeContainer from '@/components/character/sheet/subsections/combat/InitiativeContainer.vue'
+import ArmourClassContainer from '@/components/character/sheet/subsections/combat/ArmourClassContainer.vue'
 
 defineProps<{
   className: string

@@ -1,18 +1,63 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import { modifierFromLevel } from '@/utils/utils'
-import type { Character } from '@/models/Character'
-import SavingThrowSummary from '@/components/character/sheet/subsections/SavingThrowSummary.vue'
+import type { CharacterSense } from '@/models/CharacterSense'
+import { characterProficiencyBonus } from '@/models/Character'
+import { getCharacterSenses } from '@/services/CharacterSenseService'
+import { getCharacterProficientSkills } from '@/services/CharacterSkillService'
+import type { CharacterProficientSkills } from '@/models/CharacterProficientSkills'
+import SenseCallout from '@/components/character/sheet/subsections/senses/SenseCallout.vue'
 
-defineProps<{
+const props = defineProps<{
   className: string
-  character: Character
+  character: character
 }>()
+
+const proficientSkills = ref<CharacterProficientSkills[]>([])
+const senses = ref<CharacterSense[]>([])
+
+const perceptionModifier = ref<number>(0)
+const investigationModifier = ref<number>(0)
+const insightModifier = ref<number>(0)
+
+const loading = ref<boolean>(true)
+
+const getSenseModifiers = (proficientSkills: CharacterProficientSkills[]) => {
+  perceptionModifier.value = 10 + modifierFromLevel(props.character.wisdom)
+  investigationModifier.value = 10 + modifierFromLevel(props.character.intelligence)
+  insightModifier.value = 10 + modifierFromLevel(props.character.wisdom)
+
+  for (const proficientSkill of proficientSkills.values()) {
+    switch (proficientSkill.skill_name) {
+      case 'Perception':
+        perceptionModifier.value += characterProficiencyBonus(props.character.level)
+        break
+      case 'Investigation':
+        investigationModifier.value += characterProficiencyBonus(props.character.level)
+        break
+      case 'Insight':
+        insightModifier.value += characterProficiencyBonus(props.character.level)
+        break
+    }
+  }
+}
+
+onMounted(async () => {
+  proficientSkills.value = await getCharacterProficientSkills(props.character.id)
+  getSenseModifiers(proficientSkills.value)
+  senses.value = await getCharacterSenses(props.character.id)
+  loading.value = false
+})
 </script>
 
 <template>
-  <div id="ct-subsections__saving-throws" class="absolute">
-    <div class="relative w-[230px] xl:w-[281px] h-[200px] py-[13px] px-[20px]">
-      <div class="absolute overflow-hidden top-0 bottom-0 left-0 right-0">
+  <div
+    v-if="!loading"
+    id="ct-subsections__senses"
+    class="absolute top-[214px] left-0 cursor-pointer"
+  >
+    <section class="relative h-[200px] w-[230px] xl:w-[281px] py-[13px] px-[20px]">
+      <div class="svg-background">
         <!-- Large Screen SVG -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 281 200" class="hidden xl:block">
           <path
@@ -36,62 +81,29 @@ defineProps<{
           />
         </svg>
       </div>
-      <h2 class="sr-only">Saving Throws</h2>
+      <h2 class="sr-only">Senses</h2>
+      <div class="relative cursor-pointer text-white">
+        <div id="ct-subsections__senses-callouts">
+          <SenseCallout :className="className" skillName="Perception" :level="perceptionModifier" />
+          <SenseCallout
+            :className="className"
+            skillName="Investigation"
+            :level="investigationModifier"
+          />
+          <SenseCallout :className="className" skillName="Insight" :level="insightModifier" />
+        </div>
 
-      <!-- Saving Throw Abilities -->
-      <div id="ct-subsections__saving-throws-abilities" class="relative">
-        <div class="flex flex-wrap justify-around">
-          <SavingThrowSummary
-            title="Strength"
-            :className="className"
-            :proficiency="character.proficient_strength ? 'Proficiency' : ''"
-            :modifier="modifierFromLevel(character.strength) + 2 * character.proficient_strength"
-            class="order-1"
-          />
-          <SavingThrowSummary
-            title="Dexterity"
-            :className="className"
-            :proficiency="character.proficient_dexterity ? 'Proficiency' : ''"
-            :modifier="modifierFromLevel(character.dexterity) + 2 * character.proficient_dexterity"
-            class="order-3"
-          />
-          <SavingThrowSummary
-            title="Constitution"
-            :className="className"
-            :proficiency="character.proficient_constitution ? 'Proficiency' : ''"
-            :modifier="
-              modifierFromLevel(character.constitution) + 2 * character.proficient_constitution
-            "
-            class="order-5"
-          />
-          <SavingThrowSummary
-            title="Intelligence"
-            :className="className"
-            :proficiency="character.proficient_intelligence ? 'Proficiency' : ''"
-            :modifier="
-              modifierFromLevel(character.intelligence) + 2 * character.proficient_intelligence
-            "
-            class="order-2"
-          />
-          <SavingThrowSummary
-            title="Wisdom"
-            :className="className"
-            :proficiency="character.proficient_wisdom ? 'Proficiency' : ''"
-            :modifier="modifierFromLevel(character.wisdom) + 2 * character.proficient_wisdom"
-            class="order-4"
-          />
-          <SavingThrowSummary
-            title="Charisma"
-            :className="className"
-            :proficiency="character.proficient_charisma ? 'Proficiency' : ''"
-            :modifier="modifierFromLevel(character.charisma) + 2 * character.proficient_charisma"
-            class="order-6"
-          />
+        <div
+          id="ct-subsections__senses-summary"
+          class="h-[3.6em] leading-[1.2] text-[12px] mt-[6px] overflow-hidden flex-center flex-wrap text-cs-gray gap-x-2"
+        >
+          <p v-if="senses.length === 0">Additional Sense Types</p>
+          <p v-else v-for="sense in senses" :key="sense.id">
+            {{ sense.sense_name }} {{ sense.distance }} ft.
+          </p>
         </div>
       </div>
-
-      <!-- Saving Throw Footer -->
-      <div id="cs-subsection__saving-throws-footer" class="subsection-footer">Saving Throws</div>
-    </div>
+    </section>
+    <div id="cs-subsections__senses-footer" class="subsection-footer">Senses</div>
   </div>
 </template>
