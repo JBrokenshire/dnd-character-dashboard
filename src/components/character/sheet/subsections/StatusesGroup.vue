@@ -53,7 +53,7 @@ onMounted(async () => {
 
       <h2 class="sr-only">Defenses & Conditions</h2>
       <DefensesContainer :defenses="defenses" />
-      <ConditionsContainer :conditions="conditions" />
+      <ConditionsContainer :className="className" :conditions="conditions" />
     </div>
   </div>
 </template>
