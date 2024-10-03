@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Character } from '@/models/Character'
+import AttackTable from '@/components/character/sheet/subsections/primary/actions/AttackTable.vue'
 
 defineProps<{
   className: string
@@ -21,6 +22,10 @@ defineProps<{
               Attacks per Action: {{ character.attacks_per_action }}</span
             >
           </div>
+        </div>
+
+        <div id="actions-content">
+          <AttackTable :className="className" :character="character" />
         </div>
       </div>
     </div>

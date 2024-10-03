@@ -2,7 +2,7 @@
 import type { Character } from '@/models/Character'
 import PrimaryNav from '@/components/character/sheet/subsections/primary/PrimaryNav.vue'
 import { ref } from 'vue'
-import ActionsContainer from '@/components/character/sheet/subsections/primary/ActionsContainer.vue'
+import ActionsContainer from '@/components/character/sheet/subsections/primary/actions/ActionsContainer.vue'
 
 defineProps<{
   className: string
