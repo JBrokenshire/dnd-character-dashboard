@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import type { Attack } from '@/models/Action'
-import { type Character, characterProficiencyBonus } from '@/models/Character'
-import AttackItem from '@/components/character/sheet/subsections/primary/actions/AttackItem.vue'
 import { modifierFromLevel } from '@/utils/utils'
+import { type Character } from '@/models/Character'
+import { fetchCharacterEquippedWeapons } from '@/services/CharacterInventoryService'
+import AttackItem from '@/components/character/sheet/subsections/primary/actions/AttackItem.vue'
 
 const props = defineProps<{
   className: string
@@ -11,18 +13,29 @@ const props = defineProps<{
 
 const strengthModifier = modifierFromLevel(props.character.strength)
 const unarmedStrike: Attack = {
-  name: 'Unarmed Strike',
-  meta: 'Melee Attack',
+  item: {
+    name: 'Unarmed Strike',
+    meta: 'Melee Attack',
+    rarity: 'Common'
+  },
   type: 'unarmed',
   range: 5,
-  action: strengthModifier + characterProficiencyBonus(props.character.level),
+  ability: 'STR',
   damage: strengthModifier + 1,
   damage_type: 'bludgeoning'
 }
+
+const weapons = ref<Attack>()
+const loading = ref(true)
+
+onMounted(async () => {
+  weapons.value = await fetchCharacterEquippedWeapons(props.character.id)
+  loading.value = false
+})
 </script>
 
 <template>
-  <div id="actions-attack-table" class="mb-[13px]">
+  <div v-if="!loading" id="actions-attack-table" class="mb-[13px]">
     <div class="flex">
       <div class="attack-table__column-header w-[27px]" />
       <div class="attack-table__column-header w-[140px]">Attack</div>
@@ -33,7 +46,15 @@ const unarmedStrike: Attack = {
     </div>
 
     <div id="attack-table__content">
-      <AttackItem :className="className" :attack="unarmedStrike" />
+      <AttackItem
+        v-for="(attack, index) in weapons"
+        :key="`attack-item-${index}`"
+        :className="className"
+        :character="character"
+        :attack="attack"
+      />
+
+      <AttackItem :className="className" :character="character" :attack="unarmedStrike" />
     </div>
   </div>
 </template>

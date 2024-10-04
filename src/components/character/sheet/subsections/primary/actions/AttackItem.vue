@@ -1,10 +1,37 @@
 <script setup lang="ts">
 import type { Attack } from '@/models/Action'
+import type { Character } from '@/models/Character'
+import { modifierFromLevel } from '@/utils/utils'
 
-defineProps<{
+const props = defineProps<{
   className: string
+  character: Character
   attack: Attack
 }>()
+
+let abilityLevel = 0
+switch (props.attack.ability) {
+  case 'STR':
+    abilityLevel = props.character.strength
+    break
+  case 'DEX':
+    abilityLevel = props.character.dexterity
+    break
+  case 'CON':
+    abilityLevel = props.character.constitution
+    break
+  case 'INT':
+    abilityLevel = props.character.intelligence
+    break
+  case 'WIS':
+    abilityLevel = props.character.wisdom
+    break
+  case 'CHA':
+    abilityLevel = props.character.charisma
+    break
+}
+
+const action = modifierFromLevel(abilityLevel)
 </script>
 
 <template>
@@ -20,18 +47,21 @@ defineProps<{
 
     <!-- Attack Name -->
     <div class="w-[140px] cursor-pointer">
-      <div class="text-[14px] tracking-tightest">{{ attack.name }}</div>
-      <div class="flex flex-wrap text-[10px] text-cs-gray italic">{{ attack.meta }}</div>
+      <div
+        class="text-[14px] tracking-tightest"
+        :class="`text-${attack.item.rarity.replace(' ', '-').toLowerCase()}`"
+      >
+        {{ attack.item.name }}
+      </div>
+      <div class="flex flex-wrap text-[10px] text-cs-gray italic">{{ attack.item.meta }}</div>
     </div>
 
     <!-- Attack Range -->
     <div class="w-[55px]">
-      <div class="flex items-center font-bold text-[14px]">
-        <span>
-          <span>{{ attack.range }}</span>
-          <span class="text-cs-gray text-[.625rem] ml-[.188rem]">
-            {{ attack.long_range ? `(${attack.long_range})` : 'ft.' }}
-          </span>
+      <div class="flex items-baseline font-bold text-[14px]">
+        <span>{{ attack.short_range }}</span>
+        <span class="text-cs-gray text-[.625rem] ml-[.188rem]">
+          {{ attack.long_range ? `(${attack.long_range})` : 'ft.' }}
         </span>
       </div>
     </div>
@@ -45,9 +75,9 @@ defineProps<{
         >
           <span class="inline-flex items-center">
             <span class="text-cs-gray text-[.75rem] mr-[.063rem]">
-              {{ attack.action < 0 ? '-' : '+' }}
+              {{ action < 0 ? '-' : '+' }}
             </span>
-            <span>{{ attack.action }}</span>
+            <span>{{ action }}</span>
           </span>
         </button>
       </div>
@@ -59,15 +89,17 @@ defineProps<{
         class="max-w-[96px] min-h-[36px] p-[3px] pl-[5px] inline-flex items-center justify-center rounded-[4px] align-baseline"
         :class="`button-${className}`"
       >
-        <span class="mx-[3px] inline-flex items-center text-[14px]">
+        <span class="mx-[3px] inline-flex items-center text-[14px] font-bold">
           <span class="flex flex-col items-start gap-0.5">
             <span>{{ attack.damage }}</span>
-            <span v-if="attack.alt_damage" class="text-cs-gray">{{ attack.alt_damage }}</span>
+            <span v-if="attack.alt_damage" class="text-cs-gray text-[12px]">
+              {{ attack.alt_damage }}
+            </span>
           </span>
           <span>
             <img
               class="attack-item__icon ml-[8px]"
-              :src="`/src/assets/svg/damage-types/${attack.damage_type}.svg`"
+              :src="`/src/assets/svg/damage-types/${attack.damage_type.toLowerCase()}.svg`"
               alt=""
             />
           </span>
@@ -77,7 +109,7 @@ defineProps<{
 
     <!-- Attack Notes -->
     <div class="flex-1 text-cs-gray text-[12px] tracking-tightest">
-      <span></span>
+      <span>{{ attack.item.notes }}</span>
     </div>
   </div>
 </template>

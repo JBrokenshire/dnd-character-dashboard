@@ -203,3 +203,9 @@ path.warlock, circle.warlock { @apply fill-class-warlock; }
 path.warlock-faded { @apply fill-class-warlock-faded }
 path.wizard, circle.wizard { @apply fill-class-wizard; }
 path.wizard-faded { @apply fill-class-wizard-faded }
+
+.text-common { @apply text-white }
+.text-uncommon { @apply text-lime-600 }
+.text-rare { @apply text-blue-400 }
+.text-very-rare { @apply text-purple-500 }
+.text-legendary { @apply text-yellow-500 }

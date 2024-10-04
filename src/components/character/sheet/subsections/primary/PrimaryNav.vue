@@ -24,7 +24,7 @@ const toggleActive = (name: string) => {
 
 <template>
   <div class="relative z-[4]">
-    <menu class="mb-[1rem] flex gap-[1rem] list-none p-0 text-cs-gray tracking-tightest">
+    <menu class="mb-[1rem] flex-center gap-[1rem] list-none p-0 text-cs-gray tracking-tightest">
       <li>
         <button
           id="cs-subsections__primary-nav-actions"
@@ -109,6 +109,6 @@ const toggleActive = (name: string) => {
 
 <style scoped>
 .primary-container__nav-item {
-  @apply flex items-center border-b-[.188rem] text-[.875rem] font-bold gap-[.25rem] py-[.188rem] uppercase hover:text-white;
+  @apply flex items-center border-b-[.188rem] text-[.725rem] xl:text-[.875rem] font-bold gap-[.25rem] py-[.188rem] uppercase hover:text-white;
 }
 </style>
