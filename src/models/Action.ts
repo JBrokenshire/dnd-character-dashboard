@@ -15,4 +15,5 @@ export interface Attack {
   damage: string
   alt_damage?: string
   damage_type: string
+  bonus: number
 }

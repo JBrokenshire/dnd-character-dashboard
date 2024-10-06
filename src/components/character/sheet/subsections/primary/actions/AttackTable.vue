@@ -22,7 +22,8 @@ const unarmedStrike: Attack = {
   range: 5,
   ability: 'STR',
   damage: strengthModifier + 1,
-  damage_type: 'bludgeoning'
+  damage_type: 'bludgeoning',
+  bonus: 0
 }
 
 const weapons = ref<Attack>()
@@ -54,7 +55,7 @@ onMounted(async () => {
         :attack="attack"
       />
 
-      <AttackItem :className="className" :character="character" :attack="unarmedStrike" />
+      <AttackItem :className="className" :character="character" :attack="unarmedStrike" :hideModifier="true" />
     </div>
   </div>
 </template>

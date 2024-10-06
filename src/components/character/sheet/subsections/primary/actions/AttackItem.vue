@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import type { Attack } from '@/models/Action'
-import type { Character } from '@/models/Character'
+import { type Character, characterProficiencyBonus } from '@/models/Character'
 import { modifierFromLevel } from '@/utils/utils'
 
 const props = defineProps<{
   className: string
   character: Character
   attack: Attack
+  hideModifier?: boolean
 }>()
 
 let abilityLevel = 0
@@ -31,7 +32,10 @@ switch (props.attack.ability) {
     break
 }
 
-const action = modifierFromLevel(abilityLevel)
+const skillModifier = modifierFromLevel(abilityLevel)
+const profBonus = characterProficiencyBonus(props.character.level)
+const action = skillModifier + profBonus + props.attack.bonus
+const damageModifier = skillModifier + props.attack.bonus
 </script>
 
 <template>
@@ -91,7 +95,7 @@ const action = modifierFromLevel(abilityLevel)
       >
         <span class="mx-[3px] inline-flex items-center text-[14px] font-bold">
           <span class="flex flex-col items-start gap-0.5">
-            <span>{{ attack.damage }}</span>
+            <span>{{ attack.damage }}{{ !hideModifier ? (damageModifier >= 0 ? `+${damageModifier}` : `-${damageModifier}`) : '' }}</span>
             <span v-if="attack.alt_damage" class="text-cs-gray text-[12px]">
               {{ attack.alt_damage }}
             </span>
