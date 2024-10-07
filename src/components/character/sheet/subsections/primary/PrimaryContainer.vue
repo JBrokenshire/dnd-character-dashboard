@@ -3,6 +3,7 @@ import type { Character } from '@/models/Character'
 import PrimaryNav from '@/components/character/sheet/subsections/primary/PrimaryNav.vue'
 import { ref } from 'vue'
 import ActionsContainer from '@/components/character/sheet/subsections/primary/actions/ActionsContainer.vue'
+import InventoryContainer from '@/components/character/sheet/subsections/primary/inventory/InventoryContainer.vue'
 
 defineProps<{
   className: string
@@ -22,7 +23,6 @@ const activeNav = ref<NavItem>('actions')
 
 const toggleActive = (name: string) => {
   activeNav.value = name
-  console.log(activeNav.value)
 }
 </script>
 
@@ -63,6 +63,12 @@ const toggleActive = (name: string) => {
 
       <ActionsContainer
         v-if="activeNav === 'actions'"
+        :className="className"
+        :character="character"
+      />
+
+      <InventoryContainer
+        v-if="activeNav === 'inventory'"
         :className="className"
         :character="character"
       />
