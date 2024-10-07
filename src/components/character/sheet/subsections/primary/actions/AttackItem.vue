@@ -95,9 +95,25 @@ const damageModifier = skillModifier + props.attack.bonus
       >
         <span class="mx-[3px] inline-flex items-center text-[14px] font-bold">
           <span class="flex flex-col items-start gap-0.5">
-            <span>{{ attack.damage }}{{ !hideModifier ? (damageModifier >= 0 ? `+${damageModifier}` : `-${damageModifier}`) : '' }}</span>
+            <span>
+              {{ attack.damage
+              }}{{
+                !hideModifier
+                  ? damageModifier >= 0
+                    ? `+${damageModifier}`
+                    : `-${damageModifier}`
+                  : ''
+              }}
+            </span>
             <span v-if="attack.alt_damage" class="text-cs-gray text-[12px]">
-              {{ attack.alt_damage }}
+              {{ attack.alt_damage
+              }}{{
+                !hideModifier
+                  ? damageModifier >= 0
+                    ? `+${damageModifier}`
+                    : `-${damageModifier}`
+                  : ''
+              }}
             </span>
           </span>
           <span>
