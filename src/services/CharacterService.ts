@@ -55,7 +55,7 @@ export const toggleInspiration = async (id: number) => {
 
 export const healCharacter = async (id: number, value: number) => {
   try {
-    const { data } = await axios.get(`/api/characters/${id}/heal/${value}`)
+    const { data } = await axios.put(`/api/characters/${id}/heal/${value}`)
     return data as Character
   } catch (error) {
     console.error(`Error healing character with ID: ${id}.`, error)
@@ -64,7 +64,7 @@ export const healCharacter = async (id: number, value: number) => {
 
 export const damageCharacter = async (id: number, value: number) => {
   try {
-    const { data } = await axios.get(`/api/characters/${id}/damage/${value}`)
+    const { data } = await axios.put(`/api/characters/${id}/damage/${value}`)
     return data as Character
   } catch (error) {
     console.error(`Error healing character with ID: ${id}.`, error)

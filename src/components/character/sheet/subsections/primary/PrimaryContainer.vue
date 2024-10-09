@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import type { Character } from '@/models/Character'
 import PrimaryNav from '@/components/character/sheet/subsections/primary/PrimaryNav.vue'
-import { ref } from 'vue'
 import ActionsContainer from '@/components/character/sheet/subsections/primary/actions/ActionsContainer.vue'
 import InventoryContainer from '@/components/character/sheet/subsections/primary/inventory/InventoryContainer.vue'
 
@@ -9,6 +9,8 @@ defineProps<{
   className: string
   character: Character
 }>()
+
+defineEmits(['toggle-item-equipped'])
 
 type NavItem =
   | 'actions'

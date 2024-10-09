@@ -11,20 +11,26 @@ import { Character } from '@/models/Character'
 import { cleanClassName } from '@/utils/utils'
 import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
 import CharacterSheetHeader from '@/components/character/sheet/CharacterSheetHeader.vue'
+import QuickInfoContainer from '@/components/character/sheet/quick-info/QuickInfoContainer.vue'
 import CombatContainer from '@/components/character/sheet/subsections/combat/CombatContainer.vue'
 import SensesContainer from '@/components/character/sheet/subsections/senses/SensesContainer.vue'
 import SkillsContainer from '@/components/character/sheet/subsections/skills/SkillsContainer.vue'
-import QuickInfoContainer from '@/components/character/sheet/quick-info/QuickInfoContainer.vue'
+import PrimaryContainer from '@/components/character/sheet/subsections/primary/PrimaryContainer.vue'
 import SavingThrowsContainer from '@/components/character/sheet/subsections/saving-throws/SavingThrowsContainer.vue'
 import ProficiencyGroupsContainer from '@/components/character/sheet/subsections/proficiencies/ProficiencyGroupsContainer.vue'
-import PrimaryContainer from '@/components/character/sheet/subsections/primary/PrimaryContainer.vue'
+
+onMounted(async () => {
+  character.value = await getCharacterByID(characterID)
+  cleanedClassName.value = cleanClassName(character.value.class.name)
+  isLoading.value = false
+})
 
 const route = useRoute()
 
 const characterID = route.params.id
-
 const isLoading = ref(true)
 const character = ref<Character>(null)
+
 const cleanedClassName = ref<string>('')
 
 const heal = async (healValue) => {
@@ -38,12 +44,6 @@ const damage = async (damageValue) => {
 const inspiration = async () => {
   character.value = await toggleInspiration(character.value.id)
 }
-
-onMounted(async () => {
-  character.value = await getCharacterByID(characterID)
-  cleanedClassName.value = cleanClassName(character.value.class.name)
-  isLoading.value = false
-})
 </script>
 
 <template>

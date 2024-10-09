@@ -106,21 +106,25 @@ select {
   @apply absolute bottom-[5px] left-0 right-0 flex justify-center font-bold uppercase text-white text-sm tracking-tightest
 }
 
+.table__column-header {
+  @apply text-[11px] font-bold py-[5px] uppercase tracking-tightest;
+}
+
 /* Colour Styles */
 
-.bg-barbarian { @apply bg-class-barbarian }
-.bg-bard { @apply bg-class-bard }
-.bg-blood-hunter {@apply bg-class-blood-hunter }
-.bg-cleric { @apply bg-class-cleric }
-.bg-druid {@apply bg-class-druid }
-.bg-fighter { @apply bg-class-fighter }
-.bg-monk { @apply bg-class-monk }
-.bg-paladin { @apply bg-class-paladin }
-.bg-ranger { @apply bg-class-ranger }
-.bg-rogue { @apply bg-class-rogue }
-.bg-sorcerer { @apply bg-class-sorcerer }
-.bg-warlock { @apply bg-class-warlock }
-.bg-wizard { @apply bg-class-wizard }
+.bg-barbarian, .bg-barbarian::before, .bg-barbarian::after { @apply bg-class-barbarian }
+.bg-bard, .bg-bard::before, .bg-bard::after { @apply bg-class-bard }
+.bg-blood-hunter, .bg-blood-hunter::before, .bg-blood-hunter::after { @apply bg-class-blood-hunter }
+.bg-cleric, .bg-cleric::before, .bg-cleric::after { @apply bg-class-cleric }
+.bg-druid, .bg-druid::before, .bg-druid::after { @apply bg-class-druid }
+.bg-fighter, .bg-fighter::before, .bg-fighter::after { @apply bg-class-fighter }
+.bg-monk, .bg-monk::before, .bg-monk::after { @apply bg-class-monk }
+.bg-paladin, .bg-paladin::before, .bg-paladin::after { @apply bg-class-paladin }
+.bg-ranger, .bg-ranger::before, .bg-ranger::after { @apply bg-class-ranger }
+.bg-rogue, .bg-rogue::before, .bg-rogue::after { @apply bg-class-rogue }
+.bg-sorcerer, .bg-sorcerer::before, .bg-sorcerer::after { @apply bg-class-sorcerer }
+.bg-warlock, .bg-warlock::before, .bg-warlock::after { @apply bg-class-warlock }
+.bg-wizard, .bg-wizard::before, .bg-wizard::after { @apply bg-class-wizard }
 
 .text-barbarian { @apply text-class-barbarian }
 .text-bard { @apply text-class-bard }

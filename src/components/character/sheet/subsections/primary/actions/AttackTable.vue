@@ -37,13 +37,13 @@ onMounted(async () => {
 
 <template>
   <div v-if="!loading" id="actions-attack-table" class="mb-[13px]">
-    <div class="flex">
-      <div class="attack-table__column-header w-[27px]" />
-      <div class="attack-table__column-header w-[140px]">Attack</div>
-      <div class="attack-table__column-header w-[55px]">Range</div>
-      <div class="attack-table__column-header w-[55px]">Hit / DC</div>
-      <div class="attack-table__column-header w-[100px]">Damage</div>
-      <div class="attack-table__column-header flex-1">Notes</div>
+    <div class="flex text-white">
+      <div class="table__column-header w-[27px]" />
+      <div class="table__column-header w-[140px]">Attack</div>
+      <div class="table__column-header w-[55px]">Range</div>
+      <div class="table__column-header w-[55px]">Hit / DC</div>
+      <div class="table__column-header w-[100px]">Damage</div>
+      <div class="table__column-header flex-1">Notes</div>
     </div>
 
     <div id="attack-table__content">
@@ -55,13 +55,12 @@ onMounted(async () => {
         :attack="attack"
       />
 
-      <AttackItem :className="className" :character="character" :attack="unarmedStrike" :hideModifier="true" />
+      <AttackItem
+        :className="className"
+        :character="character"
+        :attack="unarmedStrike"
+        :hideModifier="true"
+      />
     </div>
   </div>
 </template>
-
-<style scoped>
-.attack-table__column-header {
-  @apply text-[11px] font-bold py-[5px] uppercase text-white tracking-tightest;
-}
-</style>
