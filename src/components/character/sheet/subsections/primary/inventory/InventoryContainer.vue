@@ -70,6 +70,8 @@ onMounted(async () => {
             <div class="table__column-header w-[50px]">Cost (GP)</div>
             <div class="table__column-header flex-1">Notes</div>
           </template>
+
+          <template #container-title>Equipment</template>
         </InventoryTable>
 
         <!-- Backpack -->
@@ -82,6 +84,8 @@ onMounted(async () => {
             <div class="table__column-header w-[50px]">Cost (GP)</div>
             <div class="table__column-header flex-1">Notes</div>
           </template>
+
+          <template #container-title>Backpack</template>
         </InventoryTable>
       </div>
     </div>

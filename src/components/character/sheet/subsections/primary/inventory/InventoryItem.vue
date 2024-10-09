@@ -31,7 +31,7 @@ const toggleEquipped = async () => {
     <div class="w-[40px]">
       <div class="flex flex-wrap">
         <button
-          v-if="item.item.equippable"
+          v-if="item.item.equippable && item.location === 'Equipment'"
           class="relative active-indicator transition-200"
           :class="`${equipped ? `border-${className} bg-${className}` : `border-cs-gray`}`"
           @click="toggleEquipped"

@@ -27,7 +27,7 @@ onMounted(() => {
           <div class="flex items-center cursor-pointer py-[8px] leading-[1]">
             <div class="w-[40px]" />
             <div class="w-[200px]">
-              Equipment <span class="text-cs-gray">({{ items.length }})</span>
+              <slot name="container-title" /> <span class="text-cs-gray">({{ items.length }})</span>
             </div>
             <div>
               <span>{{ totalWeight }}</span>
