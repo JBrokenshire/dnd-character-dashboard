@@ -19,7 +19,7 @@ const unarmedStrike: Attack = {
     rarity: 'Common'
   },
   type: 'unarmed',
-  range: 5,
+  short_range: 5,
   ability: 'STR',
   damage: strengthModifier + 1,
   damage_type: 'bludgeoning',
