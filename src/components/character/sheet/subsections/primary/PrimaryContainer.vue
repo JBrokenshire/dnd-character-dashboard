@@ -10,8 +10,6 @@ defineProps<{
   character: Character
 }>()
 
-defineEmits(['toggle-item-equipped'])
-
 type NavItem =
   | 'actions'
   | 'spells'
