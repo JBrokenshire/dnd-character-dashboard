@@ -24,6 +24,16 @@ export const fetchCharacterEquippedWeapons = async (id: number) => {
   }
 }
 
+export const fetchCharacterEquippedArmour = async (id: number) => {
+  try {
+    const { data } = await axios.get(`/api/characters/${id}/inventory/equipped-armour`)
+    return data
+  } catch (error) {
+    console.error(error)
+    toast.error('Error fetching character equipped armour')
+  }
+}
+
 export const toggleCharacterInventoryItemEquipped = async (characterID: number, itemID: number) => {
   try {
     const { data } = await axios.put(`/api/characters/${characterID}/inventory/${itemID}`)
