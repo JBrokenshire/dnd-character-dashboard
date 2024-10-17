@@ -25,8 +25,6 @@ onMounted(async () => {
     skillsAdvantages.value.set(skillAdvantage.skill_name, skillAdvantage)
   )
 
-  console.log(skillsAdvantages.value)
-
   loading.value = false
 })
 

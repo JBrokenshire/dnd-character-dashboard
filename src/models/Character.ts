@@ -1,5 +1,8 @@
 import type { Race } from '@/models/Race'
 import type { ClassType } from '@/models/ClassType'
+import type { Background } from '@/models/Background'
+
+type Size = 'Tiny' | 'Small' | 'Medium' | 'Large' | 'Huge' | 'Gargantuan'
 
 interface Character {
   id: number
@@ -34,6 +37,18 @@ interface Character {
 
   attacks_per_action: number
 
+  background_name: string
+  alignment: string
+  gender: string
+  eyes: string
+  size: Size
+  height: string
+  faith: string
+  hair: string
+  skin: string
+  age: number
+  weight: number
+
   organisations: string
   allies: string
   enemies: string
@@ -41,6 +56,7 @@ interface Character {
 
   class: ClassType
   race: Race
+  background: Background
 }
 
 export const characterProficiencyBonus = (level: number) => {

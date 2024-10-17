@@ -5,6 +5,7 @@ import PrimaryNav from '@/components/character/sheet/subsections/primary/Primary
 import ActionsContainer from '@/components/character/sheet/subsections/primary/actions/ActionsContainer.vue'
 import InventoryContainer from '@/components/character/sheet/subsections/primary/inventory/InventoryContainer.vue'
 import NotesContainer from '@/components/character/sheet/subsections/primary/notes/NotesContainer.vue'
+import BackgroundContainer from '@/components/character/sheet/subsections/primary/background/BackgroundContainer.vue'
 
 defineProps<{
   className: string
@@ -75,6 +76,12 @@ defineEmits(['update-ac'])
         :class-name="className"
         :character="character"
         @update-ac="$emit('update-ac')"
+      />
+
+      <BackgroundContainer
+        v-if="activeNav === 'background'"
+        :class-name="className"
+        :character="character"
       />
 
       <NotesContainer v-if="activeNav === 'notes'" :class-name="className" :character="character" />
