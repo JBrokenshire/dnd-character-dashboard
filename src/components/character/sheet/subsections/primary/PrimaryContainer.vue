@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 import type { Character } from '@/models/Character'
 import PrimaryNav from '@/components/character/sheet/subsections/primary/PrimaryNav.vue'
+import NotesContainer from '@/components/character/sheet/subsections/primary/notes/NotesContainer.vue'
 import ActionsContainer from '@/components/character/sheet/subsections/primary/actions/ActionsContainer.vue'
 import InventoryContainer from '@/components/character/sheet/subsections/primary/inventory/InventoryContainer.vue'
-import NotesContainer from '@/components/character/sheet/subsections/primary/notes/NotesContainer.vue'
 import BackgroundContainer from '@/components/character/sheet/subsections/primary/background/BackgroundContainer.vue'
 
 defineProps<{
@@ -27,7 +27,7 @@ const toggleActive = (name: string) => {
   activeNav.value = name
 }
 
-defineEmits(['update-ac'])
+defineEmits(['update-ac', 'toggle-stealth-disadvantage'])
 </script>
 
 <template>
@@ -76,6 +76,7 @@ defineEmits(['update-ac'])
         :class-name="className"
         :character="character"
         @update-ac="$emit('update-ac')"
+        @toggle-stealth-disadvantage="$emit('toggle-stealth-disadvantage')"
       />
 
       <BackgroundContainer

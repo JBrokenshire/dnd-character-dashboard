@@ -14,7 +14,7 @@ onMounted(() => {
 
 const totalWeight = ref(0)
 
-defineEmits(['update-ac'])
+defineEmits(['update-ac', 'toggle-stealth-disadvantage'])
 </script>
 
 <template>
@@ -46,6 +46,7 @@ defineEmits(['update-ac'])
           :className="className"
           :item="item"
           @update-ac="$emit('update-ac')"
+          @toggle-stealth-disadvantage="$emit('toggle-stealth-disadvantage')"
         />
       </div>
     </div>

@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useToast } from 'vue-toastification'
 import type { CharacterSkillAdvantage } from '@/models/CharacterSkillsAdvantage'
 import type { CharacterProficientSkills } from '@/models/CharacterProficientSkills'
+import type { SkillName } from '@/models/Skill'
 
 const toast = useToast()
 
@@ -22,5 +23,17 @@ export const getCharacterSkillsAdvantages = async (id: number) => {
   } catch (error) {
     console.error(error)
     toast.error('Error fetching character skills advantages')
+  }
+}
+
+export const toggleSkillDisadvantage = async (characterID: number, skillName: SkillName) => {
+  try {
+    const { data } = await axios.put(
+      `/api/characters/${characterID}/skills/${skillName}/disadvantage`
+    )
+    return data
+  } catch (error) {
+    console.error(error)
+    toast.error('Error updating character skills')
   }
 }

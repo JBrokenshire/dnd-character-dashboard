@@ -1,16 +1,21 @@
 <script lang="ts" setup>
 import {
-  damageCharacter,
   healCharacter,
-  toggleInspiration,
+  damageCharacter,
   getCharacterByID,
+  toggleInspiration,
   fetchCharacterArmourClass
 } from '@/services/CharacterService'
+import {
+  getCharacterSkillsAdvantages,
+  toggleSkillDisadvantage
+} from '@/services/CharacterSkillService'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { Character } from '@/models/Character'
 import { cleanClassName } from '@/utils/utils'
 import CustomScaleLoader from '@/components/loaders/CustomScaleLoader.vue'
+import type { CharacterSkillAdvantage } from '@/models/CharacterSkillsAdvantage'
 import CharacterSheetHeader from '@/components/character/sheet/CharacterSheetHeader.vue'
 import QuickInfoContainer from '@/components/character/sheet/quick-info/QuickInfoContainer.vue'
 import CombatContainer from '@/components/character/sheet/subsections/combat/CombatContainer.vue'
@@ -24,6 +29,10 @@ onMounted(async () => {
   character.value = await getCharacterByID(characterID)
   cleanedClassName.value = cleanClassName(character.value.class.name)
   armourClass.value = await fetchCharacterArmourClass(characterID)
+  characterSkillsAdvantages.value = await getCharacterSkillsAdvantages(character.value.id)
+  characterSkillsAdvantages.value.map((skillAdvantage) =>
+    skillsAdvantagesMap.value.set(skillAdvantage.skill_name, skillAdvantage)
+  )
   loading.value = false
 })
 
@@ -32,6 +41,10 @@ const route = useRoute()
 const characterID = route.params.id
 const character = ref<Character>(null)
 const armourClass = ref(0)
+const characterSkillsAdvantages = ref<CharacterSkillAdvantage[]>([])
+const skillsAdvantagesMap = ref<Map<string, CharacterSkillAdvantage>>(
+  new Map<string, CharacterSkillAdvantage>()
+)
 const loading = ref(true)
 
 const cleanedClassName = ref<string>('')
@@ -50,6 +63,14 @@ const inspiration = async () => {
 
 const updateArmourClass = async () => {
   armourClass.value = await fetchCharacterArmourClass(characterID)
+}
+
+const toggleStealthDisadvantage = async () => {
+  await toggleSkillDisadvantage(characterID, 'Stealth')
+  characterSkillsAdvantages.value = await getCharacterSkillsAdvantages(character.value.id)
+  characterSkillsAdvantages.value.map((skillAdvantage) =>
+    skillsAdvantagesMap.value.set(skillAdvantage.skill_name, skillAdvantage)
+  )
 }
 </script>
 
@@ -84,7 +105,11 @@ const updateArmourClass = async () => {
 
       <ProficiencyGroupsContainer :className="cleanedClassName" :character="character" />
 
-      <SkillsContainer :className="cleanedClassName" :character="character" />
+      <SkillsContainer
+        :className="cleanedClassName"
+        :character="character"
+        :character-skills-advantages="skillsAdvantagesMap"
+      />
 
       <CombatContainer
         :className="cleanedClassName"
@@ -96,6 +121,7 @@ const updateArmourClass = async () => {
         :className="cleanedClassName"
         :character="character"
         @update-ac="updateArmourClass"
+        @toggle-stealth-disadvantage="toggleStealthDisadvantage"
       />
     </div>
   </div>

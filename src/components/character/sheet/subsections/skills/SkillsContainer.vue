@@ -3,16 +3,14 @@ import { onMounted, ref } from 'vue'
 import { modifierFromLevel } from '@/utils/utils'
 import { type Skill, skills } from '@/models/Skill'
 import { type Character, characterProficiencyBonus } from '@/models/Character'
-import {
-  getCharacterProficientSkills,
-  getCharacterSkillsAdvantages
-} from '@/services/CharacterSkillService'
+import { getCharacterProficientSkills } from '@/services/CharacterSkillService'
 import type { CharacterSkillAdvantage } from '@/models/CharacterSkillsAdvantage'
 import SkillListItem from '@/components/character/sheet/subsections/skills/SkillListItem.vue'
 
 const props = defineProps<{
   className: string
   character: Character
+  characterSkillsAdvantages: Map<string, CharacterSkillAdvantage>
 }>()
 
 onMounted(async () => {
@@ -20,18 +18,10 @@ onMounted(async () => {
   proficientSkillsRes.map((skill) =>
     proficientSkills.value.set(skill.skill_name, skill.proficiency_type)
   )
-  const skillsAdvantagesRes = await getCharacterSkillsAdvantages(props.character.id)
-  skillsAdvantagesRes.map((skillAdvantage) =>
-    skillsAdvantages.value.set(skillAdvantage.skill_name, skillAdvantage)
-  )
-
   loading.value = false
 })
 
 const proficientSkills = ref<Map<string, string>>(new Map<string, string>())
-const skillsAdvantages = ref<Map<string, CharacterSkillAdvantage>>(
-  new Map<string, CharacterSkillAdvantage>()
-)
 const loading = ref(true)
 
 const getSkillModifier = (skill: Skill): number => {
@@ -130,7 +120,7 @@ const getSkillModifier = (skill: Skill): number => {
             :className="className"
             :skill="skill"
             :proficiency="proficientSkills.get(skill.name) || ''"
-            :advantages="skillsAdvantages.get(skill.name) || {}"
+            :advantages="characterSkillsAdvantages.get(skill.name) || {}"
             :modifier="getSkillModifier(skill)"
             :character="character"
           />

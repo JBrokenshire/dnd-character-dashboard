@@ -35,7 +35,7 @@ const equipment = ref<CharacterInventoryItem[]>([])
 const backpack = ref<CharacterInventoryItem[]>([])
 const loading = ref(true)
 
-defineEmits(['update-ac'])
+defineEmits(['update-ac', 'toggle-stealth-disadvantage'])
 </script>
 
 <template>
@@ -63,7 +63,12 @@ defineEmits(['update-ac'])
     <div class="flex-1 flex-col overflow-y-scroll">
       <div class="flex-1 flex-col h-full">
         <!-- Equipment -->
-        <InventoryTable :className="className" :items="equipment" @update-ac="$emit('update-ac')">
+        <InventoryTable
+          :className="className"
+          :items="equipment"
+          @update-ac="$emit('update-ac')"
+          @toggle-stealth-disadvantage="$emit('toggle-stealth-disadvantage')"
+        >
           <template #column-headers>
             <div class="table__column-header w-[40px]">Active</div>
             <div class="table__column-header w-[200px]">Name</div>
