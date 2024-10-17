@@ -3,7 +3,8 @@ import {
   damageCharacter,
   healCharacter,
   toggleInspiration,
-  getCharacterByID
+  getCharacterByID,
+  fetchCharacterArmourClass
 } from '@/services/CharacterService'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -22,14 +23,16 @@ import ProficiencyGroupsContainer from '@/components/character/sheet/subsections
 onMounted(async () => {
   character.value = await getCharacterByID(characterID)
   cleanedClassName.value = cleanClassName(character.value.class.name)
-  isLoading.value = false
+  armourClass.value = await fetchCharacterArmourClass(characterID)
+  loading.value = false
 })
 
 const route = useRoute()
 
 const characterID = route.params.id
-const isLoading = ref(true)
 const character = ref<Character>(null)
+const armourClass = ref(0)
+const loading = ref(true)
 
 const cleanedClassName = ref<string>('')
 
@@ -44,11 +47,15 @@ const damage = async (damageValue) => {
 const inspiration = async () => {
   character.value = await toggleInspiration(character.value.id)
 }
+
+const updateArmourClass = async () => {
+  armourClass.value = await fetchCharacterArmourClass(characterID)
+}
 </script>
 
 <template>
   <!-- Show loading spinner while isLoading = true -->
-  <div v-if="isLoading" class="text-center py-6">
+  <div v-if="loading" class="text-center py-6">
     <CustomScaleLoader />
   </div>
 
@@ -79,9 +86,17 @@ const inspiration = async () => {
 
       <SkillsContainer :className="cleanedClassName" :character="character" />
 
-      <CombatContainer :className="cleanedClassName" :character="character" />
+      <CombatContainer
+        :className="cleanedClassName"
+        :character="character"
+        :armour-class="armourClass"
+      />
 
-      <PrimaryContainer :className="cleanedClassName" :character="character" />
+      <PrimaryContainer
+        :className="cleanedClassName"
+        :character="character"
+        @update-ac="updateArmourClass"
+      />
     </div>
   </div>
 </template>

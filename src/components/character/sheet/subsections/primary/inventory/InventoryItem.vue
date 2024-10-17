@@ -22,7 +22,13 @@ const toggleEquipped = async () => {
     props.item.id
   )
   equipped.value = updatedItem.equipped
+
+  if (updatedItem.type === 'armour' || updatedItem.type === 'shield') {
+    emit('update-ac')
+  }
 }
+
+const emit = defineEmits(['update-ac'])
 </script>
 
 <template>

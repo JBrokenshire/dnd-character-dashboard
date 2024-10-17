@@ -8,11 +8,13 @@ const props = defineProps<{
   items: CharacterInventoryItem[]
 }>()
 
-const totalWeight = ref(0)
-
 onMounted(() => {
   totalWeight.value = getCombinedWeight(props.items)
 })
+
+const totalWeight = ref(0)
+
+defineEmits(['update-ac'])
 </script>
 
 <template>
@@ -38,7 +40,13 @@ onMounted(() => {
       </div>
 
       <div>
-        <InventoryItem v-for="item in items" :key="item.id" :className="className" :item="item" />
+        <InventoryItem
+          v-for="item in items"
+          :key="item.id"
+          :className="className"
+          :item="item"
+          @update-ac="$emit('update-ac')"
+        />
       </div>
     </div>
   </div>

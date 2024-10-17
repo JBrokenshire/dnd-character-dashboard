@@ -24,6 +24,8 @@ const activeNav = ref<NavItem>('actions')
 const toggleActive = (name: string) => {
   activeNav.value = name
 }
+
+defineEmits(['update-ac'])
 </script>
 
 <template>
@@ -71,6 +73,7 @@ const toggleActive = (name: string) => {
         v-if="activeNav === 'inventory'"
         :className="className"
         :character="character"
+        @update-ac="$emit('update-ac')"
       />
     </div>
   </div>

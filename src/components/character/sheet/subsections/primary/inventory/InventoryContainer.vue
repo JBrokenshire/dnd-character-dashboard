@@ -13,13 +13,6 @@ const props = defineProps<{
   character: Character
 }>()
 
-const money = ref<CharacterMoney[]>([])
-const inventory = ref<CharacterInventoryItem[]>([])
-const inventoryWeight = ref(0)
-const equipment = ref<CharacterInventoryItem[]>([])
-const backpack = ref<CharacterInventoryItem[]>([])
-const loading = ref(true)
-
 onMounted(async () => {
   money.value = await fetchCharacterMoney(props.character.id)
   inventory.value = await fetchCharacterInventory(props.character.id)
@@ -34,6 +27,15 @@ onMounted(async () => {
   })
   loading.value = false
 })
+
+const money = ref<CharacterMoney[]>([])
+const inventory = ref<CharacterInventoryItem[]>([])
+const inventoryWeight = ref(0)
+const equipment = ref<CharacterInventoryItem[]>([])
+const backpack = ref<CharacterInventoryItem[]>([])
+const loading = ref(true)
+
+defineEmits(['update-ac'])
 </script>
 
 <template>
@@ -61,7 +63,7 @@ onMounted(async () => {
     <div class="flex-1 flex-col overflow-y-scroll">
       <div class="flex-1 flex-col h-full">
         <!-- Equipment -->
-        <InventoryTable :className="className" :items="equipment">
+        <InventoryTable :className="className" :items="equipment" @update-ac="$emit('update-ac')">
           <template #column-headers>
             <div class="table__column-header w-[40px]">Active</div>
             <div class="table__column-header w-[200px]">Name</div>

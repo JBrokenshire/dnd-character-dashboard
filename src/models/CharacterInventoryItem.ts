@@ -15,6 +15,7 @@ export interface CharacterInventoryItem {
   equipped: boolean
   quantity: number
   location: 'Equipment' | 'Backpack'
+  type: 'weapon' | 'armour' | 'shield' | 'item'
   item: Item
 }
 
