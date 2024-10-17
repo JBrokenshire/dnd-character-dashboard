@@ -34,6 +34,11 @@ interface Character {
 
   attacks_per_action: number
 
+  organisations: string
+  allies: string
+  enemies: string
+  backstory: string
+
   class: ClassType
   race: Race
 }

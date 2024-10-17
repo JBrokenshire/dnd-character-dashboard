@@ -4,6 +4,7 @@ import type { Character } from '@/models/Character'
 import PrimaryNav from '@/components/character/sheet/subsections/primary/PrimaryNav.vue'
 import ActionsContainer from '@/components/character/sheet/subsections/primary/actions/ActionsContainer.vue'
 import InventoryContainer from '@/components/character/sheet/subsections/primary/inventory/InventoryContainer.vue'
+import NotesContainer from '@/components/character/sheet/subsections/primary/notes/NotesContainer.vue'
 
 defineProps<{
   className: string
@@ -59,22 +60,24 @@ defineEmits(['update-ac'])
 
       <PrimaryNav
         :hasSpells="true"
-        :className="className"
+        :class-name="className"
         @toggle="(name: string) => toggleActive(name)"
       />
 
       <ActionsContainer
         v-if="activeNav === 'actions'"
-        :className="className"
+        :class-name="className"
         :character="character"
       />
 
       <InventoryContainer
         v-if="activeNav === 'inventory'"
-        :className="className"
+        :class-name="className"
         :character="character"
         @update-ac="$emit('update-ac')"
       />
+
+      <NotesContainer v-if="activeNav === 'notes'" :class-name="className" :character="character" />
     </div>
   </div>
 </template>
