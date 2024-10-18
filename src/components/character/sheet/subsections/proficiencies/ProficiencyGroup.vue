@@ -16,7 +16,8 @@ defineProps<{
       {{ title }}
     </div>
     <div class="text-white cursor-default text-[12px] leading-[1.4]">
-      {{ values.join(', ') }}
+      <span v-if="values.length > 0">{{ values.join(', ') }}</span>
+      <span v-else>None</span>
     </div>
   </div>
 </template>

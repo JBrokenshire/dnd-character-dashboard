@@ -23,10 +23,10 @@ const loading = ref(true)
 onMounted(async () => {
   const characterID = props.character.id
 
-  armour.value = await fetchArmourProficiencies(characterID)
-  weapons.value = await fetchWeaponProficiencies(characterID)
-  tools.value = await fetchToolProficiencies(characterID)
-  languages.value = await fetchLanguageProficiencies(characterID)
+  armour.value = (await fetchArmourProficiencies(characterID)) || []
+  weapons.value = (await fetchWeaponProficiencies(characterID)) || []
+  tools.value = (await fetchToolProficiencies(characterID)) || []
+  languages.value = (await fetchLanguageProficiencies(characterID)) || []
   loading.value = false
 })
 </script>

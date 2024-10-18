@@ -1,9 +1,11 @@
+export type SpellcastingAbility = 'Intelligence' | 'Wisdom' | 'Charisma' | null
+
 interface ClassType {
   id: number
   name: string
   short_description: string
   long_description: string
-  colour: string
+  spellcasting_ability: SpellcastingAbility
 }
 
 export { ClassType }

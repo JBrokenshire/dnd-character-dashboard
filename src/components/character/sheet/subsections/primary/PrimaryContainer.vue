@@ -6,6 +6,7 @@ import NotesContainer from '@/components/character/sheet/subsections/primary/not
 import ActionsContainer from '@/components/character/sheet/subsections/primary/actions/ActionsContainer.vue'
 import InventoryContainer from '@/components/character/sheet/subsections/primary/inventory/InventoryContainer.vue'
 import BackgroundContainer from '@/components/character/sheet/subsections/primary/background/BackgroundContainer.vue'
+import SpellsContainer from '@/components/character/sheet/subsections/primary/spells/SpellsContainer.vue'
 
 defineProps<{
   className: string
@@ -67,6 +68,12 @@ defineEmits(['update-ac', 'toggle-stealth-disadvantage'])
 
       <ActionsContainer
         v-if="activeNav === 'actions'"
+        :class-name="className"
+        :character="character"
+      />
+
+      <SpellsContainer
+        v-if="activeNav === 'spells'"
         :class-name="className"
         :character="character"
       />
