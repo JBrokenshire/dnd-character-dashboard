@@ -1,6 +1,6 @@
 import axios from 'axios'
-import type { CharacterSpell } from '@/models/Spell'
 import { useToast } from 'vue-toastification'
+import type { CharacterSpell } from '@/models/Spell'
 
 const toast = useToast()
 
@@ -21,5 +21,15 @@ export const getCharacterSpells = async (id: number) => {
   } catch (error) {
     console.error(error)
     toast.error('Error fetching character spells')
+  }
+}
+
+export const fetchCharacterAttackSpells = async (id: number) => {
+  try {
+    const { data } = await axios.get(`/api/characters/${id}/spells/attack`)
+    return data as CharacterSpell[]
+  } catch (error) {
+    console.error(error)
+    toast.error('Error fetching character attack spells')
   }
 }

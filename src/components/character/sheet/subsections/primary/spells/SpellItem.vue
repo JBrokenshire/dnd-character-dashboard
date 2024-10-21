@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex items-center cursor-pointer leading-[1] py-[8px]">
+  <div class="flex items-center cursor-pointer leading-[1] py-[8px] min-h-[36px]">
     <!-- Action -->
     <div class="relative w-[30px] pr-[5px]">
       <span

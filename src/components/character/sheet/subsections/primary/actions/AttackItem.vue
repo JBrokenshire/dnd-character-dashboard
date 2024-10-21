@@ -34,8 +34,8 @@ switch (props.attack.ability) {
 
 const skillModifier = modifierFromLevel(abilityLevel)
 const profBonus = characterProficiencyBonus(props.character.level)
-const action = skillModifier + profBonus + props.attack.bonus
-const damageModifier = skillModifier + props.attack.bonus
+const action = skillModifier + profBonus + (props.attack.bonus || 0)
+const damageModifier = skillModifier + (props.attack.bonus || 0)
 </script>
 
 <template>
@@ -64,7 +64,7 @@ const damageModifier = skillModifier + props.attack.bonus
     <div class="w-[55px]">
       <div class="flex items-baseline font-bold text-[14px]">
         <span>{{ attack.short_range }}</span>
-        <span class="text-cs-gray text-[.625rem] ml-[.188rem]">
+        <span v-if="Number(attack.short_range)" class="text-cs-gray text-[.625rem] ml-[.188rem]">
           {{ attack.long_range ? `(${attack.long_range})` : 'ft.' }}
         </span>
       </div>
