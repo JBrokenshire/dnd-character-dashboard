@@ -21,7 +21,7 @@ const unarmedStrike: Attack = {
   type: 'unarmed',
   short_range: 5,
   ability: 'STR',
-  damage: strengthModifier + 1,
+  damage: Math.max(strengthModifier + 1, 0),
   damage_type: 'bludgeoning',
   bonus: 0
 }

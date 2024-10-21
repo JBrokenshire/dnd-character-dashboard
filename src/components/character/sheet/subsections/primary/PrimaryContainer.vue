@@ -1,17 +1,23 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import type { Character } from '@/models/Character'
+import { getCharacterHasSpells } from '@/services/CharacterSpellService'
 import PrimaryNav from '@/components/character/sheet/subsections/primary/PrimaryNav.vue'
 import NotesContainer from '@/components/character/sheet/subsections/primary/notes/NotesContainer.vue'
+import SpellsContainer from '@/components/character/sheet/subsections/primary/spells/SpellsContainer.vue'
 import ActionsContainer from '@/components/character/sheet/subsections/primary/actions/ActionsContainer.vue'
 import InventoryContainer from '@/components/character/sheet/subsections/primary/inventory/InventoryContainer.vue'
 import BackgroundContainer from '@/components/character/sheet/subsections/primary/background/BackgroundContainer.vue'
-import SpellsContainer from '@/components/character/sheet/subsections/primary/spells/SpellsContainer.vue'
 
-defineProps<{
+const props = defineProps<{
   className: string
   character: Character
 }>()
+
+onMounted(async () => {
+  hasSpells.value = await getCharacterHasSpells(props.character.id)
+  loading.value = false
+})
 
 type NavItem =
   | 'actions'
@@ -22,6 +28,8 @@ type NavItem =
   | 'notes'
   | 'extras'
 
+const hasSpells = ref(true)
+const loading = ref(true)
 const activeNav = ref<NavItem>('actions')
 
 const toggleActive = (name: string) => {
@@ -32,7 +40,7 @@ defineEmits(['update-ac', 'toggle-stealth-disadvantage'])
 </script>
 
 <template>
-  <div class="absolute right-0 top-[104px]">
+  <div v-if="!loading" class="absolute right-0 top-[104px]">
     <div class="w-[517px] xl:w-[623px] h-[660px] py-[13px] px-[20px] relative">
       <div class="svg-background -z-10">
         <!-- Large Screen SVG -->
@@ -61,7 +69,7 @@ defineEmits(['update-ac', 'toggle-stealth-disadvantage'])
       </div>
 
       <PrimaryNav
-        :hasSpells="true"
+        :has-spells="hasSpells"
         :class-name="className"
         @toggle="(name: string) => toggleActive(name)"
       />
