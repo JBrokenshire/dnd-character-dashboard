@@ -5,3 +5,5 @@ export type Ability =
   | 'Intelligence'
   | 'Wisdom'
   | 'Charisma'
+
+export type AbilityAbbreviation = 'STR' | 'DEX' | 'CON' | 'INT' | 'WIS' | 'CHA'

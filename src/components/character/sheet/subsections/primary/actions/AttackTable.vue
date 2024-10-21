@@ -37,7 +37,7 @@ onMounted(async () => {
 
 <template>
   <div v-if="!loading" id="actions-attack-table" class="mb-[13px]">
-    <div class="flex text-white">
+    <div class="flex text-cs-gray">
       <div class="table__column-header w-[27px]" />
       <div class="table__column-header w-[140px]">Attack</div>
       <div class="table__column-header w-[55px]">Range</div>

@@ -39,7 +39,7 @@ defineEmits(['update-ac', 'toggle-stealth-disadvantage'])
 </script>
 
 <template>
-  <section v-if="!loading" class="flex flex-col w-full h-[600px] pb-2">
+  <section v-if="!loading" class="flex flex-col w-full h-[600px] pb-4">
     <h2 class="sr-only">Inventory</h2>
 
     <div class="border-b mb-[10px] pb-[10px]" :class="`border-${className}-faded`">
@@ -64,6 +64,7 @@ defineEmits(['update-ac', 'toggle-stealth-disadvantage'])
       <div class="flex-1 flex-col h-full">
         <!-- Equipment -->
         <InventoryTable
+          class="mb-4"
           :className="className"
           :items="equipment"
           @update-ac="$emit('update-ac')"

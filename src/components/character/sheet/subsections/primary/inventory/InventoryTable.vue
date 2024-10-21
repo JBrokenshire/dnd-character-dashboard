@@ -18,7 +18,7 @@ defineEmits(['update-ac', 'toggle-stealth-disadvantage'])
 </script>
 
 <template>
-  <div class="flex-1 flex-col overflow-y-auto mb-4">
+  <div class="flex-1 flex-col overflow-y-auto">
     <div class="flex text-cs-gray">
       <slot name="column-headers" />
     </div>

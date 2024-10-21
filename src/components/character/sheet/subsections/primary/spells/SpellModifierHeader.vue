@@ -1,19 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { characterProficiencyBonus } from '@/models/Character'
-
-const props = defineProps<{
+defineProps<{
   className: string
   spellcastingAbilityModifier: number
-  characterLevel: number
+  spellcastingAttackModifier: number
+  spellSaveDc: number
 }>()
-
-const spellcastingAttackModifier = computed(() => {
-  return props.spellcastingAbilityModifier + characterProficiencyBonus(props.characterLevel)
-})
-const spellSaveDC = computed(() => {
-  return 8 + spellcastingAttackModifier.value
-})
 </script>
 
 <template>
@@ -54,7 +45,7 @@ const spellSaveDC = computed(() => {
         <div class="flex">
           <span class="text-[16px] text-white">
             <span class="inline-flex items-center align-top">
-              <span>{{ spellSaveDC }}</span>
+              <span>{{ spellSaveDc }}</span>
             </span>
           </span>
         </div>
