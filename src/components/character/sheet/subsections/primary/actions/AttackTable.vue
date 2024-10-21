@@ -17,44 +17,46 @@ onMounted(async () => {
   weaponAttacks.value = await fetchCharacterEquippedWeapons(props.character.id)
 
   spells.value = await fetchCharacterAttackSpells(props.character.id)
-  spells.value.map((characterSpell) => {
-    let metaLevel
-    switch (characterSpell.spell.level) {
-      case 0:
-        metaLevel = 'Cantrip'
-        break
-      case 1:
-        metaLevel = '1st Level'
-        break
-      case 2:
-        metaLevel = '2nd Level'
-        break
-      case 3:
-        metaLevel = '3rd Level'
-        break
-      default:
-        metaLevel = level.toString() + 'th Level'
-        break
-    }
+  if (spells.value) {
+    spells.value.map((characterSpell) => {
+      let metaLevel
+      switch (characterSpell.spell.level) {
+        case 0:
+          metaLevel = 'Cantrip'
+          break
+        case 1:
+          metaLevel = '1st Level'
+          break
+        case 2:
+          metaLevel = '2nd Level'
+          break
+        case 3:
+          metaLevel = '3rd Level'
+          break
+        default:
+          metaLevel = level.toString() + 'th Level'
+          break
+      }
 
-    let spellCastingAbility: string = props.character.class.spellcasting_ability
-    spellCastingAbility = spellCastingAbility.slice(0, 3).toUpperCase()
+      let spellCastingAbility: string = props.character.class.spellcasting_ability
+      spellCastingAbility = spellCastingAbility.slice(0, 3).toUpperCase()
 
-    const spellAttack: Attack = {
-      item: {
-        name: characterSpell.spell.name,
-        meta: `${metaLevel} • ${characterSpell.origin}`,
-        rarity: 'Common',
-        notes: characterSpell.spell.notes
-      },
-      type: characterSpell.spell.school.toLowerCase(),
-      short_range: characterSpell.spell.distance,
-      ability: spellCastingAbility,
-      damage: characterSpell.spell.damage,
-      damage_type: characterSpell.spell.damage_type
-    }
-    spellAttacks.value.push(spellAttack)
-  })
+      const spellAttack: Attack = {
+        item: {
+          name: characterSpell.spell.name,
+          meta: `${metaLevel} • ${characterSpell.origin}`,
+          rarity: 'Common',
+          notes: characterSpell.spell.notes
+        },
+        type: characterSpell.spell.school.toLowerCase(),
+        short_range: characterSpell.spell.distance,
+        ability: spellCastingAbility,
+        damage: characterSpell.spell.damage,
+        damage_type: characterSpell.spell.damage_type
+      }
+      spellAttacks.value.push(spellAttack)
+    })
+  }
   loading.value = false
 })
 

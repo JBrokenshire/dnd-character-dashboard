@@ -32,7 +32,6 @@ const toggleActive = (name: string) => {
           :class="`border-${className}`"
           @click="toggleActive('actions')"
           role="radio"
-          aria-checked="true"
         >
           Actions
         </button>
@@ -43,7 +42,6 @@ const toggleActive = (name: string) => {
           class="transition-200 primary-container__nav-item border-transparent"
           @click="toggleActive('spells')"
           role="radio"
-          aria-checked="false"
         >
           Spells
         </button>
@@ -54,7 +52,6 @@ const toggleActive = (name: string) => {
           class="transition-200 primary-container__nav-item border-transparent"
           @click="toggleActive('inventory')"
           role="radio"
-          aria-checked="false"
         >
           Inventory
         </button>
@@ -65,7 +62,6 @@ const toggleActive = (name: string) => {
           class="transition-200 primary-container__nav-item border-transparent"
           @click="toggleActive('features-and-traits')"
           role="radio"
-          aria-checked="false"
         >
           Features & Traits
         </button>
@@ -76,7 +72,6 @@ const toggleActive = (name: string) => {
           class="transition-200 primary-container__nav-item border-transparent"
           @click="toggleActive('background')"
           role="radio"
-          aria-checked="false"
         >
           Background
         </button>
@@ -87,7 +82,6 @@ const toggleActive = (name: string) => {
           class="transition-200 primary-container__nav-item border-transparent"
           @click="toggleActive('notes')"
           role="radio"
-          aria-checked="false"
         >
           Notes
         </button>
@@ -98,7 +92,6 @@ const toggleActive = (name: string) => {
           class="transition-200 primary-container__nav-item border-transparent"
           @click="toggleActive('extras')"
           role="radio"
-          aria-checked="false"
         >
           Extras
         </button>
