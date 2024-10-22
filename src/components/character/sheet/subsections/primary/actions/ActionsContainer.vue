@@ -13,7 +13,7 @@ defineProps<{
   <section class="flex flex-col w-full h-[600px] pb-4">
     <h2 class="sr-only">Actions</h2>
 
-    <div class="h-[580px] overflow-y-auto">
+    <div class="overflow-y-auto">
       <!-- Actions List -->
       <titled-section class="mb-[25px]" :class-name="className">
         <template #title>
@@ -32,7 +32,7 @@ defineProps<{
             <div class="flex flex-col gap-4 text-[12px]">
               <div id="actions-in-combat" class="text-white">
                 <div class="font-bold">Actions in Combat</div>
-                <div class="border-l-2 mx-1 px-2" :class="`border-${className}`">
+                <div class="border-l-2 mx-1 p-2" :class="`border-${className}`">
                   Attack, Dash, Disengage, Dodge, Grapple, Help, Hide, Improvise, Influence, Magic,
                   Ready, Search, Shove, Study, Utilise
                 </div>

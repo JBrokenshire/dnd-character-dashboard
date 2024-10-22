@@ -109,6 +109,14 @@ select {
   @apply text-[11px] font-bold py-[5px] uppercase tracking-tightest;
 }
 
+.active-indicator {
+  @apply relative w-[20px] h-[20px] min-w-[20px] m-[2px] bg-black border;
+}
+
+.active-indicator::after {
+  @apply content-[''] absolute w-[10px] h-[10px] m-auto translate-x-[-50%] translate-y-[-50%];
+}
+
 /* Colour Styles */
 
 .bg-barbarian, .bg-barbarian::before, .bg-barbarian::after { @apply bg-class-barbarian }

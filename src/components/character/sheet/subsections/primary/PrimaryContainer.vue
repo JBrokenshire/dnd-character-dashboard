@@ -8,6 +8,7 @@ import SpellsContainer from '@/components/character/sheet/subsections/primary/sp
 import ActionsContainer from '@/components/character/sheet/subsections/primary/actions/ActionsContainer.vue'
 import InventoryContainer from '@/components/character/sheet/subsections/primary/inventory/InventoryContainer.vue'
 import BackgroundContainer from '@/components/character/sheet/subsections/primary/background/BackgroundContainer.vue'
+import FeaturesContainer from '@/components/character/sheet/subsections/primary/features/FeaturesContainer.vue'
 
 const props = defineProps<{
   className: string
@@ -68,25 +69,25 @@ defineEmits(['update-ac', 'toggle-stealth-disadvantage'])
         </svg>
       </div>
 
-      <PrimaryNav
+      <primary-nav
         :has-spells="hasSpells"
         :class-name="className"
         @toggle="(name: string) => toggleActive(name)"
       />
 
-      <ActionsContainer
+      <actions-container
         v-if="activeNav === 'actions'"
         :class-name="className"
         :character="character"
       />
 
-      <SpellsContainer
+      <spells-container
         v-if="activeNav === 'spells'"
         :class-name="className"
         :character="character"
       />
 
-      <InventoryContainer
+      <inventory-container
         v-if="activeNav === 'inventory'"
         :class-name="className"
         :character="character"
@@ -94,13 +95,23 @@ defineEmits(['update-ac', 'toggle-stealth-disadvantage'])
         @toggle-stealth-disadvantage="$emit('toggle-stealth-disadvantage')"
       />
 
-      <BackgroundContainer
+      <features-container
+        v-if="activeNav === 'features-and-traits'"
+        :class-name="className"
+        :character="character"
+      />
+
+      <background-container
         v-if="activeNav === 'background'"
         :class-name="className"
         :character="character"
       />
 
-      <NotesContainer v-if="activeNav === 'notes'" :class-name="className" :character="character" />
+      <notes-container
+        v-if="activeNav === 'notes'"
+        :class-name="className"
+        :character="character"
+      />
     </div>
   </div>
 </template>

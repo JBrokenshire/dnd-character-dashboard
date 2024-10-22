@@ -2,19 +2,22 @@
 import { onMounted, ref } from 'vue'
 import type { CharacterInventoryItem } from '@/models/CharacterInventoryItem'
 import { toggleCharacterInventoryItemEquipped } from '@/services/CharacterInventoryService'
+import ActiveIndicator from '@/components/character/sheet/subsections/primary/ActiveIndicator.vue'
 
 const props = defineProps<{
   className: string
   item: CharacterInventoryItem
 }>()
 
-onMounted(() => {
+onMounted(async () => {
   equipped.value = props.item.equipped
   weight.value = props.item.item.weight * (props.item.quantity || 1)
+  loading.value = false
 })
 
 const equipped = ref(false)
 const weight = ref(0)
+const loading = ref(true)
 
 const toggleEquipped = async () => {
   const updatedItem = await toggleCharacterInventoryItemEquipped(
@@ -36,15 +39,18 @@ const emit = defineEmits(['update-ac', 'toggle-stealth-disadvantage'])
 </script>
 
 <template>
-  <div class="flex items-center cursor-pointer leading-[1] py-[8px] text-white text-[14px]">
+  <div
+    v-if="!loading"
+    class="flex items-center cursor-pointer leading-[1] py-[8px] text-white text-[14px]"
+  >
     <!-- Equipped Indicator -->
     <div class="w-[40px]">
       <div class="flex flex-wrap">
-        <button
+        <active-indicator
           v-if="item.item.equippable && item.location === 'Equipment'"
-          class="relative active-indicator transition-200"
-          :class="`${equipped ? `border-${className} bg-${className}` : `border-cs-gray`}`"
-          @click="toggleEquipped"
+          :class-name="className"
+          :active="equipped"
+          @toggle="toggleEquipped"
         />
         <div v-else class="text-[10px] text-center w-[20px] mx-[2px]">—</div>
       </div>
@@ -116,12 +122,12 @@ const emit = defineEmits(['update-ac', 'toggle-stealth-disadvantage'])
   </div>
 </template>
 
-<style scoped>
-.active-indicator {
-  @apply relative w-[20px] h-[20px] min-w-[20px] m-[2px] bg-black border;
-}
+<!--<style scoped>-->
+<!--.active-indicator {-->
+<!--  @apply relative w-[20px] h-[20px] min-w-[20px] m-[2px] bg-black border;-->
+<!--}-->
 
-.active-indicator::after {
-  @apply content-[''] absolute w-[10px] h-[10px] m-auto translate-x-[-50%] translate-y-[-50%];
-}
-</style>
+<!--.active-indicator::after {-->
+<!--  @apply content-[''] absolute w-[10px] h-[10px] m-auto translate-x-[-50%] translate-y-[-50%];-->
+<!--}-->
+<!--</style>-->
