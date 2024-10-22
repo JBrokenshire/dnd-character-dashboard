@@ -1,6 +1,7 @@
 import type { Race } from '@/models/Race'
 import type { ClassType } from '@/models/ClassType'
 import type { Background } from '@/models/Background'
+import type { Subclass } from '@/models/Subclass'
 
 type Size = 'Tiny' | 'Small' | 'Medium' | 'Large' | 'Huge' | 'Gargantuan'
 
@@ -9,6 +10,7 @@ interface Character {
   name: string
   level: number
   class_id: number
+  subclass_id: number
   race_id: number
   profile_picture_url: string
 
@@ -55,6 +57,7 @@ interface Character {
   backstory: string
 
   class: ClassType
+  subclass: Subclass
   race: Race
   background: Background
 }

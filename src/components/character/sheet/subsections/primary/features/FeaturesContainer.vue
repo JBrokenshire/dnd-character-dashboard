@@ -4,9 +4,10 @@ import type { Trait } from '@/models/Trait'
 import type { Feature } from '@/models/Feature'
 import type { Character } from '@/models/Character'
 import { fetchRaceTraits } from '@/services/RaceService'
+import { fetchClassFeatures } from '@/services/ClassService'
+import { fetchSubclassFeatures } from '@/services/SubclassService'
 import TitledSection from '@/components/character/sheet/subsections/primary/TitledSection.vue'
 import ActiveIndicator from '@/components/character/sheet/subsections/primary/ActiveIndicator.vue'
-import { fetchClassFeatures } from '@/services/ClassService'
 
 const props = defineProps<{
   className: string
@@ -16,11 +17,15 @@ const props = defineProps<{
 onMounted(async () => {
   raceTraits.value = await fetchRaceTraits(props.character.race.id)
   classFeatures.value = await fetchClassFeatures(props.character.class.id)
+  if (props.character.subclass_id) {
+    subclassFeatures.value = await fetchSubclassFeatures(props.character.subclass_id)
+  }
   loading.value = false
 })
 
 const raceTraits = ref<Trait[]>([])
 const classFeatures = ref<Feature[]>([])
+const subclassFeatures = ref<Feature[]>([])
 const loading = ref(true)
 </script>
 
