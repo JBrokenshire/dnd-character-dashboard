@@ -4,8 +4,7 @@ import type { Trait } from '@/models/Trait'
 import type { Feature } from '@/models/Feature'
 import type { Character } from '@/models/Character'
 import { fetchRaceTraits } from '@/services/RaceService'
-import { fetchClassFeatures } from '@/services/ClassService'
-import { fetchSubclassFeatures } from '@/services/SubclassService'
+import { fetchCharacterFeatures } from '@/services/CharacterFeatureService'
 import TitledSection from '@/components/character/sheet/subsections/primary/TitledSection.vue'
 import ActiveIndicator from '@/components/character/sheet/subsections/primary/ActiveIndicator.vue'
 
@@ -16,17 +15,22 @@ const props = defineProps<{
 
 onMounted(async () => {
   raceTraits.value = await fetchRaceTraits(props.character.race.id)
-  classFeatures.value = await fetchClassFeatures(props.character.class.id)
-  if (props.character.subclass_id) {
-    subclassFeatures.value = await fetchSubclassFeatures(props.character.subclass_id)
-  }
+  features.value = await fetchCharacterFeatures(props.character.id)
   loading.value = false
 })
 
 const raceTraits = ref<Trait[]>([])
-const classFeatures = ref<Feature[]>([])
-const subclassFeatures = ref<Feature[]>([])
+const features = ref<Feature[]>([])
 const loading = ref(true)
+
+const getFeatureDescriptionSection = (sectionText: string) => {
+  switch (sectionText) {
+    case 'level':
+      return `<span class=font-bold>${props.character.level}</span>`
+    default:
+      return sectionText
+  }
+}
 </script>
 
 <template>
@@ -38,12 +42,23 @@ const loading = ref(true)
         <template #title>Class Features</template>
         <template #content>
           <div
-            v-for="feature in classFeatures"
+            v-for="feature in features"
             :key="`class-feature-${feature.id}`"
             class="text-white text-[13px] tracking-tightest my-3"
           >
             <div class="font-bold">{{ feature.name }}</div>
-            <div>{{ feature.description }}</div>
+            <div class="flex flex-col gap-1">
+              <p
+                v-for="(section, sectionIndex) in feature.description.split('\n')"
+                :key="`${feature.id}-description-section-${sectionIndex}`"
+              >
+                <span
+                  v-for="(part, partIndex) in section.split('%%')"
+                  :key="`${feature.id}-description-section-${sectionIndex}-${partIndex}`"
+                  v-html="getFeatureDescriptionSection(part)"
+                />
+              </p>
+            </div>
 
             <div
               v-if="feature.action"
