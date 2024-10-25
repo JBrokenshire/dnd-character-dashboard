@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import type { Trait } from '@/models/Trait'
-import type { Feature } from '@/models/Feature'
 import type { Character } from '@/models/Character'
+import type { ClassFeature } from '@/models/Feature'
 import { fetchRaceTraits } from '@/services/RaceService'
 import { fetchCharacterFeatures } from '@/services/CharacterFeatureService'
 import TitledSection from '@/components/character/sheet/subsections/primary/TitledSection.vue'
@@ -15,12 +15,12 @@ const props = defineProps<{
 
 onMounted(async () => {
   raceTraits.value = await fetchRaceTraits(props.character.race.id)
-  features.value = await fetchCharacterFeatures(props.character.id)
+  classFeatures.value = await fetchCharacterFeatures(props.character.id)
   loading.value = false
 })
 
 const raceTraits = ref<Trait[]>([])
-const features = ref<Feature[]>([])
+const classFeatures = ref<ClassFeature[]>([])
 const loading = ref(true)
 
 const getFeatureDescriptionSection = (sectionText: string) => {
@@ -42,43 +42,59 @@ const getFeatureDescriptionSection = (sectionText: string) => {
         <template #title>Class Features</template>
         <template #content>
           <div
-            v-for="feature in features"
-            :key="`class-feature-${feature.id}`"
+            v-for="classFeature in classFeatures"
+            :key="`class-feature-${classFeature.feature.id}`"
             class="text-white text-[13px] tracking-tightest my-3"
           >
-            <div class="font-bold">{{ feature.name }}</div>
+            <div class="font-bold">{{ classFeature.feature.name }}</div>
             <div class="flex flex-col gap-1">
               <p
-                v-for="(section, sectionIndex) in feature.description.split('\n')"
-                :key="`${feature.id}-description-section-${sectionIndex}`"
+                v-for="(section, sectionIndex) in classFeature.feature.description.split('\n')"
+                :key="`${classFeature.feature.id}-description-section-${sectionIndex}`"
               >
                 <span
                   v-for="(part, partIndex) in section.split('%%')"
-                  :key="`${feature.id}-description-section-${sectionIndex}-${partIndex}`"
+                  :key="`${classFeature.feature.id}-description-section-${sectionIndex}-${partIndex}`"
                   v-html="getFeatureDescriptionSection(part)"
                 />
               </p>
             </div>
 
             <div
-              v-if="feature.action"
+              v-if="classFeature.feature.action || classFeature.choices.length > 0"
               class="border-l-2 my-2 mx-1 p-2"
               :class="`border-${className}`"
             >
-              <div>
-                {{ feature.action }}:
-                {{ feature.action_type ? `1 ${feature.action_type}` : '(No Action)' }}
-              </div>
-              <div class="flex items-center gap-1">
-                <div class="flex">
-                  <active-indicator
-                    v-for="index in feature.action_uses"
-                    :key="`${feature.name.replace(' ', '-')}-active-indicator-${index}`"
-                    :class-name="className"
-                    :active="false"
-                  />
+              <div v-if="classFeature.choices.length > 0">
+                <div
+                  v-for="choice in classFeature.choices"
+                  :key="`class-feature-${classFeature.feature.id}-choice-${choice.option.replace(' ', '-')}`"
+                >
+                  <div class="font-bold">{{ choice.option }}</div>
+                  <div v-if="choice.body" v-html="choice.body" />
                 </div>
-                /&nbsp; {{ feature.action_reset }}
+              </div>
+
+              <div v-if="classFeature.feature.action">
+                <div>
+                  {{ classFeature.feature.action }}:
+                  {{
+                    classFeature.feature.action_type
+                      ? `1 ${classFeature.feature.action_type}`
+                      : '(No Action)'
+                  }}
+                </div>
+                <div class="flex items-center gap-1">
+                  <div class="flex">
+                    <active-indicator
+                      v-for="index in classFeature.feature.action_uses"
+                      :key="`${classFeature.feature.name.replace(' ', '-')}-active-indicator-${index}`"
+                      :class-name="className"
+                      :active="false"
+                    />
+                  </div>
+                  /&nbsp; {{ classFeature.feature.action_reset }}
+                </div>
               </div>
             </div>
           </div>
