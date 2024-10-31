@@ -66,7 +66,7 @@ const getFeatureDescriptionSection = (sectionText: string) => {
               :class="`border-${className}`"
             >
               <div v-if="classFeature.choices">
-                <div v-if="classFeature.choices.length > 0">
+                <div v-if="classFeature.choices.length > 0" class="flex flex-col gap-1">
                   <div
                     v-for="choice in classFeature.choices"
                     :key="`class-feature-${classFeature.feature.id}-choice-${choice.option.replace(' ', '-')}`"
