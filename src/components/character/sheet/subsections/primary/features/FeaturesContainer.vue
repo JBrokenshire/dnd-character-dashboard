@@ -15,12 +15,12 @@ const props = defineProps<{
 
 onMounted(async () => {
   raceTraits.value = await fetchRaceTraits(props.character.race.id)
-  classFeatures.value = await fetchCharacterFeatures(props.character.id)
+  features.value = await fetchCharacterFeatures(props.character.id)
   loading.value = false
 })
 
 const raceTraits = ref<Trait[]>([])
-const classFeatures = ref<ClassFeature[]>([])
+const features = ref<ClassFeature[]>([])
 const loading = ref(true)
 
 const getFeatureDescriptionSection = (sectionText: string) => {
@@ -42,7 +42,7 @@ const getFeatureDescriptionSection = (sectionText: string) => {
         <template #title>Class Features</template>
         <template #content>
           <div
-            v-for="classFeature in classFeatures"
+            v-for="classFeature in features"
             :key="`class-feature-${classFeature.feature.id}`"
             class="text-white text-[13px] tracking-tightest my-3"
           >
@@ -61,17 +61,19 @@ const getFeatureDescriptionSection = (sectionText: string) => {
             </div>
 
             <div
-              v-if="classFeature.feature.action || classFeature.choices.length > 0"
+              v-if="classFeature.feature.action || classFeature.choices"
               class="border-l-2 my-2 mx-1 p-2"
               :class="`border-${className}`"
             >
-              <div v-if="classFeature.choices.length > 0">
-                <div
-                  v-for="choice in classFeature.choices"
-                  :key="`class-feature-${classFeature.feature.id}-choice-${choice.option.replace(' ', '-')}`"
-                >
-                  <div class="font-bold">{{ choice.option }}</div>
-                  <div v-if="choice.body" v-html="choice.body" />
+              <div v-if="classFeature.choices">
+                <div v-if="classFeature.choices.length > 0">
+                  <div
+                    v-for="choice in classFeature.choices"
+                    :key="`class-feature-${classFeature.feature.id}-choice-${choice.option.replace(' ', '-')}`"
+                  >
+                    <div class="font-bold">{{ choice.option }}</div>
+                    <div v-html="choice.body" />
+                  </div>
                 </div>
               </div>
 
