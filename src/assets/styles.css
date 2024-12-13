@@ -117,6 +117,10 @@ select {
   @apply content-[''] absolute w-[10px] h-[10px] m-auto translate-x-[-50%] translate-y-[-50%];
 }
 
+.description > p > ul {
+  list-style: disc;
+}
+
 /* Colour Styles */
 
 .bg-barbarian, .bg-barbarian::before, .bg-barbarian::after { @apply bg-class-barbarian }

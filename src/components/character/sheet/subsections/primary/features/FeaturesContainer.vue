@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import type { Feat } from '@/models/Feat'
 import type { Trait } from '@/models/Trait'
 import type { Character } from '@/models/Character'
 import type { ClassFeature } from '@/models/Feature'
 import { fetchRaceTraits } from '@/services/RaceService'
+import { fetchCharacterFeats } from '@/services/CharacterFeatService'
 import { fetchCharacterFeatures } from '@/services/CharacterFeatureService'
 import TitledSection from '@/components/character/sheet/subsections/primary/TitledSection.vue'
 import ActiveIndicator from '@/components/character/sheet/subsections/primary/ActiveIndicator.vue'
@@ -16,14 +18,16 @@ const props = defineProps<{
 onMounted(async () => {
   raceTraits.value = await fetchRaceTraits(props.character.race.id)
   features.value = await fetchCharacterFeatures(props.character.id)
+  feats.value = (await fetchCharacterFeats(props.character.id)) || []
   loading.value = false
 })
 
 const raceTraits = ref<Trait[]>([])
 const features = ref<ClassFeature[]>([])
+const feats = ref<Feat[]>([])
 const loading = ref(true)
 
-const getFeatureDescriptionSection = (sectionText: string) => {
+const getDescriptionSection = (sectionText: string) => {
   switch (sectionText) {
     case 'level':
       return `<span class=font-bold>${props.character.level}</span>`
@@ -55,7 +59,7 @@ const getFeatureDescriptionSection = (sectionText: string) => {
                 <span
                   v-for="(part, partIndex) in section.split('%%')"
                   :key="`${classFeature.feature.id}-description-section-${sectionIndex}-${partIndex}`"
-                  v-html="getFeatureDescriptionSection(part)"
+                  v-html="getDescriptionSection(part)"
                 />
               </p>
             </div>
@@ -138,7 +142,37 @@ const getFeatureDescriptionSection = (sectionText: string) => {
 
       <titled-section :class-name="className">
         <template #title>Feats</template>
-        <template #content> </template>
+        <template #content>
+          <div class="w-full flex-center py-2 border-b" :class="`border-${className}-faded`">
+            <button
+              class="mb-[10px] px-2 py-1 rounded text-white text-xs tracking-tightest bg-black"
+              :class="`button-${className}`"
+            >
+              Manage Feats
+            </button>
+          </div>
+          <div v-if="feats.length > 0">
+            <div
+              v-for="feat in feats"
+              :key="`feat-${feat.name.replace(' ', '-')}`"
+              class="text-white text-[13px] tracking-tightest my-3"
+            >
+              <div class="font-bold">{{ feat.name }}</div>
+              <div class="flex flex-col gap-1">
+                <p
+                  v-for="(section, sectionIndex) in feat.description.split('\n')"
+                  :key="`${feat.name}-description-section-${sectionIndex}`"
+                >
+                  <span
+                    v-for="(part, partIndex) in section.split('%%')"
+                    :key="`${feat.name}-description-section-${sectionIndex}-${partIndex}`"
+                    v-html="getDescriptionSection(part)"
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </template>
       </titled-section>
     </div>
   </section>
